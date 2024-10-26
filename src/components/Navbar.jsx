@@ -1,30 +1,18 @@
 "use client";
 import React from "react";
 import Link from "next/link";
+import AxieHomeland from '@/img/AxieInfinityHomeland.jpg';
+import Image from 'next/image';
 import {
   Sheet,
   IconButton,
+  Box,
   Menu,
   MenuButton,
   MenuItem,
   Dropdown,
 } from "@mui/joy";
 import { House, Store } from "lucide-react";
-
-/* const DropdownMenu = ({ label, links }) => {
-  return (
-    <Dropdown>
-      <MenuButton variant="plain">{label}</MenuButton>
-      <Menu variant="plain">
-        {links.map((link) => (
-          <MenuItem key={link.href}>
-            <Link href={link.href}>{link.label}</Link>
-          </MenuItem>
-        ))}
-      </Menu>
-    </Dropdown>
-  );
-}; */
 
 const Navbar = () => {
   return (
@@ -36,8 +24,27 @@ const Navbar = () => {
         padding: 1,
         gap: 1,
         height: "10vh",
+        position: "relative", // Permite posicionar la imagen de manera absoluta
       }}
     >
+      {/* Imagen a la izquierda */}
+      <Box
+        sx={{
+          position: "absolute",
+          left: "16px", // Ubica la imagen en la esquina izquierda
+          height: "80%", // Ajusta la altura de la imagen según el Navbar
+        }}
+      >
+        <Image
+          src={AxieHomeland}
+          alt="Logo"
+          width={75}
+          height={75}
+        />
+      </Box>
+
+      
+      {/* Botones centrados */}
       <Link href="/">
         <IconButton>
           <House />

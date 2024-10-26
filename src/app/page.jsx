@@ -1,12 +1,12 @@
 import React from "react";
-import { Typography } from "@mui/joy";
+import Home from "@/components/Home";
 
 const Inicio = () => {
   return (
-    <main className="mx-2 flex">
-      <Typography color="neutral" level="h1" variant="plain">
-        Herramientas para homeland
-      </Typography>
+    <main className="flex justify-center items-center flex-grow mx-2">
+      <div>
+        <Home />
+      </div>
     </main>
   );
 };
