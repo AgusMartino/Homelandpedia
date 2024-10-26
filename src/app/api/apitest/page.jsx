@@ -10,7 +10,7 @@ const Lands = () => {
   const [loading, setLoading] = useState(true);
   const [filters, setFilters] = useState({
     landtypes: "All",
-    AltarOfAtia: "1",
+    AltarOfAtia: "All",
   });
 
   async function fetchData(filters) {
@@ -35,7 +35,7 @@ const Lands = () => {
 
       const matchesTownhallLevel =
         filters.AltarOfAtia === "All" ||
-        land.plot_data.townhall_level >= parseInt(filters.AltarOfAtia, 10);
+        land.plot_data.townhall_level === parseInt(filters.AltarOfAtia, 10);
 
       return matchesLandType && matchesTownhallLevel;
     });
