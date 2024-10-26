@@ -1,6 +1,5 @@
 import React from "react";
 import { Typography, Box, Card, CardContent } from "@mui/joy";
-import AxieHomeland from '@/img/AxieInfinityHomeland.jpg';
 import Savannah from '@/img/savannah.jpg';
 import Forest from '@/img/forest.jpg';
 import Artic from '@/img/artic.jpg';
@@ -13,7 +12,6 @@ import MysticIcon from '@/img/plotMystic.jpg';
 import GenesisIcon from '@/img/plotGenesis.jpg';
 import AxsIcon from '@/img/axsLogo.jpg';
 import { ArrowUp, ArrowDown } from 'lucide-react';
-
 import Image from 'next/image';
 
 const Inicio = () => {
@@ -113,10 +111,10 @@ const Inicio = () => {
             </Box>
             <CardContent>
               <Typography>
-                Savannah plots are the cheapest and most readily available to play with. This is ideal if you are new to the game and don't know how to play.
+                Savannah plots are the cheapest and most readily available to play with. This is ideal if you are new to the game and do not know how to play.
               </Typography>
               <Typography>
-              Many players use Savannah plot to store their resources. Despite the price of this land, it is great for crafting weapons, armor, rings. On this land you can earn up to 0.043 AXS daily.
+                Many players use Savannah plot to store their resources. Despite the price of this land, it is great for crafting weapons, armor, rings. On this land you can earn up to 0.043 AXS daily.
               </Typography>
             </CardContent>
           </Card>
