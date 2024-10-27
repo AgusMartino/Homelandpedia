@@ -11,6 +11,7 @@ const Lands = () => {
   const [filters, setFilters] = useState({
     landtypes: "All",
     AltarOfAtia: "1",
+    WorkersAxies: "0"
   });
 
   async function fetchData(filters) {

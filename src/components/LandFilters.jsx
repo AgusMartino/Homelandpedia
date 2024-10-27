@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Sheet,
   Button,
@@ -11,8 +11,22 @@ import {
 
 const Filters = ({ filters, setFilters, fetchData }) => {
   const landtypes = ["All", "Savannah", "Forest", "Arctic", "Mystic", "Genesis"];
-  const AltarOfAtiaMax = 10; // Valor máximo del slider
-  const WorkersAxiesMax = 35; // Valor máximo del slider
+  const AltarOfAtiaMax = 10;
+  const WorkersAxiesMax = 35;
+
+  const defaultFilters = {
+    landtypes: "All",
+    AltarOfAtia: 1, // Ajuste para un valor único inicial en vez de [1, AltarOfAtiaMax]
+    WorkersAxies: 0, // Ajuste para un valor único inicial
+  };
+
+  // Establecer valores predeterminados y cargar datos al inicio
+  useEffect(() => {
+    if (!filters || Object.keys(filters).length === 0) {
+      setFilters(defaultFilters);
+      fetchData(defaultFilters);
+    }
+  }, [setFilters, fetchData]);
 
   const handleChange = (key, value) => {
     const updatedFilters = { ...filters, [key]: value };
@@ -21,13 +35,13 @@ const Filters = ({ filters, setFilters, fetchData }) => {
   };
 
   const resetFilters = () => {
-    const defaultFilters = {
-      landtypes: "All",
-      AltarOfAtia: [1, AltarOfAtiaMax],
-      WorkersAxies: [0, WorkersAxiesMax]
+    const ascendingFilters = {
+      ...defaultFilters,
+      AltarOfAtia: Math.min(defaultFilters.AltarOfAtia, AltarOfAtiaMax),
+      WorkersAxies: Math.min(defaultFilters.WorkersAxies, WorkersAxiesMax),
     };
-    setFilters(defaultFilters);
-    fetchData(defaultFilters);
+    setFilters(ascendingFilters);
+    fetchData(ascendingFilters);
   };
 
   return (
@@ -47,7 +61,7 @@ const Filters = ({ filters, setFilters, fetchData }) => {
       <FormControl>
         <FormLabel>Land Type:</FormLabel>
         <Select
-          value={filters.landtypes}
+          value={filters.landtypes || "All"}
           onChange={(event, newValue) => handleChange("landtypes", newValue)}
         >
           {landtypes.map((landtype) => (
@@ -61,32 +75,26 @@ const Filters = ({ filters, setFilters, fetchData }) => {
       <FormControl>
         <FormLabel>Altar of Atia Level:</FormLabel>
         <Slider
-          value={filters.AltarOfAtia}
+          value={filters.AltarOfAtia || defaultFilters.AltarOfAtia}
           onChange={(event, newValue) => handleChange("AltarOfAtia", newValue)}
           valueLabelDisplay="auto"
           min={1}
           max={AltarOfAtiaMax}
-          marks={[
-            { value: 1, label: "1" },
-            { value: AltarOfAtiaMax, label: `${AltarOfAtiaMax}` },
-          ]}
-          sx={{mb: 2 }}
+          marks={[{ value: 1, label: "1" }]}  // Solo marca en el valor mínimo
+          sx={{ mb: 2 }}
         />
       </FormControl>
 
       <FormControl>
         <FormLabel>Workers Axies:</FormLabel>
         <Slider
-          value={filters.WorkersAxies}
+          value={filters.WorkersAxies || defaultFilters.WorkersAxies}
           onChange={(event, newValue) => handleChange("WorkersAxies", newValue)}
           valueLabelDisplay="auto"
           min={0}
           max={WorkersAxiesMax}
-          marks={[
-            { value: 0, label: "0" },
-            { value: WorkersAxiesMax, label: `${WorkersAxiesMax}` },
-          ]}
-          sx={{mb: 2 }}
+          marks={[{ value: 0, label: "0" }]}  // Solo marca en el valor mínimo
+          sx={{ mb: 2 }}
         />
       </FormControl>
     </Sheet>
