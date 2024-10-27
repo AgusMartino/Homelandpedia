@@ -12,6 +12,7 @@ import {
 const Filters = ({ filters, setFilters, fetchData }) => {
   const landtypes = ["All", "Savannah", "Forest", "Arctic", "Mystic", "Genesis"];
   const AltarOfAtiaMax = 10; // Valor máximo del slider
+  const WorkersAxiesMax = 35; // Valor máximo del slider
 
   const handleChange = (key, value) => {
     const updatedFilters = { ...filters, [key]: value };
@@ -23,6 +24,7 @@ const Filters = ({ filters, setFilters, fetchData }) => {
     const defaultFilters = {
       landtypes: "All",
       AltarOfAtia: [1, AltarOfAtiaMax],
+      WorkersAxies: [0, WorkersAxiesMax]
     };
     setFilters(defaultFilters);
     fetchData(defaultFilters);
@@ -43,7 +45,7 @@ const Filters = ({ filters, setFilters, fetchData }) => {
       </Button>
 
       <FormControl>
-        <FormLabel>Land Type</FormLabel>
+        <FormLabel>Land Type:</FormLabel>
         <Select
           value={filters.landtypes}
           onChange={(event, newValue) => handleChange("landtypes", newValue)}
@@ -57,7 +59,7 @@ const Filters = ({ filters, setFilters, fetchData }) => {
       </FormControl>
 
       <FormControl>
-        <FormLabel>Altar of Atia Level</FormLabel>
+        <FormLabel>Altar of Atia Level:</FormLabel>
         <Slider
           value={filters.AltarOfAtia}
           onChange={(event, newValue) => handleChange("AltarOfAtia", newValue)}
@@ -68,7 +70,23 @@ const Filters = ({ filters, setFilters, fetchData }) => {
             { value: 1, label: "1" },
             { value: AltarOfAtiaMax, label: `${AltarOfAtiaMax}` },
           ]}
-          sx={{ mt: 2 }}
+          sx={{mb: 2 }}
+        />
+      </FormControl>
+
+      <FormControl>
+        <FormLabel>Workers Axies:</FormLabel>
+        <Slider
+          value={filters.WorkersAxies}
+          onChange={(event, newValue) => handleChange("WorkersAxies", newValue)}
+          valueLabelDisplay="auto"
+          min={0}
+          max={WorkersAxiesMax}
+          marks={[
+            { value: 0, label: "0" },
+            { value: WorkersAxiesMax, label: `${WorkersAxiesMax}` },
+          ]}
+          sx={{mb: 2 }}
         />
       </FormControl>
     </Sheet>

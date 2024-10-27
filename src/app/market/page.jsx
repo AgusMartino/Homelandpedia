@@ -36,8 +36,12 @@ const Lands = () => {
       const matchesTownhallLevel =
         filters.AltarOfAtia === "All" ||
         land.plot_data.townhall_level >= parseInt(filters.AltarOfAtia, 10);
+      
+      const matchesWorkerAxie =
+        filters.WorkersAxies === "All" ||
+        land.plot_data.number_of_workers >= parseInt(filters.WorkersAxies, 35);
 
-      return matchesLandType && matchesTownhallLevel;
+      return matchesLandType && matchesTownhallLevel && matchesWorkerAxie;
     });
   };
 
