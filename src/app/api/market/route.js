@@ -62,7 +62,7 @@ export async function POST(request) {
 
     const lands = `
       query MyQuery {
-        lands(auctionType: Sale, sort: PriceAsc, size: 400) {
+        lands(auctionType: Sale, sort: PriceAsc, size: 1000) {
           results {
             tokenId
             col
