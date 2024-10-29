@@ -12,7 +12,7 @@ import {
   MenuItem,
   Dropdown,
 } from "@mui/joy";
-import { House, Store } from "lucide-react";
+import { House, Store, FlameKindling } from "lucide-react";
 
 const Navbar = () => {
   return (
@@ -53,6 +53,11 @@ const Navbar = () => {
       <Link href="/market">
         <IconButton>
           <Store />
+        </IconButton>
+      </Link>
+      <Link href="/mementoCalculator">
+        <IconButton>
+          <FlameKindling />
         </IconButton>
       </Link>
     </Sheet>
