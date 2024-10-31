@@ -23,7 +23,7 @@ const Footer = () => {
 
       {/* Texto en el medio */}
         <Typography variant="body2" sx={{ textAlign: "center", flex: 1 }}>
-            This site is not an official site from the game's developers.
+            This site is not an official site from the game developers.
         </Typography>
 
       {/* Contenedor para texto y imagen a la derecha */}
