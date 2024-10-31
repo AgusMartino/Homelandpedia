@@ -12,12 +12,12 @@ import {
 const Filters = ({ filters, setFilters, fetchData }) => {
   const landtypes = ["All", "Savannah", "Forest", "Arctic", "Mystic", "Genesis"];
   const AltarOfAtiaMax = 10;
-  const WorkersAxiesMax = 35;
+  /* const WorkersAxiesMax = 35; */
 
   const defaultFilters = {
     landtypes: "All",
     AltarOfAtia: 1, // Ajuste para un valor único inicial en vez de [1, AltarOfAtiaMax]
-    WorkersAxies: 0, // Ajuste para un valor único inicial
+    /* WorkersAxies: 0, // Ajuste para un valor único inicial */
   };
 
   // Establecer valores predeterminados y cargar datos al inicio
@@ -38,7 +38,7 @@ const Filters = ({ filters, setFilters, fetchData }) => {
     const ascendingFilters = {
       ...defaultFilters,
       AltarOfAtia: Math.min(defaultFilters.AltarOfAtia, AltarOfAtiaMax),
-      WorkersAxies: Math.min(defaultFilters.WorkersAxies, WorkersAxiesMax),
+      /* WorkersAxies: Math.min(defaultFilters.WorkersAxies, WorkersAxiesMax), */
     };
     setFilters(ascendingFilters);
     fetchData(ascendingFilters);
@@ -85,7 +85,7 @@ const Filters = ({ filters, setFilters, fetchData }) => {
         />
       </FormControl>
 
-      <FormControl>
+{/*       <FormControl>
         <FormLabel>Workers Axies:</FormLabel>
         <Slider
           value={filters.WorkersAxies || defaultFilters.WorkersAxies}
@@ -96,7 +96,7 @@ const Filters = ({ filters, setFilters, fetchData }) => {
           marks={[{ value: 0, label: "0" }]}  // Solo marca en el valor mínimo
           sx={{ mb: 2 }}
         />
-      </FormControl>
+      </FormControl> */}
     </Sheet>
   );
 };

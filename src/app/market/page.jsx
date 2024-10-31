@@ -11,7 +11,7 @@ const Lands = () => {
   const [filters, setFilters] = useState({
     landtypes: "All",
     AltarOfAtia: "1",
-    WorkersAxies: "0"
+    /* WorkersAxies: "0" */
   });
 
   async function fetchData(filters) {
@@ -38,17 +38,17 @@ const Lands = () => {
         filters.AltarOfAtia === "All" ||
         land.plot_data.townhall_level >= parseInt(filters.AltarOfAtia, 10);
       
-      const matchesWorkerAxie =
+/*       const matchesWorkerAxie =
         filters.WorkersAxies === "All" ||
-        land.plot_data.number_of_workers >= parseInt(filters.WorkersAxies, 35);
+        land.plot_data.number_of_workers >= parseInt(filters.WorkersAxies, 35); */
 
-      return matchesLandType && matchesTownhallLevel && matchesWorkerAxie;
+      return matchesLandType && matchesTownhallLevel /* && matchesWorkerAxie; */
     });
   };
 
   if (loading)
     return (
-      <div className="grid w-full flex-grow place-content-center">
+      <div className="grid w-full flex-grow place-content-center mt-10">
         <CircularProgress />
       </div>
     );

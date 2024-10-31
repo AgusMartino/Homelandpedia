@@ -2,6 +2,7 @@
 import React from "react";
 import Link from "next/link";
 import AxieHomeland from '@/img/AxieInfinityHomeland.jpg';
+import Tooltip from '@mui/material/Tooltip';
 import Image from 'next/image';
 import {
   Sheet,
@@ -46,17 +47,17 @@ const Navbar = () => {
       
       {/* Botones centrados */}
       <Link href="/">
-        <IconButton>
+        <IconButton title="Home">
           <House />
         </IconButton>
       </Link>
       <Link href="/market">
-        <IconButton>
+        <IconButton title="Marketplace">
           <Store />
         </IconButton>
       </Link>
       <Link href="/mementoCalculator">
-        <IconButton>
+        <IconButton title="Calculate Memento">
           <FlameKindling />
         </IconButton>
       </Link>

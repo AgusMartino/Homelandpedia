@@ -6,6 +6,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer"; // Asegúrate de importar el Footer
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,16 +19,30 @@ export default function RootLayout({ children }) {
   return (
     <html lang="es" suppressHydrationWarning={true}>
       <body
-        className={`${inter.className} max-w-screen flex min-h-screen flex-col`}
+        className={`${inter.className} max-w-screen flex flex-col min-h-screen`}
       >
         <InitColorSchemeScript />
         <CssVarsProvider defaultMode="dark">
           <CssBaseline />
-          <Navbar />
-          <div className="text-wrap bg-blue-600 p-2 text-center">
-            Filtros de mercado y Wiki de items en desarrollo
+          {/* Navbar fijo con altura ajustada */}
+          <div className="fixed top-0 left-0 w-full z-10 bg-white">
+            <Navbar />
           </div>
-          {children}
+
+          {/* Margen superior ajustado para que el contenido no quede oculto */}
+          <div className="mt-24 text-wrap bg-blue-600 p-2 text-center">
+            Market filters and Wiki of items in development
+          </div>
+
+          {/* Contenedor que permite el crecimiento del contenido y padding inferior */}
+          <div className="flex-grow pb-20"> {/* Asegúrate de agregar un padding inferior */}
+            {children}
+          </div>
+
+          {/* Footer fijo en la parte inferior */}
+          <div className="fixed bottom-0 left-0 w-full z-20 bg-white"> {/* Asegúrate de que el fondo sea sólido */}
+            <Footer />
+          </div>
         </CssVarsProvider>
       </body>
     </html>

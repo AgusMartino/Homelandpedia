@@ -31,13 +31,20 @@ import { TriangleAlert  } from "lucide-react";
 
 function App() {
   const [material, setData] = useState([]);
+  const [exchange, setDataExchange] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [selectedOption, setSelectedOption] = useState("");
-  const [selectedButton, setSelectedButton] = useState(null);
-  const [selectedRange, setSelectedRange] = useState(null);
+  const [selectedAxieClass, setselectedAxieClass] = useState(null);
+  const [selectedBreed, setselectedBreed] = useState(null);
+  const [selectedAxiePrice, setSelectedAxiePrice] = useState(null);
+  const [selectedLevel, setselectedLevel] = useState(null);
   const [totalsArray, setTotalsArray] = useState([]);
   const [showResults, setShowResults] = useState(false);
   const [result, setResult] = useState([]);
+  const [alertBreed, setalertBreed] = useState(false);
+  const [alertLevel, setalertLevel] = useState(false);
+  const [alertQuantities, setalertQuantities] = useState(false);
+  const [alertClass, setalertClass] = useState(false);
+  const [alertPriceAxie, setalertPriceAxie] = useState(false);
 
   const options = [
     { id:1, label: "Aquatic", value: "aquatic", imgSrc: aquatic, key: 'aquatic', imgGif: aquaticGif },
@@ -129,17 +136,63 @@ function App() {
     });
   };
 
+  const handleChangePrice = (event) => {
+    setSelectedAxiePrice(event.target.value);
+  };
+
   const handleButtonClick = (number) => {
-    setSelectedButton(number);
+    setselectedBreed(number);
   };
 
   const handleRangeClick = (range) => {
-    setSelectedRange(range);
+    setselectedLevel(range);
+  };
+
+  const handleReset = () => {
+    // Esta función recargará la página
+    window.location.reload();
   };
 
   const handleCalculate = () => {
+
+    const total = Object.values(quantities).reduce((accumulator, currentValue) => accumulator + currentValue);
+    console.log("data:", total)
+
+    let alerts = false;
+    setalertBreed(false)
+    setalertLevel(false)
+    setalertClass(false)
+    setalertQuantities(false)
+    setalertPriceAxie(false)
+
+    if(alerts == false){
+      if(selectedBreed == null){
+        setalertBreed(true)
+        alerts = true
+      }
+      if(selectedLevel == null){
+        setalertLevel(true)
+        alerts = true
+      }
+      if(selectedAxieClass == null){
+        setalertClass(true)
+        alerts = true
+      }
+      if(total !== "06"){
+        setalertQuantities(true)
+        alerts = true
+      }
+      if(selectedAxiePrice == null){
+        setalertPriceAxie(true)
+        alerts = true
+      }
+      if(alerts == true){
+        return;
+      }
+    }
+
     const mementoData = mementosData.find(
-      (data) => data.breed === selectedButton && data.level === selectedRange
+      (data) => data.breed === selectedBreed && data.level === selectedLevel
     );
 
     if (!mementoData) {
@@ -158,7 +211,7 @@ function App() {
 
     const updatedOptions = options.map((option) => {
       const quantity = quantities[option.value] || 0;
-      const multiplier = selectedOption === option.value ? 0.25 : 0;
+      const multiplier = selectedAxieClass === option.value ? 0.25 : 0;
       const totalMultiplier = multiplier + quantity * 0.125;
 
       const mementoAvg = avgMementos * totalMultiplier;
@@ -202,15 +255,16 @@ function App() {
       };
     }).filter(Boolean);
 
-    
+    console.log("data usd:", exchange)
+    const priceAxieUsd = (selectedAxiePrice * exchange.data.exchangeRate.eth.usd).toFixed(2)
 
     const totals = {
-      totalAvgEth: totalAvgEth.toFixed(8),
-      totalAvgUsd: totalAvgUsd.toFixed(6),
-      totalMinEth: totalMinEth.toFixed(8),
-      totalMinUsd: totalMinUsd.toFixed(6),
-      totalMaxEth: totalMaxEth.toFixed(8),
-      totalMaxUsd: totalMaxUsd.toFixed(6),
+      totalAvgEth: (totalAvgEth.toFixed(8) - selectedAxiePrice).toFixed(8),
+      totalAvgUsd: (totalAvgUsd.toFixed(3) - priceAxieUsd).toFixed(3),
+      totalMinEth: (totalMinEth.toFixed(8) - selectedAxiePrice).toFixed(8),
+      totalMinUsd: (totalMinUsd.toFixed(3) - priceAxieUsd).toFixed(3),
+      totalMaxEth: (totalMaxEth.toFixed(8) - selectedAxiePrice).toFixed(8),
+      totalMaxUsd: (totalMaxUsd.toFixed(3) - priceAxieUsd).toFixed(3),
       mementoAvg: mementoData.avgMementos,
       mementoMin: mementoData.avgMementos * 0.8,
       mementoMax: mementoData.avgMementos * 1.2
@@ -234,13 +288,25 @@ function App() {
     }
   }
 
+  async function fetchDataExchange() {
+    try {
+      const res = await axios.post(`${window.location.origin}/api/exchangeRate`);
+      setDataExchange(res.data);
+      setLoading(false);
+    } catch (error) {
+      console.error(error);
+      setLoading(true);
+    }
+  }
+
   useEffect(() => {
     fetchData();
+    fetchDataExchange();
   }, []);
 
   if (loading)
     return (
-      <div className="grid w-full flex-grow place-content-center">
+      <div className="grid w-full flex-grow place-content-center mt-10">
         <CircularProgress />
       </div>
     );
@@ -293,6 +359,11 @@ function App() {
       <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         <Card variant="outlined" sx={{ display: 'flex', width: 830 }}>
           <CardContent>
+            {alertClass && (
+              <Typography align="center" sx={{ color: "#ff0000", mb: 2 }}>
+                * You must Select Axie Class *
+              </Typography>
+            )}
             <Typography align="center" sx={{ mb: 2 }}>
               Select Axie Class
             </Typography>
@@ -300,8 +371,8 @@ function App() {
               {options.map((option) => (
                 <Grid item xs={12} sm={4} md={4} key={option.id} display="flex" justifyContent="center">
                   <Button
-                    variant={selectedOption === option.value ? 'solid' : 'outlined'}
-                    onClick={() => setSelectedOption(option.value)}
+                    variant={selectedAxieClass === option.value ? 'solid' : 'outlined'}
+                    onClick={() => setselectedAxieClass(option.value)}
                     sx={{ width: '100%', textAlign: 'center', padding: 2 }}
                   >
                     <Image src={option.imgSrc} alt={option.label} width={20} height={20} />
@@ -319,6 +390,11 @@ function App() {
         <Box sx={{ display: 'flex', justifyContent: 'left' }}>
           <Card variant="outlined" sx={{ display: 'flex', width: 400 }}>
             <CardContent>
+              {alertQuantities && (
+                <Typography align="center" sx={{ color: "#ff0000", mb: 2 }}>
+                  * You must enter exactly 6 quantity of axie parts *
+                </Typography>
+              )}
               <Typography align="center" sx={{ mb: 2 }}>
                 Enter the quantity of axie parts
               </Typography>
@@ -343,6 +419,11 @@ function App() {
         {/* Card de botones numerados */}
         <Card variant="outlined" sx={{ width: 200 }}>
           <CardContent>
+            {alertBreed && (
+              <Typography align="center" sx={{ color: "#ff0000", mb: 2 }}>
+                * You must Select Axie Breed *
+              </Typography>
+            )}
             <Typography align="center" sx={{ mb: 2 }}>
               Select Axie Breed
             </Typography>
@@ -350,7 +431,7 @@ function App() {
               {[...Array(8).keys()].map((number) => (
                 <Grid item xs={6} key={number} display="flex" justifyContent="center">
                   <Button
-                    variant={selectedButton === number ? 'solid' : 'outlined'}
+                    variant={selectedBreed === number ? 'solid' : 'outlined'}
                     onClick={() => handleButtonClick(number)}
                     sx={{ width: '100%' }}
                   >
@@ -365,6 +446,11 @@ function App() {
         {/* Nueva tarjeta de botones de rango */}
         <Card variant="outlined" sx={{ width: 200 }}>
           <CardContent>
+            {alertLevel && (
+              <Typography align="center" sx={{ color: "#ff0000", mb: 2 }}>
+                * You must Select Axie Level Range *
+              </Typography>
+            )}
             <Typography align="center" sx={{ mb: 2 }}>
               Select Axie Level Range 
             </Typography>
@@ -380,7 +466,7 @@ function App() {
               ].map((range) => (
                 <Grid item xs={6} key={range.value} display="flex" justifyContent="center">
                   <Button
-                    variant={selectedRange === range.value ? 'solid' : 'outlined'}
+                    variant={selectedLevel === range.value ? 'solid' : 'outlined'}
                     onClick={() => handleRangeClick(range.value)}
                     sx={{ width: '100%' }}
                   >
@@ -395,8 +481,43 @@ function App() {
 
       {/* Botón de cálculo centrado */}
       <Box sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
-        <Button variant="solid" onClick={handleCalculate}>
+        <Card variant="outlined" sx={{ width: 300 }}>
+          <CardContent>
+            {alertPriceAxie && (
+              <Typography align="center" sx={{ color: "#ff0000", mb: 2 }}>
+                * You must Enter Axie Price *
+              </Typography>
+            )}
+            <Typography align="center" sx={{ mb: 2 }}>
+              Enter Axie Price
+            </Typography>
+            <Box sx={{ display: 'flex', alignItems: 'center' }}>
+              <Input
+                type="number"
+                step="0.00000000001"
+                value={selectedAxiePrice}
+                onChange={handleChangePrice}
+                placeholder="Enter the price in Ether"
+                sx={{ width: 200 }}
+              />
+              <Image
+                src="https://cdn.skymavis.com/ronin/2020/erc20/0xc99a6a985ed2cac1ef41640596c5a5f9f4e19ef5/logo.png"
+                alt="Eth"
+                width={40}
+                height={40}
+                style={{ marginLeft: '8px' }} // Añadir un margen a la izquierda de la imagen
+              />
+            </Box>
+          </CardContent>
+        </Card>
+      </Box>
+
+      <Box sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
+        <Button variant="solid" onClick={handleCalculate} sx={{ flex: 1, mx: 1, width: 100 }}>
           Calculate
+        </Button>
+        <Button variant="solid" onClick={handleReset} sx={{ flex: 1, mx: 1, width: 100 }}>
+          Reset
         </Button>
       </Box>
 
@@ -415,7 +536,7 @@ function App() {
             <Card variant="outlined" sx={{ margin: 2, flex: 1, height: 240 }}>
               <CardContent>
                 <Typography variant="h6" fontWeight="bold" textAlign="center">
-                  Resultados
+                  Results
                 </Typography>
                 {/* imgGif */}
                 <Box display="flex" justifyContent="center" mb={2}>
