@@ -157,6 +157,8 @@ function App() {
 
     const total = Object.values(quantities).reduce((total, quantity) => total + Number(quantity), 0);
 
+    console.log("data:", total)
+
     let alerts = false;
     setalertBreed(false)
     setalertLevel(false)
@@ -400,9 +402,16 @@ function App() {
                   <Grid item xs={12} sm={4} md={4} key={option.key} display="flex" alignItems="center" justifyContent="center">
                     <Image src={option.imgSrc} alt={option.label} width={20} height={20} />
                     <Input
-                      type="number"
+                      type="text"
                       value={quantities[option.key]}
-                      onChange={(event) => handleChange(event, option.key)}
+                      onChange={(event) => {
+                        const newValue = event.target.value;
+
+                        // Permitir que el campo quede vacío temporalmente para facilitar el borrado
+                        if (newValue === '' || (/^\d{0,1}(\.\d{0,1})?$/.test(newValue) && Number(newValue) <= 6)) {
+                          handleChange(event, option.key); // Llama a la función handleChange si es válido o vacío
+                        }
+                      }}
                       sx={{ ml: 1, width: '60px' }}
                       variant="outlined"
                     />
@@ -482,7 +491,7 @@ function App() {
           <CardContent>
             {alertPriceAxie && (
               <Typography align="center" sx={{ color: "#ff0000", mb: 2 }}>
-                * You must Enter Axie Price *
+                * You must Enter a valid axie price *
               </Typography>
             )}
             <Typography align="center" sx={{ mb: 2 }}>
@@ -490,10 +499,15 @@ function App() {
             </Typography>
             <Box sx={{ display: 'flex', alignItems: 'center' }}>
               <Input
-                type="number"
-                step="0.00000000001"
+                type="text"
                 value={selectedAxiePrice}
-                onChange={handleChangePrice}
+                onChange={(event) => {
+                  // Permitir solo números y un solo punto decimal
+                  const newValue = event.target.value;
+                  if (/^\d*\.?\d*$/.test(newValue)) {
+                    handleChangePrice(event); // Solo actualizar si el valor es válido
+                  }
+                }}
                 placeholder="Enter the price in Ether"
                 sx={{ width: 200 }}
               />
