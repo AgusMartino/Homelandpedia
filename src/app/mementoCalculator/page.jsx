@@ -155,8 +155,7 @@ function App() {
 
   const handleCalculate = () => {
 
-    const total = Object.values(quantities).reduce((accumulator, currentValue) => accumulator + currentValue);
-    console.log("data:", total)
+    const total = Object.values(quantities).reduce((total, quantity) => total + Number(quantity), 0);
 
     let alerts = false;
     setalertBreed(false)
@@ -178,7 +177,7 @@ function App() {
         setalertClass(true)
         alerts = true
       }
-      if(total !== "06"){
+      if(total !== 6){
         setalertQuantities(true)
         alerts = true
       }
@@ -255,7 +254,6 @@ function App() {
       };
     }).filter(Boolean);
 
-    console.log("data usd:", exchange)
     const priceAxieUsd = (selectedAxiePrice * exchange.data.exchangeRate.eth.usd).toFixed(2)
 
     const totals = {
@@ -272,7 +270,6 @@ function App() {
 
     setResult([updatedOptions])
 
-    console.log('data', result)
     setTotalsArray(totals);
     setShowResults(true)
   };
