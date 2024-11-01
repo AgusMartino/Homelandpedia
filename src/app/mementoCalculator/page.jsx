@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import MaterialCardComponent from "@/components/MaterialCardComponent";
-import MaterialCardResult from "@/components/MaterialResultaCardComponent"
+import MaterialCardResult from "@/components/MaterialResultaCardComponent";
 import memento from '@/img/materialIcon.jpg';
 import usd from '@/img/usd.jpg';
 import eth from '@/img/eth.jpg';
@@ -26,6 +26,7 @@ import mech from '@/img/mech.jpg';
 import plant from '@/img/plant.jpg';
 import reptile from '@/img/reptile.jpg';
 import { Box, CircularProgress, Card, CardContent, Button, Typography, Input, Grid } from "@mui/joy";
+import {Table, TableBody, TableCell, TableContainer, TableHead, TableRow} from '@mui/joy'
 import Image from "next/image";
 import { TriangleAlert  } from "lucide-react";
 
@@ -56,6 +57,27 @@ function App() {
     { id:7, label: "Mech", value: "mech", imgSrc: mech, key: 'mech', imgGif: mechGif },
     { id:8, label: "Plant", value: "plant", imgSrc: plant, key: 'plant', imgGif: plantGif },
     { id:9, label: "Reptile", value: "reptile", imgSrc: reptile, key: 'reptile', imgGif: reptileGif },
+  ];
+
+  // Datos de ejemplo, puedes ajustar las URLs y el contenido según necesites
+  const levels = [
+    { range: '1 - 9', axp: '13,310 AXP', imgUrl: 'https://cdn.axieinfinity.com/marketplace-website/asset-icon/axie-tab-icon.png', fee: 0.50 },
+    { range: '10 - 19', axp: '110,480 AXP', imgUrl: 'https://cdn.axieinfinity.com/marketplace-website/asset-icon/axie-tab-icon.png', fee: 1.00 },
+    { range: '20 - 29', axp: '334,170 AXP', imgUrl: 'https://cdn.axieinfinity.com/marketplace-website/asset-icon/axie-tab-icon.png', fee: 1.50 },
+    { range: '30 - 39', axp: '701,300 AXP', imgUrl: 'https://cdn.axieinfinity.com/marketplace-website/asset-icon/axie-tab-icon.png', fee: 2.00 },
+    { range: '40 - 49', axp: '1,223,670 AXP', imgUrl: 'https://cdn.axieinfinity.com/marketplace-website/asset-icon/axie-tab-icon.png', fee: 2.50 },
+    { range: '50 - 59', axp: '1,910,670 AXP', imgUrl: 'https://cdn.axieinfinity.com/marketplace-website/asset-icon/axie-tab-icon.png', fee: 3.00},
+    { range: '60', axp: 'Max Level', imgUrl: 'https://cdn.axieinfinity.com/marketplace-website/asset-icon/axie-tab-icon.png', fee: 'Not' },
+  ];
+
+  const AxieMementosTable = [
+    { level: 'Lv 1 - 9', counts: [6, 13, 25, 37.5, 50, 62.5, 75, 87.5] },
+    { level: 'Lv 10 - 19', counts: [7, 15, 75, 118, 210, 252, 272, 293] },
+    { level: 'Lv 20 - 29', counts: [9, 20, 100, 157, 280, 336, 362, 390] },
+    { level: 'Lv 30 - 39', counts: [12, 28, 138, 216, 385, 462, 498, 537] },
+    { level: 'Lv 40 - 49', counts: [17, 38, 188, 294, 525, 630, 679, 732] },
+    { level: 'Lv 50 - 59', counts: [19, 44, 219, 343, 613, 735, 792, 854] },
+    { level: 'Lv 60', counts: [28, 63, 313, 490, 875, 1050, 1132, 1220] },
   ];
 
   const mementosData = [
@@ -325,6 +347,7 @@ function App() {
         gap={2}
         justifyContent="center"
         alignItems="center"
+        sx={{ width: '100vw', boxSizing: 'border-box' }}
       >
         {material.map((item) => {
           // Cambia la URL de la imagen en base al nombre del item
@@ -353,183 +376,374 @@ function App() {
           return <MaterialCardComponent key={item.tokenId} item={item} />;
         })}
       </Box>
-
-      {/* Card de selección de clase Axie */}
-      <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        <Card variant="outlined" sx={{ display: 'flex', width: 830 }}>
-          <CardContent>
-            {alertClass && (
-              <Typography align="center" sx={{ color: "#ff0000", mb: 2 }}>
-                * You must Select Axie Class *
-              </Typography>
-            )}
-            <Typography align="center" sx={{ mb: 2 }}>
-              Select Axie Class
-            </Typography>
-            <Grid container spacing={2} justifyContent="center">
-              {options.map((option) => (
-                <Grid item xs={12} sm={4} md={4} key={option.id} display="flex" justifyContent="center">
-                  <Button
-                    variant={selectedAxieClass === option.value ? 'solid' : 'outlined'}
-                    onClick={() => setselectedAxieClass(option.value)}
-                    sx={{ width: '100%', textAlign: 'center', padding: 2 }}
-                  >
-                    <Image src={option.imgSrc} alt={option.label} width={20} height={20} />
-                    <Typography>{option.label}</Typography>
-                  </Button>
-                </Grid>
-              ))}
-            </Grid>
-          </CardContent>
-        </Card>
-      </Box>
-
-      <Box sx={{ display: 'flex', gap: 2 }}>
-        {/* Tarjeta de entrada de cantidad y selección de botón */}
-        <Box sx={{ display: 'flex', justifyContent: 'left' }}>
-          <Card variant="outlined" sx={{ display: 'flex', width: 400 }}>
+      
+      <Box         
+        display="flex"
+        gap={2}
+        justifyContent="center"
+        alignItems="flex-start"
+        sx={{ width: '100vw', padding: 1, boxSizing: 'border-box' }}
+      >
+        <Box sx={{ flexBasis: '50%', display: 'flex', flexDirection: 'column', gap: 2}}>
+          {/* Card 1 */}
+          <Card 
+            sx={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              backgroundColor: 'transparent', // Color de fondo transparente
+              boxShadow: 'none', // Sin sombra
+              border: 'none', // Sin borde
+            }}
+          >
             <CardContent>
-              {alertQuantities && (
-                <Typography align="center" sx={{ color: "#ff0000", mb: 2 }}>
-                  * You must enter exactly 6 quantity of axie parts *
-                </Typography>
-              )}
-              <Typography align="center" sx={{ mb: 2 }}>
-                Enter the quantity of axie parts
+              <Typography align="center" fontWeight="bold" sx={{ fontSize: '1.5rem'}}>
+                Estimated Number Of Material
               </Typography>
-              <Grid container>
-                {options.map((option) => (
-                  <Grid item xs={12} sm={4} md={4} key={option.key} display="flex" alignItems="center" justifyContent="center">
-                    <Image src={option.imgSrc} alt={option.label} width={20} height={20} />
-                    <Input
-                      type="text"
-                      value={quantities[option.key]}
-                      onChange={(event) => {
-                        const newValue = event.target.value;
+              <div>
+                <Box
+                  sx={{
+                    display: 'grid',
+                    gridTemplateColumns: '2fr repeat(8, 1fr)', // La primera columna será más ancha
+                    gap: '1px',
+                    backgroundColor: '#3d2b1f',
+                    borderRadius: '8px',
+                    overflow: 'hidden',
+                    border: '1px solid #f5d7a0', // Borde externo completo
+                  }}
+                >
+                  {/* Encabezados */}
+                  <Box
+                    sx={{
+                      gridColumn: 'span 1',
+                      backgroundColor: '#3d2b1f',
+                      padding: '8px',
+                      borderRight: '1px solid #f5d7a0', // Borde derecho de la columna Axie Level
+                      borderBottom: '1px solid #f5d7a0',
+                    }}
+                  >
+                    <Typography level="h6" sx={{ color: '#f5d7a0', textAlign: 'center' }}>
+                      Axie Level
+                    </Typography>
+                  </Box>
+                  <Box
+                    sx={{
+                      gridColumn: 'span 8',
+                      backgroundColor: '#3d2b1f',
+                      padding: '8px',
+                      borderBottom: '1px solid #f5d7a0', // Borde inferior del encabezado Breed Count
+                    }}
+                  >
+                    <Typography level="h6" sx={{ color: '#f5d7a0', textAlign: 'center' }}>
+                      Breed Count
+                    </Typography>
+                  </Box>
 
-                        // Permitir que el campo quede vacío temporalmente para facilitar el borrado
-                        if (newValue === '' || (/^\d{0,1}(\.\d{0,1})?$/.test(newValue) && Number(newValue) <= 6)) {
-                          handleChange(event, option.key); // Llama a la función handleChange si es válido o vacío
-                        }
+                  {/* Fila de Números */}
+                  <Box sx={{ backgroundColor: '#3d2b1f', padding: '8px', borderRight: '1px solid #f5d7a0' }} />
+                  {Array.from({ length: 8 }, (_, i) => (
+                    <Box
+                      key={i}
+                      sx={{
+                        backgroundColor: '#3d2b1f',
+                        padding: '8px',
+                        textAlign: 'center',
                       }}
-                      sx={{ ml: 1, width: '60px' }}
-                      variant="outlined"
+                    >
+                      <Typography level="body1" sx={{ color: '#f5d7a0' }}>
+                        {i}
+                      </Typography>
+                    </Box>
+                  ))}
+
+                  {/* Filas de Datos */}
+                  {AxieMementosTable.map((row) => (
+                    <React.Fragment key={row.level}>
+                      <Box
+                        sx={{
+                          backgroundColor: '#3d2b1f',
+                          padding: '8px',
+                          textAlign: 'center',
+                          borderRight: '1px solid #f5d7a0', // Borde derecho para crear efecto continuo en columna de niveles
+                        }}
+                      >
+                        <Typography level="body1" sx={{ color: '#f5d7a0' }}>
+                          {row.level}
+                        </Typography>
+                      </Box>
+                      {row.counts.map((count, index) => (
+                        <Box
+                          key={index}
+                          sx={{
+                            backgroundColor: '#4d3525',
+                            color: '#f5d7a0',
+                            textAlign: 'center',
+                            padding: '8px',
+                            '&:hover': {
+                              backgroundColor: '#5d4335',
+                            },
+                          }}
+                        >
+                          {count}
+                        </Box>
+                      ))}
+                    </React.Fragment>
+                  ))}
+                </Box>
+              </div>
+            </CardContent>
+          </Card>
+          {/* Card 2 */}
+          <Card
+            sx={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              backgroundColor: 'transparent', // Color de fondo transparente
+              boxShadow: 'none', // Sin sombra
+              border: 'none', // Sin borde
+            }} 
+          >
+            <CardContent>
+              <Typography align="center" fontWeight="bold" sx={{ fontSize: '1.5rem' }}>
+                Quantity of AXP Needed And Fees
+              </Typography>
+              <Box
+                sx={{
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(4, 1fr)', // 4 columnas en cada fila
+                  gap: 2,
+                  padding: 2,
+                  justifyItems: 'center', // Centra los elementos dentro de cada columna
+                }}
+              >
+                {levels.map((level, index) => (
+                  <Card
+                    key={index}
+                    sx={{
+                      minWidth: 130,
+                      borderRadius: '8px',
+                      display: 'flex',
+                      flexDirection: 'column',
+                      alignItems: 'center',
+                      padding: 2,
+                      gap: 1,
+                    }}
+                  >
+                    <Typography color="textSecondary">
+                      LEVEL
+                    </Typography>
+                    <Typography fontWeight="bold" fontSize="1rem" color="warning.main">
+                      {level.range}
+                    </Typography>
+                    <Typography color="textSecondary">
+                      {level.axp}
+                    </Typography>
+                    <Box
+                      component="img"
+                      src={level.imgUrl}
+                      alt={`Axie level ${level.range}`}
+                      sx={{
+                        width: 30,
+                        height: 30,
+                        borderRadius: '8px',
+                      }}
                     />
-                  </Grid>
+                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                      <Typography>
+                        Fee: {level.fee}
+                      </Typography>
+                      <Image
+                        src={usd}
+                        alt="usd"
+                        width={20}
+                        height={20}
+                      />
+                    </Box>
+                  </Card>
                 ))}
-              </Grid>
+              </Box>
             </CardContent>
           </Card>
         </Box>
-
-        {/* Card de botones numerados */}
-        <Card variant="outlined" sx={{ width: 200 }}>
-          <CardContent>
-            {alertBreed && (
-              <Typography align="center" sx={{ color: "#ff0000", mb: 2 }}>
-                * You must Select Axie Breed *
-              </Typography>
-            )}
-            <Typography align="center" sx={{ mb: 2 }}>
-              Select Axie Breed
-            </Typography>
-            <Grid container spacing={1} justifyContent="center">
-              {[...Array(8).keys()].map((number) => (
-                <Grid item xs={6} key={number} display="flex" justifyContent="center">
-                  <Button
-                    variant={selectedBreed === number ? 'solid' : 'outlined'}
-                    onClick={() => handleButtonClick(number)}
-                    sx={{ width: '100%' }}
-                  >
-                    {number}
-                  </Button>
+        <Box sx={{ width: '60%', display: 'flex', flexDirection: 'column', gap: 2, paddingRight:6}}> 
+          {/* Card de selección de clase Axie */}
+          <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <Card variant="outlined" sx={{ display: 'flex', width: 830 }}>
+              <CardContent>
+                {alertClass && (
+                  <Typography align="center" sx={{ color: "#ff0000", mb: 2 }}>
+                    * You must Select Axie Class *
+                  </Typography>
+                )}
+                <Typography align="center" sx={{ mb: 2 }}>
+                  Select Axie Class
+                </Typography>
+                <Grid container spacing={2} justifyContent="center">
+                  {options.map((option) => (
+                    <Grid item xs={12} sm={4} md={4} key={option.id} display="flex" justifyContent="center">
+                      <Button
+                        variant={selectedAxieClass === option.value ? 'solid' : 'outlined'}
+                        onClick={() => setselectedAxieClass(option.value)}
+                        sx={{ width: '100%', textAlign: 'center', padding: 2 }}
+                      >
+                        <Image src={option.imgSrc} alt={option.label} width={20} height={20} />
+                        <Typography>{option.label}</Typography>
+                      </Button>
+                    </Grid>
+                  ))}
                 </Grid>
-              ))}
-            </Grid>
-          </CardContent>
-        </Card>
+              </CardContent>
+            </Card>
+          </Box>
 
-        {/* Nueva tarjeta de botones de rango */}
-        <Card variant="outlined" sx={{ width: 200 }}>
-          <CardContent>
-            {alertLevel && (
-              <Typography align="center" sx={{ color: "#ff0000", mb: 2 }}>
-                * You must Select Axie Level Range *
-              </Typography>
-            )}
-            <Typography align="center" sx={{ mb: 2 }}>
-              Select Axie Level Range 
-            </Typography>
-            <Grid container spacing={1} justifyContent="center">
-              {[
-                { label: '1-9', value: 1 },
-                { label: '10-19', value: 10 },
-                { label: '20-29', value: 20 },
-                { label: '30-39', value: 30 },
-                { label: '40-49', value: 40 },
-                { label: '50-59', value: 50 },
-                { label: '60', value: 60 },
-              ].map((range) => (
-                <Grid item xs={6} key={range.value} display="flex" justifyContent="center">
-                  <Button
-                    variant={selectedLevel === range.value ? 'solid' : 'outlined'}
-                    onClick={() => handleRangeClick(range.value)}
-                    sx={{ width: '100%' }}
-                  >
-                    {range.label}
-                  </Button>
-                </Grid>
-              ))}
-            </Grid>
-          </CardContent>
-        </Card>
-      </Box>
+          <Box sx={{ display: 'flex', gap: 2, justifyContent:'center' }}>
+            {/* Tarjeta de entrada de cantidad y selección de botón */}
+            <Box sx={{ display: 'flex', justifyContent: 'left' }}>
+              <Card variant="outlined" sx={{ display: 'flex', width: 400 }}>
+                <CardContent>
+                  {alertQuantities && (
+                    <Typography align="center" sx={{ color: "#ff0000", mb: 2 }}>
+                      * You must enter exactly 6 quantity of axie parts *
+                    </Typography>
+                  )}
+                  <Typography align="center" sx={{ mb: 2 }}>
+                    Enter the quantity of axie parts
+                  </Typography>
+                  <Grid container>
+                    {options.map((option) => (
+                      <Grid item xs={12} sm={4} md={4} key={option.key} display="flex" alignItems="center" justifyContent="center">
+                        <Image src={option.imgSrc} alt={option.label} width={20} height={20} />
+                        <Input
+                          type="text"
+                          value={quantities[option.key]}
+                          onChange={(event) => {
+                            const newValue = event.target.value;
 
-      {/* Botón de cálculo centrado */}
-      <Box sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
-        <Card variant="outlined" sx={{ width: 300 }}>
-          <CardContent>
-            {alertPriceAxie && (
-              <Typography align="center" sx={{ color: "#ff0000", mb: 2 }}>
-                * You must Enter a valid axie price *
-              </Typography>
-            )}
-            <Typography align="center" sx={{ mb: 2 }}>
-              Enter Axie Price
-            </Typography>
-            <Box sx={{ display: 'flex', alignItems: 'center' }}>
-              <Input
-                type="text"
-                value={selectedAxiePrice}
-                onChange={(event) => {
-                  // Permitir solo números y un solo punto decimal
-                  const newValue = event.target.value;
-                  if (/^\d*\.?\d*$/.test(newValue)) {
-                    handleChangePrice(event); // Solo actualizar si el valor es válido
-                  }
-                }}
-                placeholder="Enter the price in Ether"
-                sx={{ width: 200 }}
-              />
-              <Image
-                src="https://cdn.skymavis.com/ronin/2020/erc20/0xc99a6a985ed2cac1ef41640596c5a5f9f4e19ef5/logo.png"
-                alt="Eth"
-                width={40}
-                height={40}
-                style={{ marginLeft: '8px' }} // Añadir un margen a la izquierda de la imagen
-              />
+                            // Permitir que el campo quede vacío temporalmente para facilitar el borrado
+                            if (newValue === '' || (/^\d{0,1}(\.\d{0,1})?$/.test(newValue) && Number(newValue) <= 6)) {
+                              handleChange(event, option.key); // Llama a la función handleChange si es válido o vacío
+                            }
+                          }}
+                          sx={{ ml: 1, width: '60px' }}
+                          variant="outlined"
+                        />
+                      </Grid>
+                    ))}
+                  </Grid>
+                </CardContent>
+              </Card>
             </Box>
-          </CardContent>
-        </Card>
-      </Box>
 
-      <Box sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
-        <Button variant="solid" onClick={handleCalculate} sx={{ flex: 1, mx: 1, width: 100 }}>
-          Calculate
-        </Button>
-        <Button variant="solid" onClick={handleReset} sx={{ flex: 1, mx: 1, width: 100 }}>
-          Reset
-        </Button>
+            {/* Card de botones numerados */}
+            <Card variant="outlined" sx={{ width: 200 }}>
+              <CardContent>
+                {alertBreed && (
+                  <Typography align="center" sx={{ color: "#ff0000", mb: 2 }}>
+                    * You must Select Axie Breed *
+                  </Typography>
+                )}
+                <Typography align="center" sx={{ mb: 2 }}>
+                  Select Axie Breed
+                </Typography>
+                <Grid container spacing={1} justifyContent="center">
+                  {[...Array(8).keys()].map((number) => (
+                    <Grid item xs={6} key={number} display="flex" justifyContent="center">
+                      <Button
+                        variant={selectedBreed === number ? 'solid' : 'outlined'}
+                        onClick={() => handleButtonClick(number)}
+                        sx={{ width: '100%' }}
+                      >
+                        {number}
+                      </Button>
+                    </Grid>
+                  ))}
+                </Grid>
+              </CardContent>
+            </Card>
+
+            {/* Nueva tarjeta de botones de rango */}
+            <Card variant="outlined" sx={{ width: 200 }}>
+              <CardContent>
+                {alertLevel && (
+                  <Typography align="center" sx={{ color: "#ff0000", mb: 2 }}>
+                    * You must Select Axie Level Range *
+                  </Typography>
+                )}
+                <Typography align="center" sx={{ mb: 2 }}>
+                  Select Axie Level Range 
+                </Typography>
+                <Grid container spacing={1} justifyContent="center">
+                  {[
+                    { label: '1-9', value: 1 },
+                    { label: '10-19', value: 10 },
+                    { label: '20-29', value: 20 },
+                    { label: '30-39', value: 30 },
+                    { label: '40-49', value: 40 },
+                    { label: '50-59', value: 50 },
+                    { label: '60', value: 60 },
+                  ].map((range) => (
+                    <Grid item xs={6} key={range.value} display="flex" justifyContent="center">
+                      <Button
+                        variant={selectedLevel === range.value ? 'solid' : 'outlined'}
+                        onClick={() => handleRangeClick(range.value)}
+                        sx={{ width: '100%' }}
+                      >
+                        {range.label}
+                      </Button>
+                    </Grid>
+                  ))}
+                </Grid>
+              </CardContent>
+            </Card>
+          </Box>
+
+          {/* Botón de cálculo centrado */}
+          <Box sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
+            <Card variant="outlined" sx={{ width: 300 }}>
+              <CardContent>
+                {alertPriceAxie && (
+                  <Typography align="center" sx={{ color: "#ff0000", mb: 2 }}>
+                    * You must Enter a valid axie price *
+                  </Typography>
+                )}
+                <Typography align="center" sx={{ mb: 2 }}>
+                  Enter Axie Price
+                </Typography>
+                <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                  <Input
+                    type="text"
+                    value={selectedAxiePrice}
+                    onChange={(event) => {
+                      // Permitir solo números y un solo punto decimal
+                      const newValue = event.target.value;
+                      if (/^\d*\.?\d*$/.test(newValue)) {
+                        handleChangePrice(event); // Solo actualizar si el valor es válido
+                      }
+                    }}
+                    placeholder="Enter the price in Ether"
+                    sx={{ width: 200 }}
+                  />
+                  <Image
+                    src="https://cdn.skymavis.com/ronin/2020/erc20/0xc99a6a985ed2cac1ef41640596c5a5f9f4e19ef5/logo.png"
+                    alt="Eth"
+                    width={40}
+                    height={40}
+                    style={{ marginLeft: '8px' }} // Añadir un margen a la izquierda de la imagen
+                  />
+                </Box>
+              </CardContent>
+            </Card>
+          </Box>
+          <Box sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
+            <Button variant="solid" onClick={handleCalculate} sx={{mx: 1, width: 250 }}>
+              Calculate
+            </Button>
+            <Button variant="solid" onClick={handleReset} sx={{mx: 1, width: 250 }}>
+              Reset
+            </Button>
+          </Box>
+        </Box> 
       </Box>
 
       {/* Mostrar resultados si showResults es true */}
