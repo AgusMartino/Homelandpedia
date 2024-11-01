@@ -8,12 +8,14 @@ import {
   Sheet,
   IconButton,
   Box,
+  Typography,
   Menu,
   MenuButton,
   MenuItem,
   Dropdown,
 } from "@mui/joy";
-import { House, Store, FlameKindling } from "lucide-react";
+import { House, Store, FlameKindling, Heart } from "lucide-react";
+import { HeatPumpRounded } from "@mui/icons-material";
 
 const Navbar = () => {
   return (
@@ -61,6 +63,29 @@ const Navbar = () => {
           <FlameKindling />
         </IconButton>
       </Link>
+
+
+      <Box
+        sx={{
+          position: "absolute",
+          right: "16px", // Ubica el elemento en el borde derecho
+          height: "80%", // Ajusta la altura de la imagen según el Navbar
+        }}
+      >
+        <Box sx={{ display: "flex", gap: 0.5, alignItems: "center", marginRight: 10}}>
+          <Box sx={{ display: "flex", gap: 0.5, alignItems: "center" }}>
+            <Typography variant="body2">
+              Support
+            </Typography>
+          </Box>
+          <Heart />
+        </Box>
+        <Box sx={{ display: "flex", gap: 0.5, alignItems: "center"}}>
+          <Typography variant="body2">
+            Donate to agusxcala.ron
+          </Typography>
+        </Box>
+      </Box>
     </Sheet>
   );
 };

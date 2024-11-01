@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import {
   Sheet,
+  Box,
+  Typography,
   Button,
   FormControl,
   FormLabel,
@@ -8,6 +10,9 @@ import {
   Option,
   Slider,
 } from "@mui/joy";
+import { Heart } from "lucide-react";
+import qr from '@/img/qrRonin.jpg';
+import Image from 'next/image';
 
 const Filters = ({ filters, setFilters, fetchData }) => {
   const landtypes = ["All", "Savannah", "Forest", "Arctic", "Mystic", "Genesis"];
@@ -84,6 +89,29 @@ const Filters = ({ filters, setFilters, fetchData }) => {
           sx={{ mb: 2 }}
         />
       </FormControl>
+
+      <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 1 }}>
+        {/* Primer texto con el icono de corazón */}
+        <Box sx={{ display: 'flex', gap: 0.5, alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}>
+          <Typography variant="body2">Support</Typography>
+          <Heart />
+        </Box>
+
+        {/* Segundo texto de donación */}
+        <Box sx={{ display: 'flex', gap: 0.5, alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}>
+          <Typography variant="body2">Donate to agusxcala.ron</Typography>
+        </Box>
+
+        {/* Box para la imagen sobre el último texto */}
+        <Box sx={{ marginBottom: 1, display: 'flex', justifyContent: 'center' }}>
+          <Image src={qr} alt="0x4b64176a09D6d1Cf4634C3DD46D6C8d9E8C09c83" width={100} height={100} />
+        </Box>
+
+        {/* Tercer texto de Lunacian Code */}
+        <Box sx={{ display: 'flex', gap: 0.5, alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}>
+          <Typography variant="body2">Lunacian Code Coming soon</Typography>
+        </Box>
+      </Box>
 
 {/*       <FormControl>
         <FormLabel>Workers Axies:</FormLabel>
