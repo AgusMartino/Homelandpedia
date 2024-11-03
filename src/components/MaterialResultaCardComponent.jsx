@@ -27,11 +27,11 @@ const MementoCard = ({ data }) => {
                 {/* MementoMin - MementoMax */}
                 <Box sx={{ display: "flex", gap: 0.5, alignItems: "center" }}>
                     <Image
-                            src={materialIcon}
-                            alt="materialIcon"
-                            width={20}
-                            height={20}
-                        />     
+                        src={materialIcon}
+                        alt="materialIcon"
+                        width={20}
+                        height={20}
+                    />     
                     <Typography variant="body2">
                         {data.mementoMin} - {data.mementoMax}
                     </Typography>

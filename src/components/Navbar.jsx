@@ -1,23 +1,42 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
-import AxieHomeland from '@/img/AxieInfinityHomeland.jpg';
-import Tooltip from '@mui/material/Tooltip';
 import Image from 'next/image';
+import AxieHomeland from '@/img/AxieInfinityHomeland.jpg';
+
 import {
   Sheet,
   IconButton,
   Box,
   Typography,
   Menu,
-  MenuButton,
   MenuItem,
-  Dropdown,
 } from "@mui/joy";
-import { House, Store, FlameKindling, Heart } from "lucide-react";
-import { HeatPumpRounded } from "@mui/icons-material";
+
+import { House, Store, FlameKindling, Heart, BookOpenText, School, Axe } from "lucide-react";
 
 const Navbar = () => {
+  const [menuAnchor, setMenuAnchor] = useState(null);
+
+  const toggleMenu = (event) => {
+    if (menuAnchor) {
+      setMenuAnchor(null);
+    } else {
+      setMenuAnchor(event.currentTarget);
+    }
+  };
+
+  const handleMenuClose = () => {
+    setMenuAnchor(null);
+  };
+
+  const handleIconClick = () => {
+    // Cierra el menú si está abierto
+    if (menuAnchor) {
+      setMenuAnchor(null);
+    }
+  };
+
   return (
     <Sheet
       sx={{
@@ -27,15 +46,15 @@ const Navbar = () => {
         padding: 1,
         gap: 1,
         height: "10vh",
-        position: "relative", // Permite posicionar la imagen de manera absoluta
+        position: "relative",
       }}
     >
       {/* Imagen a la izquierda */}
       <Box
         sx={{
           position: "absolute",
-          left: "16px", // Ubica la imagen en la esquina izquierda
-          height: "80%", // Ajusta la altura de la imagen según el Navbar
+          left: "16px",
+          height: "80%",
         }}
       >
         <Image
@@ -46,33 +65,65 @@ const Navbar = () => {
         />
       </Box>
 
-      
       {/* Botones centrados */}
-      <Link href="/">
-        <IconButton title="Home">
+      <Link href="/" passHref>
+        <IconButton title="Home" onClick={handleIconClick}>
           <House />
         </IconButton>
       </Link>
-      <Link href="/market">
-        <IconButton title="Marketplace">
+      <Link href="/market" passHref>
+        <IconButton title="Marketplace" onClick={handleIconClick}>
           <Store />
         </IconButton>
       </Link>
-      <Link href="/mementoCalculator">
-        <IconButton title="Calculate Memento">
+      <Link href="/mementoCalculator" passHref>
+        <IconButton title="Calculate Memento" onClick={handleIconClick}>
           <FlameKindling />
         </IconButton>
       </Link>
 
+      {/* Menú de Opciones */}
+      <IconButton title="Menu" onClick={toggleMenu}>
+        <BookOpenText />
+      </IconButton>
+      <Menu
+        anchorEl={menuAnchor}
+        open={Boolean(menuAnchor)}
+        onClose={handleMenuClose}
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'center',
+        }}
+        transformOrigin={{
+          vertical: 'top',
+          horizontal: 'center',
+        }}
+      >
+        <MenuItem onClick={handleMenuClose}>
+          <Link href="/building" passHref>
+            <Box display="flex" alignItems="center" gap={1}>
+              <School />
+              <Typography>School</Typography>
+            </Box>
+          </Link>
+        </MenuItem>
+        <MenuItem onClick={handleMenuClose}>
+          <Box display="flex" alignItems="center" gap={1}>
+            <Axe />
+            <Typography>Axe</Typography>
+          </Box>
+        </MenuItem>
+      </Menu>
 
+      {/* Sección de soporte y donación */}
       <Box
         sx={{
           position: "absolute",
-          right: "16px", // Ubica el elemento en el borde derecho
-          height: "80%", // Ajusta la altura de la imagen según el Navbar
+          right: "16px",
+          height: "80%",
         }}
       >
-        <Box sx={{ display: "flex", gap: 0.5, alignItems: "center", marginRight: 10}}>
+        <Box sx={{ display: "flex", gap: 0.5, alignItems: "center", marginRight: 10 }}>
           <Box sx={{ display: "flex", gap: 0.5, alignItems: "center" }}>
             <Typography variant="body2">
               Support
@@ -80,7 +131,7 @@ const Navbar = () => {
           </Box>
           <Heart />
         </Box>
-        <Box sx={{ display: "flex", gap: 0.5, alignItems: "center"}}>
+        <Box sx={{ display: "flex", gap: 0.5, alignItems: "center" }}>
           <Typography variant="body2">
             Donate to agusxcala.ron
           </Typography>
