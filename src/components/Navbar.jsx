@@ -83,7 +83,7 @@ const Navbar = () => {
       </Link>
 
       {/* Menú de Opciones */}
-      <IconButton title="Menu" onClick={toggleMenu}>
+      <IconButton title="Wiki" onClick={toggleMenu}>
         <BookOpenText />
       </IconButton>
       <Menu
@@ -100,19 +100,19 @@ const Navbar = () => {
         }}
       >
         <MenuItem onClick={handleMenuClose}>
-          <Link href="/building" passHref>
+          <Link href="/buildings" passHref>
             <Box display="flex" alignItems="center" gap={1}>
               <School />
-              <Typography>School</Typography>
+              <Typography>Building</Typography>
             </Box>
           </Link>
         </MenuItem>
-        <MenuItem onClick={handleMenuClose}>
+{/*         <MenuItem onClick={handleMenuClose}>
           <Box display="flex" alignItems="center" gap={1}>
             <Axe />
             <Typography>Axe</Typography>
           </Box>
-        </MenuItem>
+        </MenuItem> */}
       </Menu>
 
       {/* Sección de soporte y donación */}
