@@ -160,7 +160,7 @@ function BuildingsList() {
                               />
                             </Box>
                           </Box>
-                          <Box component="td" padding={1} sx={{ border: '1px solid #666', textAlign: 'center' }}>
+                          <Box component="td" padding={1} sx={{ width:200, border: '1px solid #666', textAlign: 'center' }}>
                             <Typography variant="body2">{level.Description}</Typography>
                           </Box>
                         </Box>

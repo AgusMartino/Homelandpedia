@@ -379,7 +379,7 @@ const buildings = [
                 Time:"2m 30s",
                 AtiaLevel:"4",
                 img: polisher_precision_1,
-                Description:"Craft Small Shells"
+                Description:"Craft Gems"
             },
             {
                 name:"Polisher Precision Lv 2",
@@ -389,7 +389,7 @@ const buildings = [
                 Time:"2h 30m",
                 AtiaLevel:"5",
                 img: polisher_precision_2,
-                Description:"Craft Medium Shells"
+                Description:"Craft Gems more efficiently"
             },
             {
                 name:"Polisher Precision Lv 3",
@@ -399,7 +399,7 @@ const buildings = [
                 Time:"12h 30m",
                 AtiaLevel:"6",
                 img: polisher_precision_3,
-                Description:"Craft Special Shells"
+                Description:"Craft Gems more efficiently"
             },
             {
                 name:"Polisher Precision Lv 4",
@@ -409,7 +409,7 @@ const buildings = [
                 Time:"3d 3h",
                 AtiaLevel:"8",
                 img: polisher_precision_4,
-                Description:"Craft Large Shells"
+                Description:"Craft Gems more efficiently"
             }
         ]
     },

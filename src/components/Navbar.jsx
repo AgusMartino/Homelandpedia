@@ -13,7 +13,7 @@ import {
   MenuItem,
 } from "@mui/joy";
 
-import { House, Store, FlameKindling, Heart, BookOpenText, School, Axe } from "lucide-react";
+import { House, Store, FlameKindling, Heart, BookOpenText, School, Axe, ClockArrowUp  } from "lucide-react";
 
 const Navbar = () => {
   const [menuAnchor, setMenuAnchor] = useState(null);
@@ -114,6 +114,11 @@ const Navbar = () => {
           </Box>
         </MenuItem> */}
       </Menu>
+      <Link href="/axpCalculator" passHref>
+        <IconButton title="Axp Calculator" onClick={handleIconClick}>
+          <ClockArrowUp />
+        </IconButton>
+      </Link>
 
       {/* Sección de soporte y donación */}
       <Box
