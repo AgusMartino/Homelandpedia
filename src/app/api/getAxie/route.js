@@ -59,8 +59,12 @@ export async function POST(request) {
         class: responseAxie.data.axie.class,
         img: "https://axiecdn.axieinfinity.com/axies/"+axieId+"/axie/axie-full-transparent.png",
         parts: responseAxie.data.axie.parts,
-        priceEth: (responseAxie.data.axie.order.currentPrice / 1e18).toFixed(8),
-        priceUsd: Number(responseAxie.data.axie.order.currentPriceUsd).toFixed(5)
+        priceEth: responseAxie.data.axie.order !== null 
+        ? (responseAxie.data.axie.order.currentPrice / 1e18).toFixed(8) 
+        : null,
+        priceUsd: responseAxie.data.axie.order !== null 
+        ? Number(responseAxie.data.axie.order.currentPriceUsd).toFixed(5) 
+        : null,
     }
 
     return NextResponse.json(finalResponse);
