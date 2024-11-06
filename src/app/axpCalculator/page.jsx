@@ -1,30 +1,28 @@
 "use client";
 import { useState } from "react";
-// Importa los componentes necesarios de MUI/Joy y Next.js
-import { Box, Typography, Card, FormControl, FormLabel, Slider, Button, Input } from '@mui/joy';
+import { Box, Typography, Card, FormControl, FormLabel, Slider, Button, Input, IconButton } from '@mui/joy';
 import Image from 'next/image';
-import { axp } from '@/utils/axpCalculate'; // Importa el array desde la ruta especificada
+import { axp } from '@/utils/axpCalculate';
 import axpIcon from '@/img/axp.jpg';
 import time from '@/img/items/time.jpg';
-import axios from 'axios'; // Asegúrate de importar axios si lo usas para las peticiones
-import { TriangleAlert  } from "lucide-react";
+import axios from 'axios';
+import { TriangleAlert, ArrowUp, ArrowDown } from "lucide-react";
 
-const DAILY_CAP = 10000; // Límite diario de XP
+const DAILY_CAP = 10000;
 const AltarOfAtiaMax = 10;
 const defaultFilters = { AltarOfAtia: 10 };
 
 export default function AxpTable() {
   const [filters, setFilters] = useState(defaultFilters);
-  const [sortOrder, setSortOrder] = useState('asc'); // 'asc' o 'desc'
-  const [axieId, setAxieId] = useState(''); // Estado para el ID del Axie
-  const [axie, setAxie] = useState(null); // Cambiado a null para comprobar si hay datos
-  const [result, setResult] = useState(false); // Estado para mostrar el resultado
+  const [axieId, setAxieId] = useState('');
+  const [axie, setAxie] = useState(null);
+  const [result, setResult] = useState(false);
   const [alertAxie, setAlertAxie] = useState(false);
-  const [loading, setLoading] = useState(false); // Estado de carga
-  const [days, setDays] = useState("")
-  const [hours, setHours] = useState("")
+  const [loading, setLoading] = useState(false);
+  const [days, setDays] = useState("");
+  const [sortColumn, setSortColumn] = useState(null);
+  const [sortDirection, setSortDirection] = useState(null);
 
-  // Función para actualizar el valor de AltarOfAtia en los filtros
   const handleChange = (key, newValue) => {
     setFilters((prevFilters) => ({
       ...prevFilters,
@@ -32,54 +30,54 @@ export default function AxpTable() {
     }));
   };
 
-  // Función para filtrar el array `axp` según el valor de AltarOfAtia
   const filteredAxp = axp.filter((item) => item.atia <= filters.AltarOfAtia);
 
-  // Función para ordenar los elementos según el orden especificado
   const sortedAxp = filteredAxp.sort((a, b) => {
-    if (sortOrder === 'asc') {
-      return a.axpHour - b.axpHour; // Orden ascendente
-    }
-    return b.axpHour - a.axpHour; // Orden descendente
+    if (!sortColumn || !sortDirection) return 0;
+    const direction = sortDirection === 'asc' ? 1 : -1;
+    return direction * (a[sortColumn] - b[sortColumn]);
   });
+
+  const handleSort = (column, direction) => {
+    setSortColumn(column);
+    setSortDirection(direction);
+  };
 
   async function fetchDataAxie(body) {
     try {
       const res = await axios.post(`${window.location.origin}/api/getAxie`, body);
-      setAxie(res.data);
+      const fetchedAxie = res.data;
+      if (fetchedAxie && fetchedAxie.axpinfo) {
+        const xpToAscend = fetchedAxie.axpinfo.xpToAscend;
+        const daysNeeded = Math.ceil(xpToAscend / DAILY_CAP);
+        setAxie(fetchedAxie);
+        setDays(daysNeeded);
+        setResult(true);
+        setAlertAxie(false);
+      } else {
+        setAxie(null);
+        setAlertAxie(true);
+      }
     } catch (error) {
       console.error(error);
-      setAxie(null); // Reiniciar axie en caso de error
+      setAxie(null);
+      setAlertAxie(true);
+    } finally {
+      setLoading(false);
     }
   }
 
-  // Función para manejar el cálculo del AXP faltante
   const handleCalculateAxp = async () => {
     setLoading(true);
-    await fetchDataAxie({ axieId }); // Asegúrate de pasar el ID del Axie en el cuerpo
-
-    if (axie && axie.axpinfo) {
-      const xpToAscend = axie.axpinfo.xpToAscend;
-      const daysNeeded = Math.ceil(xpToAscend / DAILY_CAP);
-      const remainingXP = xpToAscend % DAILY_CAP; // XP restante después de días completos
-
-      // Calcula horas y minutos del XP restante
-      const hoursNeeded = remainingXP > 0 ? (remainingXP / (DAILY_CAP / 24)).toFixed(2) : 0;
-      setDays(daysNeeded)
-      setHours(hoursNeeded)
-      setResult(true)
-      setAlertAxie(false)
-
-
-    } else {
-      setAlertAxie(true);
-    }
-    setLoading(false);
+    await fetchDataAxie({ axieId });
   };
+
+  function formatNumber(num) {
+    return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+  }
 
   return (
     <Box sx={{ padding: 2, display: 'flex', justifyContent: 'space-between' }}>
-      {/* Sección para la tabla (40% de ancho) */}
       <Box sx={{ width: '40%', marginLeft: '5%' }}>
         <Typography level="h1" component="h1" sx={{ marginBottom: 2 }}>
           AXP Generation
@@ -101,26 +99,63 @@ export default function AxpTable() {
           />
         </FormControl>
 
-        {/* Botones para ordenar */}
-        <Box sx={{ width: '100%', display: 'flex', justifyContent: 'space-between', marginBottom: 2 }}>
-          <Button variant="outlined" onClick={() => setSortOrder('asc')}>
-            Sort AXP/Hour - Lowest to High
-          </Button>
-          <Button variant="outlined" onClick={() => setSortOrder('desc')}>
-            Sort AXP/Hour - High to Lowest
-          </Button>
-        </Box>
-
-        {/* Encabezado de la tabla */}
         <Box mt={2} width="100%">
           <Card sx={{ p: 1, border: '1px solid #666' }}>
             <Box component="table" width="100%" sx={{ borderCollapse: 'collapse' }}>
               <Box component="thead">
                 <Box component="tr">
                   <Box component="th" padding={1} textAlign="center" sx={{ border: '1px solid #666' }}></Box>
-                  <Box component="th" padding={1} textAlign="center" sx={{ border: '1px solid #666' }}>AXP</Box>
-                  <Box component="th" padding={1} textAlign="center" sx={{ border: '1px solid #666' }}>Time</Box>
-                  <Box component="th" padding={1} textAlign="center" sx={{ border: '1px solid #666' }}>AXP/Hour</Box>
+                  <Box component="th" padding={1} textAlign="center" sx={{ border: '1px solid #666' }}>
+                    AXP
+                    <IconButton
+                      onClick={() => handleSort('axp', 'asc')}
+                      sx={{
+                        color: sortColumn === 'axp' && sortDirection === 'asc' ? '#1976d2' : '#666',
+                        border: '1px solid #1976d2',
+                        m: 1,
+                        backgroundColor: sortColumn === 'axp' && sortDirection === 'asc' ? '#e3f2fd' : 'transparent'
+                      }}
+                    >
+                      <ArrowUp />
+                    </IconButton>
+                    <IconButton
+                      onClick={() => handleSort('axp', 'desc')}
+                      sx={{
+                        color: sortColumn === 'axp' && sortDirection === 'desc' ? '#1976d2' : '#666',
+                        border: '1px solid #1976d2',
+                        backgroundColor: sortColumn === 'axp' && sortDirection === 'desc' ? '#e3f2fd' : 'transparent'
+                      }}
+                    >
+                      <ArrowDown />
+                    </IconButton>
+                  </Box>
+                  <Box component="th" padding={1} textAlign="center" sx={{ border: '1px solid #666' }}>
+                    Time
+                  </Box>
+                  <Box component="th" padding={1} textAlign="center" sx={{ border: '1px solid #666' }}>
+                    AXP/Hour
+                    <IconButton
+                      onClick={() => handleSort('axpHour', 'asc')}
+                      sx={{
+                        color: sortColumn === 'axpHour' && sortDirection === 'asc' ? '#1976d2' : '#666',
+                        border: '1px solid #1976d2',
+                        m: 1,
+                        backgroundColor: sortColumn === 'axpHour' && sortDirection === 'asc' ? '#e3f2fd' : 'transparent'
+                      }}
+                    >
+                      <ArrowUp />
+                    </IconButton>
+                    <IconButton
+                      onClick={() => handleSort('axpHour', 'desc')}
+                      sx={{
+                        color: sortColumn === 'axpHour' && sortDirection === 'desc' ? '#1976d2' : '#666',
+                        border: '1px solid #1976d2',
+                        backgroundColor: sortColumn === 'axpHour' && sortDirection === 'desc' ? '#e3f2fd' : 'transparent'
+                      }}
+                    >
+                      <ArrowDown />
+                    </IconButton>
+                  </Box>
                 </Box>
               </Box>
               <Box component="tbody">
@@ -211,7 +246,7 @@ export default function AxpTable() {
             onClick={handleCalculateAxp}
             disabled={loading}
         >
-            {loading ? 'Loadingg...' : 'Calculate AXP'}
+            {loading ? 'Loading...' : 'Calculate AXP'}
         </Button>
         {alertAxie && (
             <Typography align="center" sx={{ color: "#ff0000", mb: 2 }}>* The axie was not found *</Typography>
@@ -221,7 +256,8 @@ export default function AxpTable() {
         {/* Mostrar la imagen y textos solo si result tiene un valor */}
         {result && (
             <Box>
-                <Box sx={{ display: 'flex', alignItems: 'center', marginTop: 8 }}>
+                <Box sx={{ display: 'flex', justifyContent: 'center',alignItems: 'center', marginTop: 3, marginBottom: 8 }}>
+                  <Card sx={{ p: 1, border: '1px solid #666', alignContent: 'center', justifyContent:'center' }}>
                     <Image
                         src={axie.img} // Asegúrate de actualizar esta ruta con la imagen correcta
                         alt="Imagen de axie"
@@ -229,10 +265,12 @@ export default function AxpTable() {
                         height={300} // Ajusta el tamaño según sea necesario
                         style={{ objectFit: 'contain', marginRight: 2 }} // Margen a la derecha de la imagen
                     />
-                    <Box>
-                        <Typography variant="body2">Level: <strong>{axie.axpinfo.level}</strong></Typography>
-                        <Box display="flex" alignItems="center">
-                            <Typography variant="body2">Actual: <strong>{axie.axpinfo.xp}</strong></Typography>
+                    <Box alignItems="center" justifyContent="center">
+                        <Box display="flex" alignItems="center" justifyContent="center">
+                          <Typography variant="body2">Level: <strong>{axie.axpinfo.level}</strong></Typography>
+                        </Box>
+                        <Box display="flex" alignItems="center" justifyContent="center">
+                            <Typography variant="body2">Actual: <strong>{formatNumber(axie.axpinfo.xp)}</strong></Typography>
                             <Image
                                 src={axpIcon} // Asegúrate de que esta sea la ruta correcta de tu imagen
                                 alt="AXP Icon"
@@ -241,9 +279,9 @@ export default function AxpTable() {
                                 style={{ objectFit: 'contain' }} // Asegura que la imagen mantenga su forma
                             />
                         </Box>
-                        <Box display="flex" alignItems="center">
+                        <Box display="flex" alignItems="center" justifyContent="center">
                             <Typography variant="body2">
-                                Missing for next ascend: <strong>{axie.axpinfo.xpToAscend}</strong>
+                                Missing for next ascend: <strong>{formatNumber(axie.axpinfo.xpToAscend)}</strong>
                             </Typography>
                             <Image
                                 src={axpIcon} // Asegúrate de que esta sea la ruta correcta de tu imagen
@@ -253,9 +291,11 @@ export default function AxpTable() {
                                 style={{ objectFit: 'contain' }} // Asegura que la imagen mantenga su forma
                             />
                         </Box>
-                        <Typography variant="body2">Days to generate missing AXP: <strong>{days}</strong></Typography>
-                        <Typography variant="body2">Hours to generate missing AXP: <strong>{hours}</strong></Typography>
+                        <Box display="flex" alignItems="center" justifyContent="center">
+                          <Typography variant="body2">Days to generate missing AXP: <strong>{days}</strong></Typography>
+                        </Box>
                     </Box>
+                  </Card>
                 </Box>
 
                 {/* Nuevo Box con advertencias dentro del condicional */}
@@ -265,7 +305,7 @@ export default function AxpTable() {
                     </Box>
                     <Box sx={{ display: "flex", gap: 0.5, alignItems: "center" }}>
                         <Typography variant="body2">
-                            **The result is calculated by making 10,000 Axp per day
+                            * This is calculated assuming the daily homeland cap, which is 10.000 axp *
                         </Typography>
                     </Box>
                 </Box>
