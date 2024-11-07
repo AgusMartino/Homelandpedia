@@ -53,7 +53,7 @@ export async function POST(request) {
 
     let points = 0
     let typeAxie = ""
-
+    let fatigueAxie = 0
 
 
 
@@ -114,15 +114,15 @@ export async function POST(request) {
 
     if(typeAxie == "" && responseAxie.data.axie.title == "Origin"){
       points = points + 11
+      typeAxie = responseAxie.data.axie.title
     }
     if(typeAxie == "" && responseAxie.data.axie.title == "MEO Corp" || responseAxie.data.axie.title == "MEO Corp II"){
       points = points + 8
-    }
-    if(typeAxie == "" && responseAxie.data.axie.title == "Origin"){
-      points = points + 11
+      typeAxie = responseAxie.data.axie.title
     }
     if(typeAxie == "" && responseAxie.data.axie.title == "Agamogenesis"){
       points = points + 15
+      typeAxie = responseAxie.data.axie.title
     }
     if(typeAxie == "Shiny" && responseAxie.data.axie.title == ""){
       points = points + 3
