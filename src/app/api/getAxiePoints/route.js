@@ -61,6 +61,7 @@ export async function POST(request) {
     responseAxie.data.axie.parts.forEach(element => {
       const stage = element.stage
       const specialGenes = element.specialGenes
+      const name = element.name
 
       if(stage == 2){
         if(specialGenes == null){
@@ -84,7 +85,7 @@ export async function POST(request) {
           points = points + 2
           typeAxie = "Xmas"
         }
-        if(specialGenes == "Shiny"){
+        if(name.includes("Shiny")){
           points = points + 3
           typeAxie = "Shiny"
         }
@@ -106,7 +107,7 @@ export async function POST(request) {
         if(specialGenes == "Xmas"){
           typeAxie = "Xmas"
         }
-        if(specialGenes == "Shiny"){
+        if(name.includes("Shiny")){
           typeAxie = "Shiny"
         }
       }
