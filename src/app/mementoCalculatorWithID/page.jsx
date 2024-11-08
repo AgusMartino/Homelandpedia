@@ -25,8 +25,7 @@ import dusk from '@/img/dusk.jpg';
 import mech from '@/img/mech.jpg';
 import plant from '@/img/plant.jpg';
 import reptile from '@/img/reptile.jpg';
-import { Box, CircularProgress, Card, CardContent, Button, Typography, Input, Grid } from "@mui/joy";
-import {Table, TableBody, TableCell, TableContainer, TableHead, TableRow} from '@mui/joy'
+import { Box, CircularProgress, Card, CardContent, Button, Typography, Input, Grid, Checkbox} from "@mui/joy";
 import Image from "next/image";
 import { TriangleAlert  } from "lucide-react";
 
@@ -49,6 +48,7 @@ function App() {
   const [axieId, setAxieId] = useState('');
   const [axie, setAxie] = useState(null);
   const [alertAxie, setAlertAxie] = useState(false);
+  const [isOwnAxie, setIsOwnAxie] = useState(false);
 
   const options = [
     { id:1, label: "Aquatic", value: "aquatic", imgSrc: aquatic, key: 'aquatic', imgGif: aquaticGif },
@@ -162,7 +162,16 @@ function App() {
         setAxie(fetchedAxie);
         setselectedAxieClass(fetchedAxie.class);
         setselectedBreed(fetchedAxie.breed);
-        setSelectedAxiePrice(fetchedAxie.priceEth);
+/*         if(isOwnAxie == true){
+          setSelectedAxiePrice(0)
+        }else{
+          setSelectedAxiePrice(fetchedAxie.priceEth);
+        } */
+        if(fetchedAxie.priceEth == null){
+          setSelectedAxiePrice(0)
+        } else{
+          setSelectedAxiePrice(fetchedAxie.priceEth)
+        }
         setselectedLevel(fetchedAxie.level);
         updateQuantities(fetchedAxie.partQuantities);
         setAlertAxie(false);
@@ -618,6 +627,15 @@ function App() {
                 onChange={(e) => setAxieId(e.target.value)}
                 sx={{ marginBottom: 2 }}
             />
+{/*               <Box sx={{ display: 'flex', alignItems: 'center', marginBottom: 2 }}>
+                <Checkbox
+                  checked={isOwnAxie} // Estado para controlar el checkbox
+                  onChange={(e) => setIsOwnAxie(e.target.checked)} // Función para cambiar el estado
+                />
+                <Typography sx={{ marginLeft: 1 }}>
+                  Is this an own Axie?
+                </Typography>
+              </Box> */}
             <Button
                 variant="outlined"
                 onClick={handleGetAxie}
