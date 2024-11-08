@@ -110,21 +110,21 @@ export async function POST(request) {
     var classAxie = ""
     if(responseAxie.data.axie.class == "Aquatic"){
       classAxie = "aquatic"
-    }else if(responseAxie.data.axie.class = "Beast"){
+    }else if(responseAxie.data.axie.class == "Beast"){
       classAxie = "beast"
-    }else if(responseAxie.data.axie.class = "Bird"){
+    }else if(responseAxie.data.axie.class == "Bird"){
       classAxie = "bird"
-    }else if(responseAxie.data.axie.class = "Bug"){
+    }else if(responseAxie.data.axie.class == "Bug"){
       classAxie = "bug"
-    }else if(responseAxie.data.axie.class = "Dawn"){
+    }else if(responseAxie.data.axie.class == "Dawn"){
       classAxie = "dawn"
-    }else if(responseAxie.data.axie.class = "Dusk"){
+    }else if(responseAxie.data.axie.class == "Dusk"){
       classAxie = "dusk"
-    }else if(responseAxie.data.axie.class = "Mech"){
+    }else if(responseAxie.data.axie.class == "Mech"){
       classAxie = "mech"
-    }else if(responseAxie.data.axie.class = "Plant"){
+    }else if(responseAxie.data.axie.class == "Plant"){
       classAxie = "plant"
-    }else if(responseAxie.data.axie.class = "Reptile"){
+    }else if(responseAxie.data.axie.class == "Reptile"){
       classAxie = "reptile"
     }
 
