@@ -234,7 +234,7 @@ export default function AxpTable() {
               }}
             >
               <Typography variant="h5" sx={{ fontWeight: 'bold' }}>
-                Combat Abilities
+                Combat Skills
               </Typography>
 
               {/* Contenedor de tarjetas internas para las habilidades de combate */}
@@ -308,10 +308,10 @@ export default function AxpTable() {
                         {/* Lado derecho: tipo y descripción */}
                         <Box sx={{ flex: 1 }}>
                           <Typography variant="body2" sx={{ fontWeight: 'bold', color: 'gray' }}>
-                            {item.name}
+                            Name: {item.name}
                           </Typography>
                           <Typography variant="body2" sx={{ fontWeight: 'bold', color: 'gray' }}>
-                            {item.type}
+                            Type: {item.type}
                           </Typography>
                           <Typography variant="body2" sx={{ fontWeight: 'bold' }}>
                             Description: {item.description}

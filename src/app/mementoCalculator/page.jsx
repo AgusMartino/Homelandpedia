@@ -708,7 +708,7 @@ function App() {
                   </Typography>
                 )}
                 <Typography align="center" sx={{ mb: 2 }}>
-                  Enter Axie Price
+                  Axie Price
                 </Typography>
                 <Box sx={{ display: 'flex', alignItems: 'center' }}>
                   <Input
