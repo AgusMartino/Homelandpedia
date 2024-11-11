@@ -4,6 +4,25 @@ import { Box, Typography, Card, Button, Input } from '@mui/joy';
 import Image from 'next/image';
 import axios from 'axios';
 import { Star, Infinity } from "lucide-react";
+import bloodlust from '@/img/adventurs/bloodlust.jpg'
+import rampageStrike from '@/img/adventurs/rampageStrike.jpg'
+import anemoiBless from '@/img/adventurs/anemoiBless.jpg'
+import battleCry from '@/img/adventurs/battleCry.jpg'
+import bermudaVortex from '@/img/adventurs/bermudaVortex.jpg'
+import darkRitual from '@/img/adventurs/darkRitual.jpg'
+import error_666 from '@/img/adventurs/error_666.jpg'
+import fatedDeath from '@/img/adventurs/fatedDeath.jpg'
+import gl1tch_8 from '@/img/adventurs/gl1tch_8.jpg'
+import greenBluwark from '@/img/adventurs/greenBluwark.jpg'
+import nighdall from '@/img/adventurs/nighdall.jpg'
+import sacredOath from '@/img/adventurs/sacredOath.jpg'
+import sirensSong from '@/img/adventurs/sirensSong.jpg'
+import sootingDawn from '@/img/adventurs/sootingDawn.jpg'
+import systemRecharge from '@/img/adventurs/systemRecharge.jpg'
+import wingsBlande from '@/img/adventurs/wingsBlande.jpg'
+import powerAmplifier from '@/img/adventurs/powerAmplifier.jpg'
+import blockedImg from '@/img/adventurs/blocked.jpg'
+import { SolarPower } from "@mui/icons-material";
 
 export default function AxpTable() {
   const [axieId, setAxieId] = useState('');
@@ -58,6 +77,29 @@ export default function AxpTable() {
     { quality: 'Divine+', stars: 'infinite', modifier: '+0.15', color: 'linear-gradient(45deg, red, orange, yellow, green, blue, indigo, violet)', points: 15 },
   ];
 
+  const combatAbilities =[
+    {name:"Bloodlust", class:"Beast", description:"Become Berserk, Increase Physical Attack by 50%, Attack Speed by 20% ande decrease Defense By 50% for 5PT, cannot use Item", points:"0", img: bloodlust, type:"Active"},
+    {name:"Rampage Strike", class:"Beast", description:"50% chance to deal 2 Normal Attacks instead of 1", points:"3", img: rampageStrike, type:"Passive"},
+    {name:"Siren's Song", class:"Aquatic", description:"Deal 250% Magical Attack to a random enemy and decrease their magical Resistance to x0.8 for 2PT", points:"0", img: sirensSong, type:"Active"},
+    {name:"Bermuda Vortex", class:"Aquatic", description:"Deal 400% Magical Attack to all enemies and decrease their Magical Resisance to x0.6 for 3PT", points:"3", img: bermudaVortex, type:"Active"},
+    {name:"Green Bulwark", class:"Plant", description:"Increase all allies' Defense(Including self) by 20% for 3PT, 50% chance to Stun a ramdom enemie for 1PT", points:"0", img: greenBluwark, type:"Active"},
+    {name:"Sacred Oath", class:"Plant", description:"Taunt all enemy, Increase your Defense by 50% and decrease the targets' Physical Attack by 30% for 3PT", points:"3", img: sacredOath, type:"Active"},
+    {name:"Wings Blande", class:"Bird", description:"Deal 2 Normal Attacks, each to a random enemy ", points:"0", img: wingsBlande, type:"Active"},
+    {name:"Anemoi Bless", class:"Bird", description:"Increase Attack Speed by 50% and increase Critical Chance by 20% for 5TT", points:"3", img: anemoiBless, type:"Active"},
+    {name:"Fated Death", class:"Reptile", description:"Deal 160% Physical Attack to 2 random enemies", points:"0", img: fatedDeath, type:"Active"},
+    {name:"Battle cry", class:"Reptile", description: "Deal 200% Physical Attack to all enemies and Stun them for 1PT", points:"3", img: battleCry, type:"Active"},
+    {name:"System Recharge", class:"Bug", description:"Refresh cooldown of a random Reusable item or Skill of a random ally except for own skills", points:"0", img: systemRecharge, type:"Active"},
+    {name:"Power amplifier", class:"Bug", description:"Increase all alies' Critical Damage by 50 for 5PT", points:"3", img: powerAmplifier, type:"Active"},
+    {name:"Soothing Dawn", class:"Dawn", description:"Heal 150% Magic Attack as HP to self or an ally with the lowest currunt HP", points:"0", img: sootingDawn, type:"Active"},
+    {name:"Clarity Light", class:"Dawn", description:"Increase Dodge by 25 if there is no body equipment", points:"3", img: powerAmplifier, type:"Passive"},
+    {name:"Solar Flare", class:"Dawn", description:"Increase Physiscal Attack by 200% if there is no weapon equipment", points:"4", img: powerAmplifier, type:"Passive"},
+    {name:"NightFall", class:"Dusk", description:"Deal 100% Magical Attack to all enemies, have 40% chance to decrease all Attack, Defense, and Magic Resistance by 20% for 5PT", points:"0", img: nighdall, type:"Active"},
+    {name:"Dark Ritual", class:"Dusk", description:"Deal 120% Magical Attack to all enemies. 20% chance to inflict them with any of these debuffs: Stun, Rage, Blind, Paralyze for 2PT", points:"3", img: darkRitual, type:"Active"},
+    {name:"ERROR_666", class:"Mech", description:"Get Overheat, have 10% chance to deal 100% Physical Attack to a random ally. Otherwise will stop taking any action in this turn", points:"0", img: error_666, type:"Active"},
+    {name:"GL1TCH_8", class:"Mech", description:"Deal 300% Physical Attack to a random enemy, have 10% chance to cause an ally to be Paralyzed for 1PT", points:"2", img: gl1tch_8, type:"Active"},
+    {name:"PROTOCOL_444", class:"Mech", description:"Create a Shield that blocks damage equal to 200% Physical Attack", points:"5", img: gl1tch_8, type:"Active"},
+  ]
+
   const getCombatDataByPoints = (points) => {
     return combatData.find(item => 
       item.points === points || (item.quality === 'Divine+' && points > 14)
@@ -98,131 +140,192 @@ export default function AxpTable() {
 
           {/* Mostrar la imagen del Axie si se encontró */}
           {result && (
+        <Box
+          sx={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            gap: 2,
+            marginTop: 3,
+            marginBottom: 3,
+            position: 'relative',
+          }}
+        >
+          {/* Card existente */}
+          <Card
+            sx={{
+              p: 1,
+              position: 'relative',
+              alignContent: 'center',
+              justifyContent: 'center',
+              borderRadius: '16px',
+              border: combatItem.quality !== 'Divine+' ? `3px solid ${combatItem.color}` : 'none',
+            }}
+          >
+            <Image src={axie.img} alt="Imagen de axie" width={300} height={300} style={{ objectFit: 'contain' }} />
+            {/* Estrellas sobre el borde superior de la tarjeta */}
+            {combatItem && (
+              <Box
+                sx={{
+                  position: 'absolute',
+                  top: '-12px',
+                  left: '50%',
+                  transform: 'translateX(-50%)',
+                  display: 'flex',
+                  gap: 0.5,
+                  zIndex: 1,
+                  backgroundColor: combatItem.quality === 'Divine+' ? 'transparent' : combatItem.color,
+                  padding: '2px 10px',
+                  borderRadius: '10px',
+                }}
+              >
+                {combatItem.stars === 'infinite' ? (
+                  <Infinity size={20} stroke="silver" strokeWidth={2} />
+                ) : (
+                  Array.from({ length: combatItem.stars }).map((_, i) => (
+                    <Star key={i} size={20} fill="silver" stroke="silver" strokeWidth={2} />
+                  ))
+                )}
+              </Box>
+            )}
+            {/* Información debajo de la imagen */}
             <Box
               sx={{
                 display: 'flex',
-                justifyContent: 'center',
+                flexDirection: 'column',
                 alignItems: 'center',
-                marginTop: 3,
-                marginBottom: 3,
-                position: 'relative', // Necesario para las estrellas sobre el borde
+                justifyContent: 'center',
               }}
             >
-              <Card
+              <Typography variant="body2" sx={{ fontWeight: 'bold' }}>
+                Quality: {combatItem.quality}
+              </Typography>
+              <Typography variant="body2" sx={{ fontWeight: 'bold' }}>
+                Type: {axie.Type || 'Normal'}
+              </Typography>
+              <Typography variant="body2" sx={{ fontWeight: 'bold' }}>
+                Points: {axie.pointsAxie || 0}
+              </Typography>
+              <Typography variant="body2" sx={{ fontWeight: 'bold' }}>
+                {`Stats Modifier: ${combatItem.modifier}`}
+              </Typography>
+              <Typography variant="body2" sx={{ fontWeight: 'bold' }}>
+                Level: {axie.level}
+              </Typography>
+              <Typography variant="body2" sx={{ fontWeight: 'bold' }}>
+                Fatigue: {axie.fatigue}
+              </Typography>
+            </Box>
+          </Card>
+
+          {/* Nueva Card que mapea el array de items */}
+          <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', p: 4 }}>
+            {/* Tarjeta Principal */}
+            <Card
+              sx={{
+                p: 3,
+                display: 'flex',
+                flexDirection: 'column',
+                gap: 2,
+                alignItems: 'center',
+                borderRadius: '16px',
+                width: '100%',
+                maxWidth: 800,
+              }}
+            >
+              <Typography variant="h5" sx={{ fontWeight: 'bold' }}>
+                Combat Abilities
+              </Typography>
+
+              {/* Contenedor de tarjetas internas para las habilidades de combate */}
+              <Box
                 sx={{
-                  p: 1,
-                  position: 'relative', // Necesario para posicionar el pseudo-elemento correctamente
-                  alignContent: 'center',
+                  display: 'flex',
+                  flexWrap: 'wrap', // Permite que las tarjetas se ubiquen una al lado de otra y se ajusten al ancho disponible
+                  gap: 2,          // Espacio entre las tarjetas
                   justifyContent: 'center',
-                  borderRadius: '16px', // Bordes redondeados de la tarjeta
-                  border: combatItem.quality !== 'Divine+' ? `3px solid ${combatItem.color}` : 'none', // Borde normal para otras calidades
-                  '&::before': combatItem.quality === 'Divine+' && {
-                    content: '""',
-                    position: 'absolute',
-                    top: '-3px',
-                    left: '-3px',
-                    right: '-3px',
-                    bottom: '-3px',
-                    borderRadius: '16px', // Redondea las esquinas del borde
-                    background: combatItem.color, // Color de fondo degradado
-                    backgroundImage: combatItem.color, // Si es un degradado, úsalo aquí
-                    zIndex: -1, // Envía el pseudo-elemento detrás del contenido
-                  },
+                  width: '100%',
                 }}
               >
-                <Image
-                  src={axie.img}
-                  alt="Imagen de axie"
-                  width={300}
-                  height={300}
-                  style={{ objectFit: 'contain'}}
-                />
-                {/* Estrellas sobre el borde superior de la tarjeta */}
-                {combatItem && (
-                    <Box
-                      sx={{
-                        position: 'absolute',
-                        top: '-12px',
-                        left: '50%',
-                        transform: 'translateX(-50%)',
-                        display: 'flex',
-                        gap: 0.5,
-                        zIndex: 1,
-                        backgroundColor: combatItem.quality === 'Divine+' ? 'transparent' : combatItem.color,
-                        backgroundImage: combatItem.quality === 'Divine+' ? combatItem.color : 'none',
-                        padding: '2px 10px',
-                        borderRadius: '10px',
-                      }}
-                    >
-                    {combatItem.stars === 'infinite' ? (
-                      <Infinity 
-                        size={20} 
-                        stroke="silver"     // Contorno gris para la estrella
-                        strokeWidth={2}    // Grosor del contorno
+                {combatAbilities
+                  .filter(item => item.class === axie.class) // Asegura que las habilidades coincidan con la clase del Axie
+                  .map((item, index) => {
+                    const qualityData = combatData.find(quality => quality.points === parseInt(item.points));
+
+                    // Verificar si el item está bloqueado o no
+                    const isBlocked = parseInt(item.points) > axie.pointsAxie; // Se bloquea si los puntos son mayores a los de Axie
+
+                    return (
+                      <Card
+                        key={index}
                         sx={{
-                          boxShadow: `
-                            inset 1px 1px 3px rgba(255, 255, 255, 0.5),   /* Sombra interna clara */
-                            inset -1px -1px 3px rgba(0, 0, 0, 0.5)        /* Sombra interna oscura */
-                          `,
-                          filter: `
-                            drop-shadow(2px 2px 3px rgba(0, 0, 0, 0.5))   /* Sombra externa oscura */
-                          `,
+                          p: 2,
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: 2,
+                          borderRadius: '12px',
+                          border: '1px solid gray',
+                          position: 'relative',
+                          width: 200, // Ancho de cada tarjeta de habilidad
                         }}
-                      /> // Estrella "infinita" con color plateado
-                    ) : (
-                      Array.from({ length: combatItem.stars }).map((_, i) => (
-                        <Star 
-                          key={i} 
-                          size={20} 
-                          fill="silver"       // Relleno gris para la estrella
-                          stroke="silver"     // Contorno gris para la estrella
-                          strokeWidth={2}    // Grosor del contorno
-                          sx={{
-                            boxShadow: `
-                              inset 1px 1px 3px rgba(255, 255, 255, 0.5),   /* Sombra interna clara */
-                              inset -1px -1px 3px rgba(0, 0, 0, 0.5)        /* Sombra interna oscura */
-                            `,
-                            filter: `
-                              drop-shadow(2px 2px 3px rgba(0, 0, 0, 0.5))   /* Sombra externa oscura */
-                            `,
-                          }}
-                        />
-                      ))
-                    )}
-                  </Box>
-                )}
-                {/* Información debajo de la imagen */}
-                <Box
-                  sx={{
-                    display: 'flex',
-                    flexDirection: 'column', // Asegura que los elementos estén en columna
-                    alignItems: 'center',    // Centra los elementos en el eje horizontal
-                    justifyContent: 'center', // Centra los elementos en el eje vertical
-                  }}
-                >
-                  <Typography variant="body2" sx={{ fontWeight: 'bold' }}>
-                    Quality: {combatItem.quality}
-                  </Typography>
-                  <Typography variant="body2" sx={{ fontWeight: 'bold' }}>
-                    Type: {axie.Type || 'Normal'} {/* Si axie.type es vacío, coloca "Normal" */}
-                  </Typography>
-                  <Typography variant="body2" sx={{ fontWeight: 'bold' }}>
-                    Points: {axie.pointsAxie || 0} {/* Si axie.points es vacío, coloca "0" */}
-                  </Typography>
-                  <Typography variant="body2" sx={{ fontWeight: 'bold' }}>
-                    {`Stats Modifier: ${combatItem.modifier}`} {/* Muestra el modificador de stats */}
-                  </Typography>
-                  <Typography variant="body2" sx={{ fontWeight: 'bold' }}>
-                    Level: {axie.level} {/* Muestra el modificador de stats */}
-                  </Typography>
-                  <Typography variant="body2" sx={{ fontWeight: 'bold' }}>
-                    Fatigue: {axie.fatigue} {/* Muestra el modificador de stats */}
-                  </Typography>
-                </Box>
-              </Card>
-            </Box>
-          )}
+                      >
+                        {/* Lado izquierdo: imagen de bloqueado si está bloqueado, estrellas y Unlock */}
+                        <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                          <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
+                            <Typography
+                              sx={{
+                                fontWeight: 'bold',
+                                color: isBlocked ? 'gray' : 'green', // Grisar el texto de Unlock si está bloqueado
+                              }}
+                            >
+                              Unlock
+                            </Typography>
+                            <Box
+                              sx={{
+                                display: 'flex',
+                                gap: 0.5,
+                                padding: '4px 8px',
+                                borderRadius: '8px',
+                                backgroundColor: qualityData ? qualityData.color : 'gray',
+                              }}
+                            >
+                              {Array.from({ length: qualityData?.stars || 1 }).map((_, i) => (
+                                <Star key={i} size={20} fill="silver" stroke="silver" strokeWidth={2} />
+                              ))}
+                            </Box>
+                          </Box>
+
+                          {/* Imagen del item o imagen "Blocked" */}
+                          <Image
+                            src={isBlocked ? blockedImg : item.img} // Mostrar la imagen de bloqueado si está bloqueado
+                            alt={isBlocked ? 'Blocked' : item.description}
+                            width={60}
+                            height={60}
+                            style={{ objectFit: 'contain', marginTop: '8px' }}
+                          />
+                        </Box>
+
+                        {/* Lado derecho: tipo y descripción */}
+                        <Box sx={{ flex: 1 }}>
+                          <Typography variant="body2" sx={{ fontWeight: 'bold', color: 'gray' }}>
+                            {item.name}
+                          </Typography>
+                          <Typography variant="body2" sx={{ fontWeight: 'bold', color: 'gray' }}>
+                            {item.type}
+                          </Typography>
+                          <Typography variant="body2" sx={{ fontWeight: 'bold' }}>
+                            Description: {item.description}
+                          </Typography>
+                        </Box>
+                      </Card>
+                    );
+                  })}
+              </Box>
+            </Card>
+          </Box>
         </Box>
-      </Box>
+      )}
+    </Box>
+  </Box>
   );
 }
