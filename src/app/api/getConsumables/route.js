@@ -54,6 +54,7 @@ export async function POST(request) {
             imageUrl
             description
             minPrice
+            tokenId
           }
         }
       }
@@ -70,6 +71,7 @@ export async function POST(request) {
           img: result.imageUrl,
           priceUsd: Number((result.minPrice / 1e18) * exchangeRate).toFixed(4),
           priceEth: Number(result.minPrice / 1e18).toFixed(8),
+          tokenId: result.tokenId,
           recipe: {
             items: [],
             fee: "",
