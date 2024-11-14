@@ -78,6 +78,16 @@ function App() {
         <ConsumableCardComponentCost items={consumablesWithRecipe} />
       </Box>
 
+      <Box sx={{ display: "flex", gap: 0.5, alignItems: "center", justifyContent:'center', flexDirection:"column"  }}>
+        <Box sx={{ display: "flex", gap: 0.5, alignItems: "center" }}>
+          <TriangleAlert  width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+        </Box>
+        <Box sx={{ display: "flex", gap: 0.5, alignItems: "center" }}>
+          <Typography variant="body2">
+              **The calculation NOT includes a marketplace commission of 4.25%.
+          </Typography>
+        </Box>
+      </Box>
     </Box>
 
   );
