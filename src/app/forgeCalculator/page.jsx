@@ -234,7 +234,7 @@ function App() {
                 {/* USD */}
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
                   <Image src="https://cdn.skymavis.com/ronin/2020/erc20/0x0b7007c13325c48911f73a2dad5fa5dcbf808adc/logo.png" width={20} height={20} alt="USD" style={{ width: 16, height: 16 }} />
-                  <Typography sx={{ fontSize: '0.9rem' }}>${item.priceUsd}</Typography>
+                  <Typography sx={{ fontSize: '0.9rem' }}>{item.priceUsd}</Typography>
                 </Box>
 
                 {/* Vendedor */}
@@ -312,7 +312,7 @@ function App() {
               {/* USD */}
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
                 <Image src="https://cdn.skymavis.com/ronin/2020/erc20/0x0b7007c13325c48911f73a2dad5fa5dcbf808adc/logo.png" width={20} height={20} alt="USD" style={{ width: 16, height: 16 }} />
-                <Typography sx={{ fontSize: '0.9rem' }}>${item.priceUsd}</Typography>
+                <Typography sx={{ fontSize: '0.9rem' }}>{item.priceUsd}</Typography>
               </Box>
 
               {/* Vendedor */}
