@@ -1,5 +1,4 @@
 import { NextResponse } from "next/server";
-import Supercocochocogif from '@/img/SuperCocochoco.gif'
 import meoToken from '@/img/meo-token.jpg'
 
 

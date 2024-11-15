@@ -1,5 +1,4 @@
 import { NextResponse } from "next/server";
-import Supercocochocogif from '@/img/SuperCocochoco.gif'
 import meoToken from '@/img/meo-token.jpg'
 
 
@@ -67,7 +66,7 @@ export async function POST(request) {
     const superChoco = `
       query MyQuery {
         tokenActivities(
-          activityFilter: {tokenType: Consumable, tokenId: "3"}
+          activityFilter: {tokenType: Consumable, tokenId: "4"}
           includedActivities: SettleListing
         ) {
           results {
