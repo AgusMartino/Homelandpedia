@@ -61,19 +61,24 @@ export async function POST(request) {
     const exchangeRate = response.data.exchangeRate.eth.usd;
 
     const lands = `
-      query MyQuery {
-        lands(auctionType: Sale, sort: PriceAsc, size: 1000) {
-          results {
-            tokenId
-            col
-            row
-            landType
-            order {
-              currentPrice
+        query MyQuery {
+          lands(
+            auctionType: Sale
+            sort: PriceAsc
+            size: 1000
+            criteria: {landType: [Savannah, Forest, Arctic, Mystic, Genesis]}
+          ) {
+            results {
+              tokenId
+              col
+              row
+              landType
+              order {
+                currentPrice
+              }
             }
           }
         }
-      }
     `;
 
     const responselands = await fetchData(apiUrl, lands);
@@ -90,7 +95,6 @@ export async function POST(request) {
         const plotId = getPlotId(result.row, result.col);
         arrayPlotsId.push(plotId)
         //const dataplot = await fetchDataPlot(apiUrlPlot, [plotId]);
-
         return {
           tokenId: result.tokenId,
           col: result.col,

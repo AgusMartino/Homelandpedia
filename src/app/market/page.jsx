@@ -10,7 +10,7 @@ const Lands = () => {
   const [loading, setLoading] = useState(true);
   const [filters, setFilters] = useState({
     landtypes: "All",
-    AltarOfAtia: "1",
+    AltarOfAtia: 1,
     /* WorkersAxies: "0" */
   });
 
