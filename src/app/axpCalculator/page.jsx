@@ -259,7 +259,7 @@ export default function AxpTable() {
                 <Box sx={{ display: 'flex', justifyContent: 'center',alignItems: 'center', marginTop: 3, marginBottom: 8 }}>
                   <Card sx={{ p: 1, border: '1px solid #666', alignContent: 'center', justifyContent:'center' }}>
                     <Image
-                        src={axie.img} // Asegúrate de actualizar esta ruta con la imagen correcta
+                        src={`https://axiecdn.axieinfinity.com/axies/${axie.axieId}/axie/axie-full-transparent.png`}// Asegúrate de actualizar esta ruta con la imagen correcta
                         alt="Imagen de axie"
                         width={300} // Ajusta el tamaño según sea necesario
                         height={300} // Ajusta el tamaño según sea necesario
