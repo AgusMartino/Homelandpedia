@@ -2,7 +2,19 @@ import { speedDialActionClasses } from "@mui/material";
 import { RESPONSE_LIMIT_DEFAULT } from "next/dist/server/api-utils";
 import { NextResponse } from "next/server";
 import { title } from "process";
+import aquaticGif from '@/img/aquatic.gif';
+import beastGif from '@/img/beast.gif';
+import birdGif from '@/img/bird.gif';
+import bugGif from '@/img/bug.gif';
+import dawnGif from '@/img/dawn.gif'
+import duskGif from '@/img/dusk.gif';
+import mechGif from '@/img/mech.gif';
+import plantGif from '@/img/plant.gif';
+import reptileGif from '@/img/reptile.gif';
+import radiantGif from '@/img/radiant.gif';
 
+
+/**src="https://cdn.axieinfinity.com/marketplace-website/asset-icon/part-icons/beast-eyes.png" */
 export const dynamic = "force-dynamic";
 
 const fetchData = async (url, query) => {
@@ -64,6 +76,28 @@ export async function POST(request) {
   const Materialsdata = responseMaterials.data.erc1155Tokens.results.map(
     (result) => 
       {
+        let img = ""
+        if (result.name === 'Dawn Memento') {
+          result.imageUrl = dawnGif;
+        } else if (result.name === 'Beast Memento') {
+          result.imageUrl = beastGif;
+        } else if (result.name === 'Bug Memento') {
+          result.imageUrl = bugGif;
+        } else if (result.name === 'Bird Memento') {
+          result.imageUrl = birdGif;
+        } else if (result.name === 'Plant Memento') {
+          result.imageUrl = plantGif;
+        } else if (result.name === 'Aquatic Memento') {
+          result.imageUrl = aquaticGif;
+        } else if (result.name === 'Reptile Memento') {
+          result.imageUrl = reptileGif;
+        } else if (result.name === 'Mech Memento') {
+          result.imageUrl = mechGif;
+        } else if (result.name === 'Dusk Memento') {
+          result.imageUrl = duskGif;
+        } else if (result.name === 'Radiant Spirit Shell') {
+          result.imageUrl = radiantGif;
+        }
         return{
           name: result.name,
           tokenId: result.tokenId,
@@ -150,7 +184,9 @@ export async function POST(request) {
     Axie.parts = Axie.parts.map((element) => {
       let memento = null;
       let spiritShell = null;
-    
+      let image = "https://cdn.axieinfinity.com/marketplace-website/asset-icon/part-icons/" + 
+            element.class.toLowerCase() + "-" + 
+            element.type.toLowerCase() + ".png";
       if (element.stage === 1) {
         const partClass = `${element.class} Memento`;
         memento = Materialsdata.find(material => material.name === partClass);
@@ -164,10 +200,12 @@ export async function POST(request) {
         class: element.class,
         id: element.id,
         name: element.name,
+        img: image,
         type: element.type,
         stage: element.stage,
         specialGenes: element.specialGenes,
         evolved: element.stage === 1 && memento ? {
+          mementoImg: memento.imageUrl,
           mementoPriceEth: memento?.minprinceEth || 0,
           mementoPriceUsd: memento?.minprinceUsd || 0,
           mementosQuantity: quatityMementosNeed,

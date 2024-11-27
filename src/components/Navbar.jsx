@@ -13,7 +13,7 @@ import {
   MenuItem,
 } from "@mui/joy";
 
-import { House, Store, FlameKindling, Heart, BookOpenText, School, Axe, ClockArrowUp, Swords  } from "lucide-react";
+import { House, Store, FlameKindling, Heart, BookOpenText, School, Axe, ClockArrowUp, Swords, WalletMinimal  } from "lucide-react";
 
 const Navbar = () => {
   const [menuAnchor, setMenuAnchor] = useState(null);
@@ -122,6 +122,11 @@ const Navbar = () => {
       <Link href="/axieAdventureCalculator" passHref>
         <IconButton title="Axie Adventure Calculator" onClick={handleIconClick}>
           <Swords />
+        </IconButton>
+      </Link>
+      <Link href="/evolvedCalculator" passHref>
+        <IconButton title="Axie Adventure Calculator" onClick={handleIconClick}>
+          <WalletMinimal />
         </IconButton>
       </Link>
 

@@ -29,13 +29,8 @@ export default function RootLayout({ children }) {
             <Navbar />
           </div>
 
-          {/* Margen superior ajustado para que el contenido no quede oculto */}
-          <div className="mt-24 text-wrap bg-blue-600 p-2 text-center">
-            Market filters and Wiki of items in development
-          </div>
-
           {/* Contenedor que permite el crecimiento del contenido y padding inferior */}
-          <div className="flex-grow pb-20"> {/* Asegúrate de agregar un padding inferior */}
+          <div className="mt-24 flex-grow pb-20"> {/* Asegúrate de agregar un padding inferior */}
             {children}
           </div>
 
