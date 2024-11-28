@@ -1,6 +1,7 @@
 import InitColorSchemeScript from "@mui/joy/InitColorSchemeScript";
 import { CssVarsProvider } from "@mui/joy/styles";
 import CssBaseline from "@mui/joy/CssBaseline";
+import AdSense from "@/components/AdSense";
 
 import { Inter } from "next/font/google";
 import "./globals.css";
@@ -18,6 +19,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="es" suppressHydrationWarning={true}>
+      <head>
+        <AdSense pId="ca-pub-5303334400624183"/>
+      </head>
       <body
         className={`${inter.className} max-w-screen flex flex-col min-h-screen`}
       >
@@ -30,7 +34,7 @@ export default function RootLayout({ children }) {
           </div>
 
           {/* Contenedor que permite el crecimiento del contenido y padding inferior */}
-          <div className="mt-24 flex-grow pb-20"> {/* Asegúrate de agregar un padding inferior */}
+          <div className="mt-28 flex-grow pb-20"> {/* Asegúrate de agregar un padding inferior */}
             {children}
           </div>
 
