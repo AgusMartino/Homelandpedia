@@ -558,6 +558,7 @@ function App() {
                         alt="usd"
                         width={20}
                         height={20}
+                        unoptimized={true}
                       />
                     </Box>
                   </Card>
@@ -587,7 +588,7 @@ function App() {
                         onClick={() => setselectedAxieClass(option.value)}
                         sx={{ width: '100%', textAlign: 'center', padding: 2 }}
                       >
-                        <Image src={option.imgSrc} alt={option.label} width={20} height={20} />
+                        <Image src={option.imgSrc} alt={option.label} width={20} height={20} unoptimized={true} />
                         <Typography>{option.label}</Typography>
                       </Button>
                     </Grid>
@@ -613,7 +614,7 @@ function App() {
                   <Grid container>
                     {options.map((option) => (
                       <Grid item xs={12} sm={4} md={4} key={option.key} display="flex" alignItems="center" justifyContent="center">
-                        <Image src={option.imgSrc} alt={option.label} width={20} height={20} />
+                        <Image src={option.imgSrc} alt={option.label} width={20} height={20} unoptimized={true} />
                         <Input
                           type="text"
                           value={quantities[option.key]}
@@ -730,6 +731,7 @@ function App() {
                     width={40}
                     height={40}
                     style={{ marginLeft: '8px' }} // Añadir un margen a la izquierda de la imagen
+                    unoptimized={true}
                   />
                 </Box>
               </CardContent>
@@ -771,6 +773,7 @@ function App() {
                     width={50} // Ancho especificado para optimización de Next.js
                     height={50} // Alto especificado para optimización de Next.js
                     style={{ objectFit: "contain", height: 50 }}
+                    unoptimized={true}
                   />
                 </Box>
                 <Box sx={{ display: "flex", gap: 0.5, alignItems: "center"}}>
@@ -779,6 +782,7 @@ function App() {
                     alt="memento"
                     width={20}
                     height={20}
+                    unoptimized={true}
                   /> 
                   <Typography variant="body1">
                     {totalsArray.mementoMin} - {totalsArray.mementoMax}
@@ -790,6 +794,7 @@ function App() {
                     alt="eth"
                     width={20}
                     height={20}
+                    unoptimized={true}
                   />
                   <Typography variant="body1">
                     {totalsArray.totalMinEth} - {totalsArray.totalMaxEth}
@@ -801,6 +806,7 @@ function App() {
                     alt="usd"
                     width={20}
                     height={20}
+                    unoptimized={true}
                   />
                   <Typography variant="body1">
                     {totalsArray.totalMinUsd} - {totalsArray.totalMaxUsd}

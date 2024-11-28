@@ -12,6 +12,7 @@ const LandCard = ({ land }) => {
         width={250}
         height={250}
         style={{ borderRadius: '8px' }}
+        unoptimized={true}
       />
 
       <CardContent>
@@ -32,6 +33,7 @@ const LandCard = ({ land }) => {
             alt="Eth"
             width={20}
             height={20}
+            unoptimized={true}
           />
           <Typography level="body2">
             {land.minprinceEth}
@@ -43,6 +45,7 @@ const LandCard = ({ land }) => {
             alt="Usd"
             width={20}
             height={20}
+            unoptimized={true}
           />
           <Typography level="body2">
             {land.minprinceUsd}
@@ -56,6 +59,7 @@ const LandCard = ({ land }) => {
               alt="Usd"
               width={25}
               height={25}
+              unoptimized={true}
             />
             <Typography level="body2">
             Buildings: {land.plot_data.number_of_buildings}
@@ -67,6 +71,7 @@ const LandCard = ({ land }) => {
               alt="Usd"
               width={25}
               height={25}
+              unoptimized={true}
             />
           <Typography level="body2">
             Workers Axies: {land.plot_data.number_of_workers}
@@ -78,6 +83,7 @@ const LandCard = ({ land }) => {
               alt="Usd"
               width={25}
               height={25}
+              unoptimized={true}
             />
             <Typography level="body2">
             Altar of Atia Level: {land.plot_data.townhall_level}

@@ -43,6 +43,7 @@ const ItemCard = ({ item }) => {
           width={75}
           height={75}
           style={{ objectFit: "contain" }}
+          unoptimized={true}
         />
       </Box>
 
@@ -64,6 +65,7 @@ const ItemCard = ({ item }) => {
             alt="Eth"
             width={20}
             height={20}
+            unoptimized={true}
           />
           <Typography>{item.priceEth}</Typography>
         </Box>
@@ -75,6 +77,7 @@ const ItemCard = ({ item }) => {
             alt="Usd"
             width={20}
             height={20}
+            unoptimized={true}
           />
           <Typography level="body2">{item.priceUsd}</Typography>
         </Box>

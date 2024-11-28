@@ -607,6 +607,7 @@ function App() {
                         alt="usd"
                         width={20}
                         height={20}
+                        unoptimized={true}
                       />
                     </Box>
                   </Card>
@@ -627,15 +628,6 @@ function App() {
                 onChange={(e) => setAxieId(e.target.value)}
                 sx={{ marginBottom: 2 }}
             />
-{/*               <Box sx={{ display: 'flex', alignItems: 'center', marginBottom: 2 }}>
-                <Checkbox
-                  checked={isOwnAxie} // Estado para controlar el checkbox
-                  onChange={(e) => setIsOwnAxie(e.target.checked)} // Función para cambiar el estado
-                />
-                <Typography sx={{ marginLeft: 1 }}>
-                  Is this an own Axie?
-                </Typography>
-              </Box> */}
             <Button
                 variant="outlined"
                 onClick={handleGetAxie}
@@ -666,7 +658,7 @@ function App() {
                         onClick={() => setselectedAxieClass(option.value)}
                         sx={{ width: '100%', textAlign: 'center', padding: 2 }}
                       >
-                        <Image src={option.imgSrc} alt={option.label} width={20} height={20} />
+                        <Image src={option.imgSrc} alt={option.label} width={20} height={20} unoptimized={true} />
                         <Typography>{option.label}</Typography>
                       </Button>
                     </Grid>
@@ -809,6 +801,7 @@ function App() {
                     width={40}
                     height={40}
                     style={{ marginLeft: '8px' }} // Añadir un margen a la izquierda de la imagen
+                    unoptimized={true}
                   />
                 </Box>
               </CardContent>
@@ -847,6 +840,7 @@ function App() {
                   width={200} 
                   height={200}
                   style={{ objectFit: "contain"}}
+                  unoptimized={true}
                 />
                 {/* Texto de ID */}
                 <Typography variant="h6" fontWeight="bold" mt={2}>
@@ -869,6 +863,7 @@ function App() {
                     width={50} // Ancho especificado para optimización de Next.js
                     height={50} // Alto especificado para optimización de Next.js
                     style={{ objectFit: "contain", height: 50 }}
+                    unoptimized={true}
                   />
                 </Box>
                 <Box sx={{ display: "flex", gap: 0.5, alignItems: "center"}}>
@@ -877,6 +872,7 @@ function App() {
                     alt="memento"
                     width={20}
                     height={20}
+                    unoptimized={true}
                   /> 
                   <Typography variant="body1">
                     {totalsArray.mementoMin} - {totalsArray.mementoMax}
@@ -888,6 +884,7 @@ function App() {
                     alt="eth"
                     width={20}
                     height={20}
+                    unoptimized={true}
                   />
                   <Typography variant="body1">
                     {totalsArray.totalMinEth} - {totalsArray.totalMaxEth}
@@ -899,6 +896,7 @@ function App() {
                     alt="usd"
                     width={20}
                     height={20}
+                    unoptimized={true}
                   />
                   <Typography variant="body1">
                     {totalsArray.totalMinUsd} - {totalsArray.totalMaxUsd}

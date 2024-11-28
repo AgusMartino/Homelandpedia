@@ -37,6 +37,7 @@ const Footer = () => {
                     width={30} // Ajusta el tamaño de la imagen si es necesario
                     height={30} // Ajusta la altura de la imagen si es necesario
                     style={{ objectFit: "cover" }} // Asegura que la imagen cubra todo el contenedor
+                    unoptimized={true}
                 />
                 </div>
                 <Typography variant="body2">

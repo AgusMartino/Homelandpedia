@@ -190,6 +190,7 @@ function App() {
                 width={20}
                 height={20}
                 style={{ objectFit: "contain" }}
+                unoptimized={true}
               />
               <Typography variant="h6" fontWeight="bold">
                 Activity of SuperCocochoco
@@ -209,7 +210,7 @@ function App() {
               >
                 {/* Imagen del objeto */}
                 <Box sx={{ width: 20, height: 20, overflow: 'hidden', borderRadius: '4px' }}>
-                  <Image src={item.img} width={20} height={20} alt="buy" style={{ width: '100%', height: 'auto' }} />
+                  <Image src={item.img} width={20} height={20} alt="buy" style={{ width: '100%', height: 'auto' }} unoptimized={true} />
                 </Box>
 
                 {/* Nombre */}
@@ -227,13 +228,13 @@ function App() {
 
                 {/* ETH */}
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
-                  <Image src="https://cdn.skymavis.com/ronin/2020/erc20/0xc99a6a985ed2cac1ef41640596c5a5f9f4e19ef5/logo.png" width={20} height={20} alt="ETH" style={{ width: 16, height: 16 }} />
+                  <Image src="https://cdn.skymavis.com/ronin/2020/erc20/0xc99a6a985ed2cac1ef41640596c5a5f9f4e19ef5/logo.png" width={20} height={20} alt="ETH" style={{ width: 16, height: 16 }} unoptimized={true} />
                   <Typography sx={{ fontSize: '0.9rem' }}>{item.priceEth}</Typography>
                 </Box>
 
                 {/* USD */}
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
-                  <Image src="https://cdn.skymavis.com/ronin/2020/erc20/0x0b7007c13325c48911f73a2dad5fa5dcbf808adc/logo.png" width={20} height={20} alt="USD" style={{ width: 16, height: 16 }} />
+                  <Image src="https://cdn.skymavis.com/ronin/2020/erc20/0x0b7007c13325c48911f73a2dad5fa5dcbf808adc/logo.png" width={20} height={20} alt="USD" style={{ width: 16, height: 16 }} unoptimized={true} />
                   <Typography sx={{ fontSize: '0.9rem' }}>{item.priceUsd}</Typography>
                 </Box>
 
@@ -271,6 +272,7 @@ function App() {
                 width={20}
                 height={20}
                 style={{ objectFit: "contain" }}
+                unoptimized={true}
               />
               <Typography variant="h6" fontWeight="bold">
                 Activity of Dark Flame
@@ -290,7 +292,7 @@ function App() {
             >
               {/* Imagen del objeto */}
               <Box sx={{ width: 20, height: 20, overflow: 'hidden', borderRadius: '4px' }}>
-                <Image src={item.img} alt="buy" width={20} height={20} style={{ width: '100%', height: 'auto' }} />
+                <Image src={item.img} alt="buy" width={20} height={20} style={{ width: '100%', height: 'auto' }} unoptimized={true} />
               </Box>
 
               {/* Nombre */}
@@ -305,13 +307,13 @@ function App() {
 
               {/* ETH */}
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
-                <Image src="https://cdn.skymavis.com/ronin/2020/erc20/0xc99a6a985ed2cac1ef41640596c5a5f9f4e19ef5/logo.png" width={20} height={20} alt="ETH" style={{ width: 16, height: 16 }} />
+                <Image src="https://cdn.skymavis.com/ronin/2020/erc20/0xc99a6a985ed2cac1ef41640596c5a5f9f4e19ef5/logo.png" width={20} height={20} alt="ETH" style={{ width: 16, height: 16 }} unoptimized={true} />
                 <Typography sx={{ fontSize: '0.9rem' }}>{item.priceEth}</Typography>
               </Box>
 
               {/* USD */}
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
-                <Image src="https://cdn.skymavis.com/ronin/2020/erc20/0x0b7007c13325c48911f73a2dad5fa5dcbf808adc/logo.png" width={20} height={20} alt="USD" style={{ width: 16, height: 16 }} />
+                <Image src="https://cdn.skymavis.com/ronin/2020/erc20/0x0b7007c13325c48911f73a2dad5fa5dcbf808adc/logo.png" width={20} height={20} alt="USD" style={{ width: 16, height: 16 }} unoptimized={true} />
                 <Typography sx={{ fontSize: '0.9rem' }}>{item.priceUsd}</Typography>
               </Box>
 

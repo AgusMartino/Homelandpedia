@@ -158,6 +158,7 @@ export default function AxpCalculator() {
                                   alt={part.evolved.mementoName}
                                   width={30}
                                   height={30}
+                                  unoptimized={true}
                                 />
                                 {/* Nombre de la parte */}
                                 <Typography>
@@ -186,6 +187,7 @@ export default function AxpCalculator() {
                                     alt="Eth"
                                     width={30}
                                     height={30}
+                                    unoptimized={true}
                                   />
                                   {/* Nombre de la parte */}
                                   <Typography>
@@ -205,6 +207,7 @@ export default function AxpCalculator() {
                                     alt="usd"
                                     width={30}
                                     height={30}
+                                    unoptimized={true}
                                   />
                                   {/* Nombre de la parte */}
                                   <Typography>
@@ -229,6 +232,7 @@ export default function AxpCalculator() {
                                     alt={part.evolved.mementoName}
                                     width={30}
                                     height={30}
+                                    unoptimized={true}
                                   />
                                   {/* Nombre de la parte */}
                                   <Typography>
@@ -244,6 +248,7 @@ export default function AxpCalculator() {
                                         alt="Spirit Shell"
                                         width={20} // Ajusta el tamaño según lo necesites
                                         height={20} // Ajusta el tamaño según lo necesites
+                                        unoptimized={true}
                                       />
                                       {/* Texto 1 al lado de la imagen */}
                                       <Typography>2</Typography>
@@ -257,6 +262,7 @@ export default function AxpCalculator() {
                                     alt="Eth"
                                     width={30}
                                     height={30}
+                                    unoptimized={true}
                                   />
                                   {/* Nombre de la parte */}
                                   <Typography>
@@ -276,6 +282,7 @@ export default function AxpCalculator() {
                                     alt="usd"
                                     width={30}
                                     height={30}
+                                    unoptimized={true}
                                   />
                                   {/* Nombre de la parte */}
                                   <Typography>
@@ -301,6 +308,7 @@ export default function AxpCalculator() {
                               alt="usd"
                               width={30}
                               height={30}
+                              unoptimized={true}
                             />
                             <Typography align="center" marginLeft={1}>
                               {part.evolved.feeEvolved}

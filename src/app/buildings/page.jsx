@@ -43,6 +43,7 @@ function BuildingsList() {
                   width={50}
                   height={50}
                   style={{ objectFit: "contain" }}
+                  unoptimized={true}
                 />
                 <CardContent>
                   <Typography variant="body1">{building.name}</Typography>
@@ -67,6 +68,7 @@ function BuildingsList() {
               height={150}
               style={{ objectFit: "contain" }}
               sx={{ mt: 2 }}
+              unoptimized={true}
             />
             <Typography sx={{ mt: 2 }} align="center"><strong>Max Buildings:</strong> {selectedBuilding.maxBuilding}</Typography>
             <Typography sx={{ mt: 2 }} align="center">{selectedBuilding.Description}</Typography>
@@ -96,6 +98,7 @@ function BuildingsList() {
                                 width={50}
                                 height={50}
                                 style={{ objectFit: "contain", marginRight: 8 }}
+                                unoptimized={true}
                               />
                               <Typography variant="body2">{level.name}</Typography>
                             </Box>
@@ -109,6 +112,7 @@ function BuildingsList() {
                                 width={25}
                                 height={25}
                                 style={{ objectFit: "contain", marginLeft: 8 }}
+                                unoptimized={true}
                               />
                             </Box>
                           </Box>
@@ -121,6 +125,7 @@ function BuildingsList() {
                                 width={25}
                                 height={25}
                                 style={{ objectFit: "contain", marginLeft: 8 }}
+                                unoptimized={true}
                               />
                             </Box>
                           </Box>
@@ -133,6 +138,7 @@ function BuildingsList() {
                                 width={25}
                                 height={25}
                                 style={{ objectFit: "contain", marginLeft: 8 }}
+                                unoptimized={true}
                               />
                             </Box>
                           </Box>
@@ -145,6 +151,7 @@ function BuildingsList() {
                                 width={25}
                                 height={25}
                                 style={{ objectFit: "contain", marginLeft: 8 }}
+                                unoptimized={true}
                               />
                             </Box>
                           </Box>
@@ -157,6 +164,7 @@ function BuildingsList() {
                                 width={25}
                                 height={25}
                                 style={{ objectFit: "contain", marginLeft: 8 }}
+                                unoptimized={true}
                               />
                             </Box>
                           </Box>

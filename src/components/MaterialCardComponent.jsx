@@ -21,6 +21,7 @@ const ItemCard = ({ item }) => {
         width={75} // Ancho especificado para optimización de Next.js
         height={75} // Alto especificado para optimización de Next.js
         style={{ height:75 , objectFit: "contain" }}
+        unoptimized={true}
       />
     </Box>
 
@@ -34,6 +35,7 @@ const ItemCard = ({ item }) => {
             alt="Eth"
             width={20}
             height={20}
+            unoptimized={true}
           />
           <Typography>{item.minprinceEth}</Typography>
         </Box>
@@ -45,6 +47,7 @@ const ItemCard = ({ item }) => {
             alt="Usd"
             width={20}
             height={20}
+            unoptimized={true}
           />
           <Typography level="body2">{item.minprinceUsd}</Typography>
         </Box>

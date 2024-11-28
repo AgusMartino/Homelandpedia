@@ -162,7 +162,7 @@ export default function AxpTable() {
               border: combatItem.quality !== 'Divine+' ? `3px solid ${combatItem.color}` : 'none',
             }}
           >
-            <Image src={axie.img} alt="Imagen de axie" width={300} height={300} style={{ objectFit: 'contain' }} />
+            <Image src={axie.img} alt="Imagen de axie" width={300} height={300} style={{ objectFit: 'contain' }} unoptimized={true} />
             {/* Estrellas sobre el borde superior de la tarjeta */}
             {combatItem && (
               <Box
@@ -302,6 +302,7 @@ export default function AxpTable() {
                             width={60}
                             height={60}
                             style={{ objectFit: 'contain', marginTop: '8px' }}
+                            unoptimized={true}
                           />
                         </Box>
 

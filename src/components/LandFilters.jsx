@@ -104,7 +104,7 @@ const Filters = ({ filters, setFilters, fetchData }) => {
 
         {/* Box para la imagen sobre el último texto */}
         <Box sx={{ marginBottom: 1, display: 'flex', justifyContent: 'center' }}>
-          <Image src={qr} alt="0x4b64176a09D6d1Cf4634C3DD46D6C8d9E8C09c83" width={100} height={100} />
+          <Image src={qr} alt="0x4b64176a09D6d1Cf4634C3DD46D6C8d9E8C09c83" width={100} height={100} unoptimized={true} />
         </Box>
 
         {/* Tercer texto de Lunacian Code */}

@@ -2,6 +2,16 @@ import { speedDialActionClasses } from "@mui/material";
 import { RESPONSE_LIMIT_DEFAULT } from "next/dist/server/api-utils";
 import { NextResponse } from "next/server";
 import { title } from "process";
+import aquaticGif from '@/img/aquatic.gif';
+import beastGif from '@/img/beast.gif';
+import birdGif from '@/img/bird.gif';
+import bugGif from '@/img/bug.gif';
+import dawnGif from '@/img/dawn.gif'
+import duskGif from '@/img/dusk.gif';
+import mechGif from '@/img/mech.gif';
+import plantGif from '@/img/plant.gif';
+import reptileGif from '@/img/reptile.gif';
+import radiantGif from '@/img/radiant.gif';
 
 
 /**src="https://cdn.axieinfinity.com/marketplace-website/asset-icon/part-icons/beast-eyes.png" */
@@ -68,25 +78,25 @@ export async function POST(request) {
       {
         let img = ""
         if (result.name === 'Dawn Memento') {
-          result.imageUrl = "/Image/dawn.gif";
+          result.imageUrl = dawnGif;
         } else if (result.name === 'Beast Memento') {
-          result.imageUrl = "/Image/beast.gif";
+          result.imageUrl = beastGif;
         } else if (result.name === 'Bug Memento') {
-          result.imageUrl = "/Image/bug.gif";
+          result.imageUrl = bugGif;
         } else if (result.name === 'Bird Memento') {
-          result.imageUrl = "/Image/bird.gif";
+          result.imageUrl = birdGif;
         } else if (result.name === 'Plant Memento') {
-          result.imageUrl = "/Image/plant.gif";
+          result.imageUrl = plantGif;
         } else if (result.name === 'Aquatic Memento') {
-          result.imageUrl = "/Image/aquatic.gif";
+          result.imageUrl = aquaticGif;
         } else if (result.name === 'Reptile Memento') {
-          result.imageUrl = "/Image/raptile.gif";
+          result.imageUrl = reptileGif;
         } else if (result.name === 'Mech Memento') {
-          result.imageUrl = "/Image/mech.gif";
+          result.imageUrl = mechGif;
         } else if (result.name === 'Dusk Memento') {
-          result.imageUrl = "/Image/dusk.gif";
+          result.imageUrl = duskGif;
         } else if (result.name === 'Radiant Spirit Shell') {
-          result.imageUrl = "/Image/radiant.gif";
+          result.imageUrl = radiantGif;
         }
         return{
           name: result.name,

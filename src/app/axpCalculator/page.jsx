@@ -169,6 +169,7 @@ export default function AxpTable() {
                           width={50}
                           height={50}
                           style={{ objectFit: "contain", marginRight: 8 }}
+                          unoptimized={true}
                         />
                         <Typography sx={{ display: 'inline-flex', alignItems: 'center' }}>
                           {item.name}
@@ -180,6 +181,7 @@ export default function AxpTable() {
                                 width={20}
                                 height={20}
                                 style={{ objectFit: 'contain', verticalAlign: 'middle' }}
+                                unoptimized={true}
                               />
                             </span>
                           )}
@@ -195,6 +197,7 @@ export default function AxpTable() {
                           width={25}
                           height={25}
                           style={{ objectFit: "contain", marginLeft: 8 }}
+                          unoptimized={true}
                         />
                       </Box>
                     </Box>
@@ -207,6 +210,7 @@ export default function AxpTable() {
                           width={25}
                           height={25}
                           style={{ objectFit: "contain", marginLeft: 8 }}
+                          unoptimized={true}
                         />
                       </Box>
                     </Box>
@@ -219,6 +223,7 @@ export default function AxpTable() {
                           width={25}
                           height={25}
                           style={{ objectFit: "contain", marginLeft: 8 }}
+                          unoptimized={true}
                         />
                       </Box>
                     </Box>
@@ -264,6 +269,7 @@ export default function AxpTable() {
                         width={300} // Ajusta el tamaño según sea necesario
                         height={300} // Ajusta el tamaño según sea necesario
                         style={{ objectFit: 'contain', marginRight: 2 }} // Margen a la derecha de la imagen
+                        unoptimized={true}
                     />
                     <Box alignItems="center" justifyContent="center">
                         <Box display="flex" alignItems="center" justifyContent="center">
@@ -277,6 +283,7 @@ export default function AxpTable() {
                                 width={40} // Ajusta el tamaño según sea necesario
                                 height={40} // Ajusta el tamaño según sea necesario
                                 style={{ objectFit: 'contain' }} // Asegura que la imagen mantenga su forma
+                                unoptimized={true}
                             />
                         </Box>
                         <Box display="flex" alignItems="center" justifyContent="center">
@@ -289,6 +296,7 @@ export default function AxpTable() {
                                 width={40} // Ajusta el tamaño según sea necesario
                                 height={40} // Ajusta el tamaño según sea necesario
                                 style={{ objectFit: 'contain' }} // Asegura que la imagen mantenga su forma
+                                unoptimized={true}
                             />
                         </Box>
                         <Box display="flex" alignItems="center" justifyContent="center">

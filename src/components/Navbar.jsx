@@ -62,6 +62,7 @@ const Navbar = () => {
           alt="Logo"
           width={75}
           height={75}
+          unoptimized={true}
         />
       </Box>
 

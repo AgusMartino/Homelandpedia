@@ -40,6 +40,7 @@ const ItemCard = ({ item }) => {
           width={75}
           height={75}
           style={{ objectFit: "contain" }}
+          unoptimized={true}
         />
       </Box>
 
@@ -79,6 +80,7 @@ const ItemCard = ({ item }) => {
                   width={20}
                   height={20}
                   style={{ objectFit: "contain" }}
+                  unoptimized={true}
                 />
                 <Typography level="body2" textAlign="center">
                   {recipeItem.name} x{recipeItem.quantity}
@@ -89,6 +91,7 @@ const ItemCard = ({ item }) => {
                     alt="USD"
                     width={15}
                     height={15}
+                    unoptimized={true}
                   />
                   <Typography level="body2" textAlign="center">
                     ${recipeItem.priceUsd}
@@ -114,6 +117,7 @@ const ItemCard = ({ item }) => {
                 width={20}
                 height={20}
                 style={{ objectFit: "contain" }}
+                unoptimized={true}
               />
               <Typography level="body2" textAlign="center">
                 Fee
@@ -124,6 +128,7 @@ const ItemCard = ({ item }) => {
                   alt="USD"
                   width={15}
                   height={15}
+                  unoptimized={true}
                 />
                 <Typography level="body2" textAlign="center">
                   ${item.recipe.fee}
@@ -144,6 +149,7 @@ const ItemCard = ({ item }) => {
             alt="USD"
             width={15}
             height={15}
+            unoptimized={true}
           />
           <Typography fontWeight="bold">${item.recipe.total}</Typography>
         </Box>

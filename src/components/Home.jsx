@@ -48,6 +48,7 @@ const Inicio = () => {
                   alt="SavannahIcon"
                   width={50}
                   height={50}
+                  unoptimized={true}
                 />
                 <Box
                   sx={{
@@ -82,6 +83,7 @@ const Inicio = () => {
                   alt="AxsIcon"
                   width={25}
                   height={25}
+                  unoptimized={true}
                 />
                 <Typography color="neutral" variant="plain" sx={{ marginLeft: '4px' }}>
                   0.043
@@ -95,6 +97,7 @@ const Inicio = () => {
                   alt="Savannah"
                   width={100}
                   height={100}
+                  unoptimized={true}
                 />
               </Box>
               <Box display="flex" alignItems="left">
@@ -127,6 +130,7 @@ const Inicio = () => {
                   alt="ArticIcon"
                   width={50}
                   height={50}
+                  unoptimized={true}
                 />
                 <Box
                   sx={{
@@ -161,6 +165,7 @@ const Inicio = () => {
                   alt="AxsIcon"
                   width={25}
                   height={25}
+                  unoptimized={true}
                 />
                 <Typography color="neutral" variant="plain" sx={{ marginLeft: '4px' }}>
                   0.396
@@ -175,6 +180,7 @@ const Inicio = () => {
                   alt="Artic"
                   width={100}
                   height={100}
+                  unoptimized={true}
                 />
               </Box>
 
@@ -218,6 +224,7 @@ const Inicio = () => {
                   alt="ForestIcon"
                   width={50}
                   height={50}
+                  unoptimized={true}
                 />
                 <Box
                   sx={{
@@ -252,6 +259,7 @@ const Inicio = () => {
                   alt="AxsIcon"
                   width={25}
                   height={25}
+                  unoptimized={true}
                 />
                 <Typography color="neutral" variant="plain" sx={{ marginLeft: '4px' }}>
                   0.139
@@ -266,6 +274,7 @@ const Inicio = () => {
                   alt="Forest"
                   width={100}
                   height={100}
+                  unoptimized={true}
                 />
               </Box>
 
@@ -319,6 +328,7 @@ const Inicio = () => {
                   alt="MysticIcon"
                   width={50}
                   height={50}
+                  unoptimized={true}
                 />
                 <Box
                   sx={{
@@ -353,6 +363,7 @@ const Inicio = () => {
                   alt="AxsIcon"
                   width={25}
                   height={25}
+                  unoptimized={true}
                 />
                 <Typography color="neutral" variant="plain" sx={{ marginLeft: '4px' }}>
                   0.878
@@ -367,6 +378,7 @@ const Inicio = () => {
                   alt="Mystic"
                   width={100}
                   height={100}
+                  unoptimized={true}
                 />
               </Box>
 
@@ -420,6 +432,7 @@ const Inicio = () => {
               alt="GenesisIcon"
               width={50}
               height={50}
+              unoptimized={true}
             />
             <Box
               sx={{
@@ -454,6 +467,7 @@ const Inicio = () => {
                 alt="AxsIcon"
                 width={25}
                 height={25}
+                unoptimized={true}
               />
               <Typography color="neutral" variant="plain" sx={{ marginLeft: '4px' }}>
                 17.495
@@ -468,6 +482,7 @@ const Inicio = () => {
                 alt="Genesis"
                 width={100}
                 height={100}
+                unoptimized={true}
               />
             </Box>
 

@@ -21,6 +21,7 @@ const MementoCard = ({ data }) => {
                         width={50} // Ancho especificado para optimización de Next.js
                         height={50} // Alto especificado para optimización de Next.js
                         style={{ objectFit: "contain", height: 50 }}
+                        unoptimized={true}
                     />
                 </Box>
 
@@ -31,6 +32,7 @@ const MementoCard = ({ data }) => {
                         alt="materialIcon"
                         width={20}
                         height={20}
+                        unoptimized={true}
                     />     
                     <Typography variant="body2">
                         {data.mementoMin} - {data.mementoMax}
@@ -44,6 +46,7 @@ const MementoCard = ({ data }) => {
                         alt="Eth"
                         width={20}
                         height={20}
+                        unoptimized={true}
                     />                
                     <Typography variant="body2">
                         {data.minEth} - {data.maxEth}
@@ -57,6 +60,7 @@ const MementoCard = ({ data }) => {
                         alt="Usd"
                         width={20}
                         height={20}
+                        unoptimized={true}
                     />
                     <Typography variant="body2">
                         {data.minUsd} - {data.maxUsd}
