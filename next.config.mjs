@@ -14,6 +14,10 @@ const nextConfig = {
         protocol: "https",
         hostname: "axiecdn.axieinfinity.com",
       },
+      {
+        protocol: "https",
+        hostname: "**",
+      },
     ],
   },
 };
