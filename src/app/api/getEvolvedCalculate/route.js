@@ -68,25 +68,25 @@ export async function POST(request) {
       {
         let img = ""
         if (result.name === 'Dawn Memento') {
-          result.imageUrl = "Image/dawn.gif";
+          result.imageUrl = "/Image/dawn.gif";
         } else if (result.name === 'Beast Memento') {
-          result.imageUrl = "Image/beast.gif";
+          result.imageUrl = "/Image/beast.gif";
         } else if (result.name === 'Bug Memento') {
-          result.imageUrl = "Image/bug.gif";
+          result.imageUrl = "/Image/bug.gif";
         } else if (result.name === 'Bird Memento') {
-          result.imageUrl = "Image/bird.gif";
+          result.imageUrl = "/Image/bird.gif";
         } else if (result.name === 'Plant Memento') {
-          result.imageUrl = "Image/plant.gif";
+          result.imageUrl = "/Image/plant.gif";
         } else if (result.name === 'Aquatic Memento') {
-          result.imageUrl = "Image/aquatic.gif";
+          result.imageUrl = "/Image/aquatic.gif";
         } else if (result.name === 'Reptile Memento') {
-          result.imageUrl = "Image/raptile.gif";
+          result.imageUrl = "/Image/raptile.gif";
         } else if (result.name === 'Mech Memento') {
-          result.imageUrl = "Image/mech.gif";
+          result.imageUrl = "/Image/mech.gif";
         } else if (result.name === 'Dusk Memento') {
-          result.imageUrl = "Image/dusk.gif";
+          result.imageUrl = "/Image/dusk.gif";
         } else if (result.name === 'Radiant Spirit Shell') {
-          result.imageUrl = "Image/radiant.gif";
+          result.imageUrl = "/Image/radiant.gif";
         }
         return{
           name: result.name,
