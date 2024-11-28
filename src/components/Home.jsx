@@ -29,7 +29,7 @@ const Inicio = () => {
           sx={{
             height: "800px",
             width: "200px", 
-            backgroundColor: 'white', 
+            backgroundColor: 'black', 
             padding: 2, // Opcional: agrega padding para separación interna
             borderRadius: 1, // Opcional: redondeo de bordes
             boxShadow: 1 // Opcional: añade una sombra para darle estilo
@@ -536,7 +536,7 @@ const Inicio = () => {
             sx={{
               height: "800px",
               width: "200px",
-              backgroundColor: 'white', 
+              backgroundColor: 'black', 
               padding: 2, // Opcional: agrega padding para separación interna
               borderRadius: 1, // Opcional: redondeo de bordes
               boxShadow: 1 // Opcional: añade una sombra para darle estilo
