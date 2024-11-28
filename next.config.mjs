@@ -12,6 +12,11 @@ const nextConfig = {
       },
       {
         protocol: "https",
+        hostname: "cdn.axieinfinity.com",
+        pathname: "/marketplace-website/asset-icon/part-icons/**",
+      },
+      {
+        protocol: "https",
         hostname: "axiecdn.axieinfinity.com",
       },
       {
