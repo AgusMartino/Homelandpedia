@@ -1,5 +1,5 @@
-import cuddle_kitchen_1 from 'image/items/cuddle_kitchen_1.jpg'
-import cuddle_kitchen_2 from 'image/items/cuddle_kitchen_2.jpg'
+import cuddle_kitchen_1 from '@/img/items/cuddle_kitchen_1.jpg'
+import cuddle_kitchen_2 from '@/img/items/cuddle_kitchen_2.jpg'
 
 const ItemsData = {
     'Couddle Kitchen':{

@@ -1,12 +1,12 @@
-import aquatic from 'image/aquatic.jpg';
-import beast from 'image/beast.jpg';
-import bird from 'image/bird.jpg';
-import bug from 'image/bug.jpg';
-import dawn from 'image/dawn.jpg';
-import dusk from 'image/dusk.jpg';
-import mech from 'image/mech.jpg';
-import plant from 'image/plant.jpg';
-import reptile from 'image/reptile.jpg';
+import aquatic from '@/img/aquatic.jpg';
+import beast from '@/img/beast.jpg';
+import bird from '@/img/bird.jpg';
+import bug from '@/img/bug.jpg';
+import dawn from '@/img/dawn.jpg';
+import dusk from '@/img/dusk.jpg';
+import mech from '@/img/mech.jpg';
+import plant from '@/img/plant.jpg';
+import reptile from '@/img/reptile.jpg';
 
 const AxiesTypes = [
     {

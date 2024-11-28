@@ -3,8 +3,8 @@ import { useState } from "react";
 import { Box, Typography, Card, FormControl, FormLabel, Slider, Button, Input, IconButton } from '@mui/joy';
 import Image from 'next/image';
 import { axp } from '@/utils/axpCalculate';
-import axpIcon from 'image/axp.jpg';
-import time from 'image/items/time.jpg';
+import axpIcon from '@/img/axp.jpg';
+import time from '@/img/items/time.jpg';
 import axios from 'axios';
 import { TriangleAlert, ArrowUp, ArrowDown } from "lucide-react";
 

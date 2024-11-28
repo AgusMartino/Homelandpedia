@@ -3,8 +3,8 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import ConsumableCardComponent from "@/components/ConsumableCardComponent";
 import ConsumableCardComponentCost from "@/components/ConsumableCardComponentCost";
-import darkflamegif from 'image/DarkFlame.gif'
-import supercocochoco from 'image/SuperCocochoco.gif'
+import darkflamegif from '@/img/DarkFlame.gif'
+import supercocochoco from '@/img/SuperCocochoco.gif'
 import { Box, CircularProgress, Typography} from "@mui/joy";
 import Image from "next/image";
 import { TriangleAlert  } from "lucide-react";

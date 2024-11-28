@@ -1,10 +1,10 @@
 import { NextResponse } from "next/server";
-import cocochocogif from 'image/Cocochoco.gif'
-import Premiumcocochocogif from 'image/PremiumCocochoco.gif'
-import Supercocochocogif from 'image/SuperCocochoco.gif'
-import DarkFlamegif from 'image/DarkFlame.gif'
-import mementoAqua from 'image/aquatic.gif'
-import mementoPlant from 'image/plant.gif'
+import cocochocogif from '@/img/Cocochoco.gif'
+import Premiumcocochocogif from '@/img/PremiumCocochoco.gif'
+import Supercocochocogif from '@/img/SuperCocochoco.gif'
+import DarkFlamegif from '@/img/DarkFlame.gif'
+import mementoAqua from '@/img/aquatic.gif'
+import mementoPlant from '@/img/plant.gif'
 
 export const dynamic = "force-dynamic";
 

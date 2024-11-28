@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import Image from 'next/image';
-import AxieHomeland from 'image/AxieInfinityHomeland.jpg';
+import AxieHomeland from '@/img/AxieInfinityHomeland.jpg';
 
 import {
   Sheet,

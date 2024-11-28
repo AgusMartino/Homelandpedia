@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import meoToken from 'image/meo-token.jpg'
+import meoToken from '@/img/meo-token.jpg'
 
 
 export const dynamic = "force-dynamic";

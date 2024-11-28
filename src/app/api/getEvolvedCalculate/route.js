@@ -2,16 +2,16 @@ import { speedDialActionClasses } from "@mui/material";
 import { RESPONSE_LIMIT_DEFAULT } from "next/dist/server/api-utils";
 import { NextResponse } from "next/server";
 import { title } from "process";
-import aquaticGif from 'image/aquatic.gif';
-import beastGif from 'image/beast.gif';
-import birdGif from 'image/bird.gif';
-import bugGif from 'image/bug.gif';
-import dawnGif from 'image/dawn.gif'
-import duskGif from 'image/dusk.gif';
-import mechGif from 'image/mech.gif';
-import plantGif from 'image/plant.gif';
-import reptileGif from 'image/reptile.gif';
-import radiantGif from 'image/radiant.gif';
+import aquaticGif from '@/img/aquatic.gif';
+import beastGif from '@/img/beast.gif';
+import birdGif from '@/img/bird.gif';
+import bugGif from '@/img/bug.gif';
+import dawnGif from '@/img/dawn.gif'
+import duskGif from '@/img/dusk.gif';
+import mechGif from '@/img/mech.gif';
+import plantGif from '@/img/plant.gif';
+import reptileGif from '@/img/reptile.gif';
+import radiantGif from '@/img/radiant.gif';
 
 
 /**src="https://cdn.axieinfinity.com/marketplace-website/asset-icon/part-icons/beast-eyes.png" */

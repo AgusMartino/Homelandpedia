@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { Box, Typography, Sheet } from "@mui/joy";
-import discord from 'image/discord.jpg'
+import discord from '@/img/discord.jpg'
 import Image from "next/image";
 
 const Footer = () => {

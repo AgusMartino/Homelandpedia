@@ -3,8 +3,8 @@ import { useState } from "react";
 import { Box, Typography, Card, CardContent, Input, Button } from "@mui/joy";
 import axios from "axios";
 import Image from 'next/image';
-import usd from 'image/usd.jpg';
-import eth from 'image/eth.jpg';
+import usd from '@/img/usd.jpg';
+import eth from '@/img/eth.jpg';
 import { padding } from "@mui/system";
 
 export default function AxpCalculator() {

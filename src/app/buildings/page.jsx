@@ -1,11 +1,11 @@
 "use client";
 import { useState } from "react";
 import { Box, Typography, Card, CardContent } from "@mui/joy";
-import gold from 'image/items/gold.jpg';
-import wood from 'image/items/wood.jpg';
-import stone from 'image/items/stone.jpg';
-import atia from 'image/items/atia.jpg';
-import time from 'image/items/time.jpg';
+import gold from '@/img/items/gold.jpg';
+import wood from '@/img/items/wood.jpg';
+import stone from '@/img/items/stone.jpg';
+import atia from '@/img/items/atia.jpg';
+import time from '@/img/items/time.jpg';
 import { buildings } from '@/utils/buildings'; // Asegúrate de que esta importación sea correcta
 import Image from 'next/image';
 
