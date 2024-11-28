@@ -135,6 +135,7 @@ export default function AxpCalculator() {
                           alt={part.type + part.class}
                           width={30}
                           height={30}
+                          unoptimized={true}
                         />
                         {/* Nombre de la parte */}
                         <Typography level="h6">{part.name}</Typography>
