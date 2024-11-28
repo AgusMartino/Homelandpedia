@@ -205,6 +205,7 @@ export async function POST(request) {
         stage: element.stage,
         specialGenes: element.specialGenes,
         evolved: element.stage === 1 && memento ? {
+          mementoName: memento.name,
           mementoImg: memento.imageUrl,
           mementoPriceEth: memento?.minprinceEth || 0,
           mementoPriceUsd: memento?.minprinceUsd || 0,

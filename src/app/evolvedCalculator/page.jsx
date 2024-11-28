@@ -18,7 +18,7 @@ export default function AxpCalculator() {
     try {
       const res = await axios.post(`${window.location.origin}/api/getEvolvedCalculate`, body);
       const fetchedAxie = res.data;
-      if (fetchedAxie) {
+      if (fetchedAxie.class) {
         setAxie(fetchedAxie);
         setResult(true);
         setAlertAxie(false);
@@ -132,7 +132,7 @@ export default function AxpCalculator() {
                         {/* Imagen de la parte */}
                         <Image
                           src={part.img}
-                          alt={part.name}
+                          alt={part.type + part.class}
                           width={30}
                           height={30}
                         />
@@ -154,7 +154,7 @@ export default function AxpCalculator() {
                                 {/* Imagen de la parte */}
                                 <Image
                                   src={part.evolved.mementoImg}
-                                  alt={part.name}
+                                  alt={part.evolved.mementoName}
                                   width={30}
                                   height={30}
                                 />
@@ -182,7 +182,7 @@ export default function AxpCalculator() {
                                   {/* Imagen de la parte */}
                                   <Image
                                     src={eth}
-                                    alt="ETH"
+                                    alt="Eth"
                                     width={30}
                                     height={30}
                                   />
@@ -225,7 +225,7 @@ export default function AxpCalculator() {
                                   {/* Imagen de la parte */}
                                   <Image
                                     src={part.evolved.mementoImg}
-                                    alt={part.name}
+                                    alt={part.evolved.mementoName}
                                     width={30}
                                     height={30}
                                   />
@@ -253,7 +253,7 @@ export default function AxpCalculator() {
                                   {/* Imagen de la parte */}
                                   <Image
                                     src={eth}
-                                    alt="ETH"
+                                    alt="Eth"
                                     width={30}
                                     height={30}
                                   />
