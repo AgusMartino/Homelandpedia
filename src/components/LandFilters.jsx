@@ -11,7 +11,7 @@ import {
   Slider,
 } from "@mui/joy";
 import { Heart } from "lucide-react";
-import qr from '@/img/qrRonin.jpg';
+import qr from 'image/qrRonin.jpg';
 import Image from 'next/image';
 
 const Filters = ({ filters, setFilters, fetchData }) => {

@@ -1,16 +1,16 @@
 import React from "react";
 import { Typography, Box, Card, CardContent } from "@mui/joy";
-import Savannah from '@/img/savannah.jpg';
-import Forest from '@/img/forest.jpg';
-import Artic from '@/img/artic.jpg';
-import Mystic from '@/img/mystic.jpg';
-import Genesis from '@/img/genesis.jpg';
-import SavannahIcon from '@/img/plotSavannah.jpg';
-import ForestIcon from '@/img/plotForest.jpg';
-import ArticIcon from '@/img/plotArtic.jpg';
-import MysticIcon from '@/img/plotMystic.jpg';
-import GenesisIcon from '@/img/plotGenesis.jpg';
-import AxsIcon from '@/img/axsLogo.jpg';
+import Savannah from 'image/savannah.jpg';
+import Forest from 'image/forest.jpg';
+import Artic from 'image/artic.jpg';
+import Mystic from 'image/mystic.jpg';
+import Genesis from 'image/genesis.jpg';
+import SavannahIcon from 'image/plotSavannah.jpg';
+import ForestIcon from 'image/plotForest.jpg';
+import ArticIcon from 'image/plotArtic.jpg';
+import MysticIcon from 'image/plotMystic.jpg';
+import GenesisIcon from 'image/plotGenesis.jpg';
+import AxsIcon from 'image/axsLogo.jpg';
 import { ArrowUp, ArrowDown } from 'lucide-react';
 import Image from 'next/image';
 

@@ -1,7 +1,7 @@
 "use client";
 import React from 'react';
 import { Card, CardContent, Typography, Box } from '@mui/joy';
-import materialIcon from '@/img/materialIcon.jpg'
+import materialIcon from 'image/materialIcon.jpg'
 import Image from 'next/image';
 
 const MementoCard = ({ data }) => {
