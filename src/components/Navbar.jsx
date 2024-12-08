@@ -13,7 +13,7 @@ import {
   MenuItem,
 } from "@mui/joy";
 
-import { House, Store, FlameKindling, Heart, BookOpenText, School, Axe, ClockArrowUp, Swords, WalletMinimal  } from "lucide-react";
+import { House, Store, FlameKindling, Heart, BookOpenText, School, Axe, ClockArrowUp, Swords, WalletMinimal, Anvil  } from "lucide-react";
 
 const Navbar = () => {
   const [menuAnchor, setMenuAnchor] = useState(null);
@@ -80,6 +80,11 @@ const Navbar = () => {
       <Link href="/mementoCalculator" passHref>
         <IconButton title="Calculate Memento" onClick={handleIconClick}>
           <FlameKindling />
+        </IconButton>
+      </Link>
+      <Link href="/forgeCalculator" passHref>
+        <IconButton title="Calculate Memento" onClick={handleIconClick}>
+          <Anvil />
         </IconButton>
       </Link>
 

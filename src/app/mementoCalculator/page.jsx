@@ -25,8 +25,7 @@ import dusk from '@/img/dusk.jpg';
 import mech from '@/img/mech.jpg';
 import plant from '@/img/plant.jpg';
 import reptile from '@/img/reptile.jpg';
-import { Box, CircularProgress, Card, CardContent, Button, Typography, Input, Grid } from "@mui/joy";
-import {Table, TableBody, TableCell, TableContainer, TableHead, TableRow} from '@mui/joy'
+import { Box, CircularProgress, Card, CardContent, Button, Typography, Input, Grid, Checkbox} from "@mui/joy";
 import Image from "next/image";
 import { TriangleAlert  } from "lucide-react";
 
@@ -46,6 +45,10 @@ function App() {
   const [alertQuantities, setalertQuantities] = useState(false);
   const [alertClass, setalertClass] = useState(false);
   const [alertPriceAxie, setalertPriceAxie] = useState(false);
+  const [axieId, setAxieId] = useState('');
+  const [axie, setAxie] = useState(null);
+  const [alertAxie, setAlertAxie] = useState(false);
+  const [isOwnAxie, setIsOwnAxie] = useState(false);
 
   const options = [
     { id:1, label: "Aquatic", value: "aquatic", imgSrc: aquatic, key: 'aquatic', imgGif: aquaticGif },
@@ -150,6 +153,52 @@ function App() {
     plant: 0,
     reptile: 0
   });
+
+  async function fetchDataAxie(body) {
+    try {
+      const res = await axios.post(`${window.location.origin}/api/getAxieMementos`, body);
+      const fetchedAxie = res.data;
+      if (fetchedAxie) {
+        setAxie(fetchedAxie);
+        setselectedAxieClass(fetchedAxie.class);
+        setselectedBreed(fetchedAxie.breed);
+/*         if(isOwnAxie == true){
+          setSelectedAxiePrice(0)
+        }else{
+          setSelectedAxiePrice(fetchedAxie.priceEth);
+        } */
+        if(fetchedAxie.priceEth == null){
+          setSelectedAxiePrice(0)
+        } else{
+          setSelectedAxiePrice(fetchedAxie.priceEth)
+        }
+        setselectedLevel(fetchedAxie.level);
+        updateQuantities(fetchedAxie.partQuantities);
+        setAlertAxie(false);
+      } else {
+        setAxie(null);
+        setAlertAxie(true);
+      }
+    } catch (error) {
+      console.error(error);
+      setAxie(null);
+      setAlertAxie(true);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  const handleGetAxie = async () =>{
+    setLoading(true);
+    await fetchDataAxie({ axieId });
+  }
+
+  const updateQuantities = (partQuantities) => {
+    setQuantities(prevQuantities => ({
+      ...prevQuantities,
+      ...partQuantities
+    }));
+  };
 
   const handleChange = (event, part) => {
     setQuantities({
@@ -570,6 +619,27 @@ function App() {
         <Box sx={{ width: '60%', display: 'flex', flexDirection: 'column', gap: 2, paddingRight:6}}> 
           {/* Card de selección de clase Axie */}
           <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <Typography level="h2" component="h2" sx={{ marginBottom: 2 }}>
+              Calculate Mementos with Axie ID
+            </Typography>
+            <Input
+                placeholder="Axie ID"
+                value={axieId}
+                onChange={(e) => setAxieId(e.target.value)}
+                sx={{ marginBottom: 2 }}
+            />
+            <Button
+                variant="outlined"
+                onClick={handleGetAxie}
+                disabled={loading}
+            >
+                {loading ? 'Loading...' : 'Set Axie Information'}
+            </Button>
+            {alertAxie && (
+                <Typography align="center" sx={{ color: "#ff0000", mb: 2 }}>* The axie was not found *</Typography>
+            )}
+          </Box>
+          <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             <Card variant="outlined" sx={{ display: 'flex', width: 830 }}>
               <CardContent>
                 {alertClass && (
@@ -614,7 +684,7 @@ function App() {
                   <Grid container>
                     {options.map((option) => (
                       <Grid item xs={12} sm={4} md={4} key={option.key} display="flex" alignItems="center" justifyContent="center">
-                        <Image src={option.imgSrc} alt={option.label} width={20} height={20} unoptimized={true} />
+                        <Image src={option.imgSrc} alt={option.label} width={20} height={20} />
                         <Input
                           type="text"
                           value={quantities[option.key]}
@@ -759,6 +829,26 @@ function App() {
             borderRadius: '30px',
           }}
         >
+          {/* Nueva tarjeta para la imagen y el texto "ID" */}
+          <Box sx={{ display: 'flex', margin: 2 }}>
+            <Card variant="outlined" sx={{ margin: 2, flex: 1, height: 240 }}>
+              <CardContent sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                {/* Imagen de ID */}
+                <Image
+                  src={axie.img} // Asegúrate de reemplazar `idImage` con la ruta de la imagen de ID
+                  alt="Axie Image"
+                  width={200} 
+                  height={200}
+                  style={{ objectFit: "contain"}}
+                  unoptimized={true}
+                />
+                {/* Texto de ID */}
+                <Typography variant="h6" fontWeight="bold" mt={2}>
+                  ID: {axieId}
+                </Typography>
+              </CardContent>
+            </Card>
+          </Box>
           <Box sx={{ display: 'flex', margin: 2 }}>
             <Card variant="outlined" sx={{ margin: 2, flex: 1, height: 240 }}>
               <CardContent>
@@ -797,7 +887,13 @@ function App() {
                     unoptimized={true}
                   />
                   <Typography variant="body1">
-                    {totalsArray.totalMinEth} - {totalsArray.totalMaxEth}
+                    <span style={{ color: totalsArray.totalMinEth < 0 ? 'red' : 'green' }}>
+                      {totalsArray.totalMinEth}
+                    </span>
+                    {' - '}
+                    <span style={{ color: totalsArray.totalMaxEth < 0 ? 'red' : 'green' }}>
+                      {totalsArray.totalMaxEth}
+                    </span>
                   </Typography>
                 </Box>
                 <Box sx={{ display: "flex", gap: 0.5, alignItems: "center"}}>
@@ -809,7 +905,13 @@ function App() {
                     unoptimized={true}
                   />
                   <Typography variant="body1">
-                    {totalsArray.totalMinUsd} - {totalsArray.totalMaxUsd}
+                    <span style={{ color: totalsArray.totalMinUsd < 0 ? 'red' : 'green' }}>
+                      {totalsArray.totalMinUsd}
+                    </span>
+                    {' - '}
+                    <span style={{ color: totalsArray.totalMaxEth < 0 ? 'red' : 'green' }}>
+                      {totalsArray.totalMaxUsd}
+                    </span>
                   </Typography>
                 </Box>
               </CardContent>
