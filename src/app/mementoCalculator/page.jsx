@@ -830,25 +830,27 @@ function App() {
           }}
         >
           {/* Nueva tarjeta para la imagen y el texto "ID" */}
-          <Box sx={{ display: 'flex', margin: 2 }}>
-            <Card variant="outlined" sx={{ margin: 2, flex: 1, height: 240 }}>
-              <CardContent sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                {/* Imagen de ID */}
-                <Image
-                  src={axie.img} // Asegúrate de reemplazar `idImage` con la ruta de la imagen de ID
-                  alt="Axie Image"
-                  width={200} 
-                  height={200}
-                  style={{ objectFit: "contain"}}
-                  unoptimized={true}
-                />
-                {/* Texto de ID */}
-                <Typography variant="h6" fontWeight="bold" mt={2}>
-                  ID: {axieId}
-                </Typography>
-              </CardContent>
-            </Card>
-          </Box>
+          {axie && (
+            <Box sx={{ display: 'flex', margin: 2 }}>
+              <Card variant="outlined" sx={{ margin: 2, flex: 1, height: 240 }}>
+                <CardContent sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                  {/* Imagen de ID */}
+                  <Image
+                    src={axie.img} // Asegúrate de reemplazar `idImage` con la ruta de la imagen de ID
+                    alt="Axie Image"
+                    width={200} 
+                    height={200}
+                    style={{ objectFit: "contain" }}
+                    unoptimized={true}
+                  />
+                  {/* Texto de ID */}
+                  <Typography variant="h6" fontWeight="bold" mt={2}>
+                    ID: {axieId}
+                  </Typography>
+                </CardContent>
+              </Card>
+            </Box>
+          )}
           <Box sx={{ display: 'flex', margin: 2 }}>
             <Card variant="outlined" sx={{ margin: 2, flex: 1, height: 240 }}>
               <CardContent>
