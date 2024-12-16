@@ -60,7 +60,7 @@ export default function RootLayout({ children }) {
     </div> */}
 
     {/* Contenedor principal para los children */}
-    <div className="flex-grow pb-20">
+    <div className="mt-28 flex-grow pb-20">
       {children}
     </div>
 
