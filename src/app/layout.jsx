@@ -39,7 +39,6 @@ export default function RootLayout({ children }) {
           <div className="mt-28 w-full flex justify-center z-10">
             <div className="adsense-container">
               <ins class="adsbygoogle"
-                  style="display:block"
                   data-ad-client="ca-pub-5303334400624183"
                   data-ad-slot="6614259860"
                   data-ad-format="auto"
