@@ -1,14 +1,12 @@
 import InitColorSchemeScript from "@mui/joy/InitColorSchemeScript";
 import { CssVarsProvider } from "@mui/joy/styles";
 import CssBaseline from "@mui/joy/CssBaseline";
-import AdSense from "@/components/AdSense";
 
 import { Inter } from "next/font/google";
 import "./globals.css";
 
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import AdBanner from "@/components/AdBanner";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,55 +19,48 @@ export default function RootLayout({ children }) {
   return (
     <html lang="es" suppressHydrationWarning={true}>
       <head>
-        <AdSense pId="5303334400624183"/>
+        {/* Puedes agregar el script de AdSense aquí */}
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
       </head>
       <body
-  className={`${inter.className} max-w-screen flex flex-col min-h-screen`}
->
-  <InitColorSchemeScript />
-  <CssVarsProvider defaultMode="dark">
-    <CssBaseline />
-
-    {/* Navbar fijo con mayor prioridad */}
-    <div className="fixed top-0 left-0 w-full z-20 bg-white">
-      <Navbar />
-    </div>
-
-    {/* Contenedor del AdBanner con dimensiones específicas */}
-{/*     <div className="relative w-full z-10 bg-white mt-[100px] flex justify-center">
-      <div 
-        className="flex justify-center items-center"
-        style={{
-          minWidth: "300px", // Asegura un ancho mínimo
-          minHeight: "20px", // Asegura una altura mínima
-          width: "600px",
-          height: "60px",
-        }}
+        className={`${inter.className} max-w-screen flex flex-col min-h-screen`}
       >
-        <AdBanner             
-          dataAdFormat="auto"
-          dataFullWidthResponsive={true}
-          dataAdSlot="6614259860"
-          style={{
-            width: "100%",
-            height: "100%",
-            display: "block",
-          }}
-        />
-      </div>
-    </div> */}
+        <InitColorSchemeScript />
+        <CssVarsProvider defaultMode="dark">
+          <CssBaseline />
 
-    {/* Contenedor principal para los children */}
-    <div className="mt-28 flex-grow pb-20">
-      {children}
-    </div>
+          {/* Navbar fijo con mayor prioridad */}
+          <div className="fixed top-0 left-0 w-full z-20 bg-white">
+            <Navbar />
+          </div>
 
-    {/* Footer fijo en la parte inferior */}
-    <div className="fixed bottom-0 left-0 w-full z-20 bg-white">
-      <Footer />
-    </div>
-  </CssVarsProvider>
-</body>
+          {/* Contenedor del AdSense entre Navbar y Children */}
+          <div className="mt-28 w-full flex justify-center z-10">
+            <div className="adsense-container">
+              <ins
+                className="adsbygoogle"
+                style={{ display: "block", width: "100%", height: "60px" }}
+                data-ad-client="ca-pub-5303334400624183"
+                data-ad-slot="6614259860"
+                data-ad-format="auto"
+              ></ins>
+              <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+              </script>
+            </div>
+          </div>
+
+          {/* Contenedor principal para los children */}
+          <div className="flex-grow pb-20 mt-[80px]">
+            {children}
+          </div>
+
+          {/* Footer fijo en la parte inferior */}
+          <div className="fixed bottom-0 left-0 w-full z-20 bg-white">
+            <Footer />
+          </div>
+        </CssVarsProvider>
+      </body>
     </html>
   );
 }
