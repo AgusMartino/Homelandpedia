@@ -20,8 +20,7 @@ export default function RootLayout({ children }) {
     <html lang="es" suppressHydrationWarning={true}>
       <head>
         {/* Puedes agregar el script de AdSense aquí */}
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5303334400624183"
-                  crossorigin="anonymous"></script>
+
       </head>
       <body
         className={`${inter.className} max-w-screen flex flex-col min-h-screen`}
@@ -38,7 +37,10 @@ export default function RootLayout({ children }) {
           {/* Contenedor del AdSense entre Navbar y Children */}
           <div className="mt-28 w-full flex justify-center z-10">
             <div className="adsense-container">
+              <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5303334400624183"
+                  crossorigin="anonymous"></script>
               <ins class="adsbygoogle"
+                  display="block"
                   data-ad-client="ca-pub-5303334400624183"
                   data-ad-slot="6614259860"
                   data-ad-format="auto"
