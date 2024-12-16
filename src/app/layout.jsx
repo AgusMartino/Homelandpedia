@@ -36,7 +36,7 @@ export default function RootLayout({ children }) {
     </div>
 
     {/* Contenedor del AdBanner con dimensiones específicas */}
-{/*     <div className="relative w-full z-10 bg-white mt-[100px] flex justify-center">
+    <div className="relative w-full z-10 bg-white mt-[100px] flex justify-center">
       <div 
         className="flex justify-center items-center"
         style={{
@@ -57,7 +57,7 @@ export default function RootLayout({ children }) {
           }}
         />
       </div>
-    </div> */}
+    </div>
 
     {/* Contenedor principal para los children */}
     <div className="flex-grow pb-20">
