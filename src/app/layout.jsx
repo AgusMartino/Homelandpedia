@@ -37,17 +37,15 @@ export default function RootLayout({ children }) {
           {/* Contenedor del AdSense entre Navbar y Children */}
           <div className="mt-28 w-full flex justify-center z-10">
             <div className="adsense-container">
-              <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5303334400624183"
-                  crossorigin="anonymous"></script>
-              <ins class="adsbygoogle"
-                  display="block"
-                  data-ad-client="ca-pub-5303334400624183"
-                  data-ad-slot="6614259860"
-                  data-ad-format="auto"
-                  data-full-width-responsive="true"></ins>
-              <script>
-                  (adsbygoogle = window.adsbygoogle || []).push({});
-              </script>
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5303334400624183"
+                crossorigin="anonymous"></script>
+            <ins class="adsbygoogle"
+                style={{ display: 'inline-block', width: '700px', height: '50px' }}
+                data-ad-client="ca-pub-5303334400624183"
+                data-ad-slot="4632820123"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
             </div>
           </div>
 
