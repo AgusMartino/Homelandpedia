@@ -30,6 +30,17 @@ const Inicio = () => {
           mb: 4
         }}
       >
+        <div className="adsense-container">
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5303334400624183"
+              crossorigin="anonymous"></script>
+            <ins class="adsbygoogle"
+              style={{ display: 'inline-block', width: '700px', height: '50px' }}
+              data-ad-client="ca-pub-5303334400624183"
+              data-ad-slot="4632820123"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+          </div>
         <Typography color="neutral" level="h1" variant="plain">
           Lands Types
         </Typography>
