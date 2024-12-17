@@ -35,7 +35,7 @@ export default function RootLayout({ children }) {
           </div>
 
           {/* Contenedor del AdSense entre Navbar y Children */}
-          <div className="mt-80 w-full flex justify-center z-10">
+          <div className="mt-24 w-full flex justify-center z-10">
             <div className="adsense-container">
             <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5303334400624183"
                 crossorigin="anonymous"></script>
