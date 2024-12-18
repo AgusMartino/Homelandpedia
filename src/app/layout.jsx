@@ -1,6 +1,7 @@
 import InitColorSchemeScript from "@mui/joy/InitColorSchemeScript";
 import { CssVarsProvider } from "@mui/joy/styles";
 import CssBaseline from "@mui/joy/CssBaseline";
+import Script from "next/script";
 
 import { Inter } from "next/font/google";
 import "./globals.css";
@@ -37,15 +38,20 @@ export default function RootLayout({ children }) {
           {/* Contenedor del AdSense entre Navbar y Children */}
           <div className="mt-24 w-full flex justify-center z-10">
             <div className="adsense-container">
-            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5303334400624183"
-                crossorigin="anonymous"></script>
-            <ins class="adsbygoogle"
+              <Script
+                async
+                src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5303334400624183"
+                crossOrigin="anonymous"
+              />
+              <ins
+                className="adsbygoogle"
                 style={{ display: 'inline-block', width: '700px', height: '50px' }}
                 data-ad-client="ca-pub-5303334400624183"
-                data-ad-slot="4632820123"></ins>
-            <script>
-                (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
+                data-ad-slot="4632820123"
+              ></ins>
+              <Script id="adsbygoogle-init">
+                {`(adsbygoogle = window.adsbygoogle || []).push({});`}
+              </Script>
             </div>
           </div>
 
