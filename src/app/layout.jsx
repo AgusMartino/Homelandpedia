@@ -36,7 +36,7 @@ export default function RootLayout({ children }) {
           </div>
 
           {/* Contenedor del AdSense entre Navbar y Children */}
-          <div className="mt-24 w-full flex justify-center z-10">
+          <div className="mt-40 w-full flex justify-center z-10">
             <div className="adsense-container">
               <Script
                 async
@@ -56,7 +56,7 @@ export default function RootLayout({ children }) {
           </div>
 
           {/* Contenedor principal para los children */}
-          <div className="flex-grow pb-20 mt-[80px]">
+          <div className="flex-grow pb-20 mt-[30px]">
             {children}
           </div>
 
