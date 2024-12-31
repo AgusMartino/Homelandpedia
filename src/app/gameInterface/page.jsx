@@ -468,7 +468,7 @@ export default function gemaInterface() {
           Task Management allows players to view and manage all the current and pending tasks on the land plot. You can cancel individual tasks, or cancel all ongoing and pending task, through the Task Management window
         </Typography>
         <Typography level="body1" sx={{ marginBottom: 4 }}>
-          The Task Management window can be opened by clicking "T" on the keyboard or pressing the Task Management button located at the bottom of the screen
+          The Task Management window can be opened by clicking the letter T on the keyboard or pressing the Task Management button located at the bottom of the screen
         </Typography>
 
         {/* Imagen */}
@@ -761,7 +761,7 @@ export default function gemaInterface() {
           <Typography level="body2">Post Portal</Typography>
         </Box>
         <Typography level="body1" sx={{ marginBottom: 1 }}>
-          When you have more than one land plot, you will be able to transfer your resources between your plots. To do this, you will need to enable "transfer resources" from other plots to this plot in the Post Portal for each land plot before you are able to transfer the resources
+          When you have more than one land plot, you will be able to transfer your resources between your plots. To do this, you will need to enable transfer resources from other plots to this plot in the Post Portal for each land plot before you are able to transfer the resources
         </Typography>
         {/* Imagen */}
         <Box
@@ -776,7 +776,7 @@ export default function gemaInterface() {
           }}
         />
         <Typography level="body1" sx={{ marginBottom: 1 }}>
-          Alternatively, you can also enable it through the Resource Transferring menu by going into "Plot Settings" and enabling its visibility
+          Alternatively, you can also enable it through the Resource Transferring menu by going into Plot Settings and enabling its visibility
         </Typography>
         <Box
           component="img"
