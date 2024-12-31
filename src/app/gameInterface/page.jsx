@@ -25,8 +25,8 @@ const data = [
   },
   {
     image: "/image/bag.jpg",
-    title: "Player's Bag",
-    description: "Used to go to the player's inventory",
+    title: "Player s Bag",
+    description: "Used to go to the player s inventory",
   },
   {
     image: "/image/auctionHouse.jpg",
@@ -433,7 +433,7 @@ export default function gemaInterface() {
           </Typography>
         </Typography>
         <Typography level="body1" sx={{ marginBottom: 1 }}>
-          NFT axies can be used in-game. If you haven't set NFT axies yet, you will be using the default axies. You can invite your NFT axies to your land plots via the NFT Axie Management
+          NFT axies can be used in-game. If you haven not set NFT axies yet, you will be using the default axies. You can invite your NFT axies to your land plots via the NFT Axie Management
         </Typography>
 
         {/* Imagen */}
@@ -843,7 +843,7 @@ export default function gemaInterface() {
           }}
         />
         <Typography level="body1" sx={{ marginBottom: 1 }}>
-          You may also use the Plot Management tool to check the steward, land delegation contract's expiry, and progression of your delegated plots
+          You may also use the Plot Management tool to check the steward, land delegation contract expiry, and progression of your delegated plots
         </Typography>
         <Box
           component="img"
