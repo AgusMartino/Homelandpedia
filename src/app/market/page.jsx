@@ -62,7 +62,6 @@ const Lands = () => {
       <div style={{ paddingRight: '1px' }}>
         <LandFilters filters={filters} setFilters={setFilters} fetchData={fetchData} />
         
-        {/* Contenedor del AdSense */}
         <div className="mt-4 w-full flex justify-center">
           <div
             className="adsense-container"
@@ -70,14 +69,15 @@ const Lands = () => {
               textAlign: 'center',
               width: '150px',
               height: '500px',
+              backgroundColor: '#f9f9f9',
+              border: '1px solid #ccc',
             }}
           >
             {/* Script de AdSense */}
             <Script
-              async
+              strategy="afterInteractive"
               src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5303334400624183"
               crossOrigin="anonymous"
-              onError={() => console.error("Error al cargar AdSense")}
             />
             {/* Contenedor del anuncio */}
             <ins
@@ -89,7 +89,6 @@ const Lands = () => {
             {/* Inicialización de AdSense */}
             <Script id="adsbygoogle-init" strategy="afterInteractive">
               {`
-                console.log("Inicializando adsbygoogle...");
                 (adsbygoogle = window.adsbygoogle || []).push({});
               `}
             </Script>
