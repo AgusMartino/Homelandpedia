@@ -13,7 +13,7 @@ import {
   MenuItem,
 } from "@mui/joy";
 
-import { House, Store, FlameKindling, Heart, BookOpenText, School, Axe, ClockArrowUp, Swords, WalletMinimal, Anvil  } from "lucide-react";
+import { House, Store, FlameKindling, Heart, BookOpenText, School, Axe, ClockArrowUp, Swords, WalletMinimal, Anvil, TvMinimal, HandCoins, PiggyBank, ArchiveRestore  } from "lucide-react";
 
 const Navbar = () => {
   const [menuAnchor, setMenuAnchor] = useState(null);
@@ -106,6 +106,38 @@ const Navbar = () => {
         }}
       >
         <MenuItem onClick={handleMenuClose}>
+          <Link href="/gameInterface" passHref>
+            <Box display="flex" alignItems="center" gap={1}>
+              <TvMinimal />
+              <Typography>Game Interface</Typography>
+            </Box>
+          </Link>
+        </MenuItem>
+{/*         <MenuItem onClick={handleMenuClose}>
+          <Link href="/tokenEarning" passHref>
+            <Box display="flex" alignItems="center" gap={1}>
+              <PiggyBank />
+              <Typography>Token Earning</Typography>
+            </Box>
+          </Link>
+        </MenuItem>
+        <MenuItem onClick={handleMenuClose}>
+          <Link href="/moonfallSystem" passHref>
+            <Box display="flex" alignItems="center" gap={1}>
+              <ArchiveRestore />
+              <Typography>Moonfall Reward System</Typography>
+            </Box>
+          </Link>
+        </MenuItem>
+        <MenuItem onClick={handleMenuClose}>
+          <Link href="/generateGold" passHref>
+            <Box display="flex" alignItems="center" gap={1}>
+              <HandCoins />
+              <Typography>How to generate Gold</Typography>
+            </Box>
+          </Link>
+        </MenuItem> */}
+        <MenuItem onClick={handleMenuClose}>
           <Link href="/buildings" passHref>
             <Box display="flex" alignItems="center" gap={1}>
               <School />
@@ -113,12 +145,6 @@ const Navbar = () => {
             </Box>
           </Link>
         </MenuItem>
-{/*         <MenuItem onClick={handleMenuClose}>
-          <Box display="flex" alignItems="center" gap={1}>
-            <Axe />
-            <Typography>Axe</Typography>
-          </Box>
-        </MenuItem> */}
       </Menu>
       <Link href="/axpCalculator" passHref>
         <IconButton title="Axp Calculator" onClick={handleIconClick}>

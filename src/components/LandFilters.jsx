@@ -13,6 +13,7 @@ import {
 import { Heart } from "lucide-react";
 import qr from '@/img/qrRonin.jpg';
 import Image from 'next/image';
+import Script from "next/script";
 
 const Filters = ({ filters, setFilters, fetchData }) => {
   const landtypes = ["All", "Savannah", "Forest", "Arctic", "Mystic", "Genesis"];
@@ -112,19 +113,28 @@ const Filters = ({ filters, setFilters, fetchData }) => {
           <Typography variant="body2">Lunacian Code Coming soon</Typography>
         </Box>
       </Box>
+      
+      {/* Contenedor del AdSense */}
+      <Box sx={{ marginTop: 6, width: '100%', display: 'flex', justifyContent: 'center', zIndex: 10 }}>
+        <Box sx={{ width: 'fit-content' }}>
+          <Script
+            async
+            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5303334400624183"
+            crossOrigin="anonymous"
+          />
+          <ins
+            className="adsbygoogle"
+            style={{ display: 'inline-block', height: '500px' }}
+            data-ad-client="ca-pub-5303334400624183"
+            data-ad-slot="6614259860"
+          ></ins>
+          <Script id="adsbygoogle-init">
+            {`(adsbygoogle = window.adsbygoogle || []).push({});`}
+          </Script>
+        </Box>
+      </Box>
 
-{/*       <FormControl>
-        <FormLabel>Workers Axies:</FormLabel>
-        <Slider
-          value={filters.WorkersAxies || defaultFilters.WorkersAxies}
-          onChange={(event, newValue) => handleChange("WorkersAxies", newValue)}
-          valueLabelDisplay="auto"
-          min={0}
-          max={WorkersAxiesMax}
-          marks={[{ value: 0, label: "0" }]}  // Solo marca en el valor mínimo
-          sx={{ mb: 2 }}
-        />
-      </FormControl> */}
+
     </Sheet>
   );
 };
