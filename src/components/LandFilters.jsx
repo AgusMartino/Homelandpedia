@@ -10,12 +10,10 @@ import {
   Option,
   Slider,
 } from "@mui/joy";
-import { Heart } from "lucide-react";
-import qr from "@/img/qrRonin.jpg";
-import Image from "next/image";
 import Script from "next/script";
-import { Inter } from "next/font/google";
-const inter = Inter({ subsets: ["latin"] });
+import { Heart } from "lucide-react";
+import qr from '@/img/qrRonin.jpg';
+import Image from 'next/image';
 
 const Filters = ({ filters, setFilters, fetchData }) => {
   const landtypes = ["All", "Savannah", "Forest", "Arctic", "Mystic", "Genesis"];
@@ -26,6 +24,7 @@ const Filters = ({ filters, setFilters, fetchData }) => {
     AltarOfAtia: 1,
   };
 
+  // Establecer valores predeterminados y cargar datos al inicio
   useEffect(() => {
     if (!filters || Object.keys(filters).length === 0) {
       setFilters(defaultFilters);
@@ -40,12 +39,8 @@ const Filters = ({ filters, setFilters, fetchData }) => {
   };
 
   const resetFilters = () => {
-    const ascendingFilters = {
-      ...defaultFilters,
-      AltarOfAtia: Math.min(defaultFilters.AltarOfAtia, AltarOfAtiaMax),
-    };
-    setFilters(ascendingFilters);
-    fetchData(ascendingFilters);
+    setFilters(defaultFilters);
+    fetchData(defaultFilters);
   };
 
   return (
@@ -84,57 +79,46 @@ const Filters = ({ filters, setFilters, fetchData }) => {
           valueLabelDisplay="auto"
           min={1}
           max={AltarOfAtiaMax}
-          marks={[{ value: 1, label: "1" }]}
-          sx={{ mb: 2 }}
         />
       </FormControl>
 
-      <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 1 }}>
+      {/* Sección de Donaciones */}
+      <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2, marginTop: 4 }}>
         {/* Primer texto con el icono de corazón */}
-        <Box sx={{ display: "flex", gap: 0.5, alignItems: "center", justifyContent: "center", textAlign: "center" }}>
+        <Box sx={{ display: 'flex', gap: 0.5, alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}>
           <Typography variant="body2">Support</Typography>
           <Heart />
         </Box>
 
         {/* Segundo texto de donación */}
-        <Box sx={{ display: "flex", gap: 0.5, alignItems: "center", justifyContent: "center", textAlign: "center" }}>
+        <Box sx={{ display: 'flex', gap: 0.5, alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}>
           <Typography variant="body2">Donate to agusxcala.ron</Typography>
         </Box>
 
         {/* Box para la imagen sobre el último texto */}
-        <Box sx={{ marginBottom: 1, display: "flex", justifyContent: "center" }}>
-          <Image src={qr} alt="0x4b64176a09D6d1Cf4634C3DD46D6C8d9E8C09c83" width={100} height={100} unoptimized />
+        <Box sx={{ marginBottom: 1, display: 'flex', justifyContent: 'center' }}>
+          <Image src={qr} alt="0x4b64176a09D6d1Cf4634C3DD46D6C8d9E8C09c83" width={100} height={100} unoptimized={true} />
         </Box>
 
         {/* Tercer texto de Lunacian Code */}
-        <Box sx={{ display: "flex", gap: 0.5, alignItems: "center", justifyContent: "center", textAlign: "center" }}>
+        <Box sx={{ display: 'flex', gap: 0.5, alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}>
           <Typography variant="body2">Lunacian Code Coming soon</Typography>
         </Box>
       </Box>
 
       {/* Contenedor del AdSense */}
-      <Box sx={{ marginTop: 4, width: "100%", display: "flex", justifyContent: "center"}}>
-        <Box sx={{ width: "100%" }}>
-          <Script
-            async
-            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5303334400624183"
-            crossOrigin="anonymous"
-          />
-          <Box
-            component="ins"
-            className="adsbygoogle"
-            style={{
-              display: "inline-block",
-              width: "100%",
-              height: "500px",
-            }}
+      <Box sx={{ marginTop: 4, width: "100%", display: "flex", justifyContent: "center" }}>
+        <Script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5303334400624183"
+            crossorigin="anonymous"></Script>
+        <ins class="adsbygoogle"
+            style={{ display: 'block', width: '100%', height: '500px' }}
             data-ad-client="ca-pub-5303334400624183"
             data-ad-slot="6614259860"
-          />
-          <Script id="adsbygoogle-init">
-            {`(adsbygoogle = window.adsbygoogle || []).push({});`}
-          </Script>
-        </Box>
+            data-ad-format="auto"
+            data-full-width-responsive="true"></ins>
+        <Script>
+            {`(adsbygoogle = window.adsbygoogle || []).push({})`};
+        </Script>
       </Box>
     </Sheet>
   );
