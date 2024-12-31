@@ -11,19 +11,19 @@ import {
   Slider,
 } from "@mui/joy";
 import { Heart } from "lucide-react";
-import qr from '@/img/qrRonin.jpg';
-import Image from 'next/image';
+import qr from "@/img/qrRonin.jpg";
+import Image from "next/image";
 import Script from "next/script";
+import { Inter } from "next/font/google";
+const inter = Inter({ subsets: ["latin"] });
 
 const Filters = ({ filters, setFilters, fetchData }) => {
   const landtypes = ["All", "Savannah", "Forest", "Arctic", "Mystic", "Genesis"];
   const AltarOfAtiaMax = 10;
-  /* const WorkersAxiesMax = 35; */
 
   const defaultFilters = {
     landtypes: "All",
-    AltarOfAtia: 1, // Ajuste para un valor único inicial en vez de [1, AltarOfAtiaMax]
-    /* WorkersAxies: 0, // Ajuste para un valor único inicial */
+    AltarOfAtia: 1,
   };
 
   // Establecer valores predeterminados y cargar datos al inicio
@@ -44,7 +44,6 @@ const Filters = ({ filters, setFilters, fetchData }) => {
     const ascendingFilters = {
       ...defaultFilters,
       AltarOfAtia: Math.min(defaultFilters.AltarOfAtia, AltarOfAtiaMax),
-      /* WorkersAxies: Math.min(defaultFilters.WorkersAxies, WorkersAxiesMax), */
     };
     setFilters(ascendingFilters);
     fetchData(ascendingFilters);
@@ -86,55 +85,58 @@ const Filters = ({ filters, setFilters, fetchData }) => {
           valueLabelDisplay="auto"
           min={1}
           max={AltarOfAtiaMax}
-          marks={[{ value: 1, label: "1" }]}  // Solo marca en el valor mínimo
+          marks={[{ value: 1, label: "1" }]}
           sx={{ mb: 2 }}
         />
       </FormControl>
 
-      <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 1 }}>
+      <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 1 }}>
         {/* Primer texto con el icono de corazón */}
-        <Box sx={{ display: 'flex', gap: 0.5, alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}>
+        <Box sx={{ display: "flex", gap: 0.5, alignItems: "center", justifyContent: "center", textAlign: "center" }}>
           <Typography variant="body2">Support</Typography>
           <Heart />
         </Box>
 
         {/* Segundo texto de donación */}
-        <Box sx={{ display: 'flex', gap: 0.5, alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}>
+        <Box sx={{ display: "flex", gap: 0.5, alignItems: "center", justifyContent: "center", textAlign: "center" }}>
           <Typography variant="body2">Donate to agusxcala.ron</Typography>
         </Box>
 
         {/* Box para la imagen sobre el último texto */}
-        <Box sx={{ marginBottom: 1, display: 'flex', justifyContent: 'center' }}>
-          <Image src={qr} alt="0x4b64176a09D6d1Cf4634C3DD46D6C8d9E8C09c83" width={100} height={100} unoptimized={true} />
+        <Box sx={{ marginBottom: 1, display: "flex", justifyContent: "center" }}>
+          <Image src={qr} alt="0x4b64176a09D6d1Cf4634C3DD46D6C8d9E8C09c83" width={100} height={100} unoptimized />
         </Box>
 
         {/* Tercer texto de Lunacian Code */}
-        <Box sx={{ display: 'flex', gap: 0.5, alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}>
+        <Box sx={{ display: "flex", gap: 0.5, alignItems: "center", justifyContent: "center", textAlign: "center" }}>
           <Typography variant="body2">Lunacian Code Coming soon</Typography>
         </Box>
       </Box>
-      
+
       {/* Contenedor del AdSense */}
-      <Box sx={{ marginTop: 6, width: '100%', display: 'flex', justifyContent: 'center', zIndex: 10 }}>
-        <Box sx={{ width: 'fit-content' }}>
+      <Box sx={{ marginTop: 4, width: "100%", display: "flex", justifyContent: "center", zIndex: 10 }}>
+        <Box sx={{ width: "100%" }}>
           <Script
             async
             src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5303334400624183"
             crossOrigin="anonymous"
           />
-          <ins
+          <Box
+            component="ins"
             className="adsbygoogle"
-            style={{ display: 'inline-block', height: '500px' }}
+            sx={{
+              display: "inline-block",
+              width: "100%",
+              height: "500px",
+            }}
             data-ad-client="ca-pub-5303334400624183"
             data-ad-slot="6614259860"
-          ></ins>
+          ></Box>
           <Script id="adsbygoogle-init">
             {`(adsbygoogle = window.adsbygoogle || []).push({});`}
           </Script>
         </Box>
       </Box>
-
-
     </Sheet>
   );
 };
