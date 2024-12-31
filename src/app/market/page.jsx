@@ -70,8 +70,6 @@ const Lands = () => {
               textAlign: 'center',
               width: '150px',
               height: '500px',
-              backgroundColor: '#f9f9f9', // Color de fondo para depuración
-              border: '1px solid #ccc',   // Borde para visualizar el contenedor
             }}
           >
             {/* Script de AdSense */}
