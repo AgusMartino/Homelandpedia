@@ -116,7 +116,7 @@ const Filters = ({ filters, setFilters, fetchData }) => {
             data-ad-slot="6614259860"
             data-ad-format="auto"
             data-full-width-responsive="true"></ins>
-        <Script>
+        <Script id="adsbygoogle-init">
             {`(adsbygoogle = window.adsbygoogle || []).push({})`};
         </Script>
       </Box>
