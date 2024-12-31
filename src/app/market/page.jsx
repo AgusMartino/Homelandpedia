@@ -1,9 +1,10 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { CircularProgress } from "@mui/joy";
+import { CircularProgress, Box } from "@mui/joy";
 import LandCard from "@/components/LandCardComponent";
 import LandFilters from "@/components/LandFilters";
+import Script from "next/script";
 
 const Lands = () => {
   const [lands, setData] = useState(null);
@@ -60,7 +61,44 @@ const Lands = () => {
       {/* Filtro ocupa 1/4 */}
       <div style={{ paddingRight: '1px' }}>
         <LandFilters filters={filters} setFilters={setFilters} fetchData={fetchData} />
+        
+        {/* Contenedor del AdSense */}
+        <div className="mt-4 w-full flex justify-center">
+          <div
+            className="adsense-container"
+            style={{
+              textAlign: 'center',
+              width: '150px',
+              height: '500px',
+              backgroundColor: '#f9f9f9', // Color de fondo para depuración
+              border: '1px solid #ccc',   // Borde para visualizar el contenedor
+            }}
+          >
+            {/* Script de AdSense */}
+            <Script
+              async
+              src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5303334400624183"
+              crossOrigin="anonymous"
+              onError={() => console.error("Error al cargar AdSense")}
+            />
+            {/* Contenedor del anuncio */}
+            <ins
+              className="adsbygoogle"
+              style={{ display: 'block', width: '150px', height: '500px' }}
+              data-ad-client="ca-pub-5303334400624183"
+              data-ad-slot="6614259860"
+            ></ins>
+            {/* Inicialización de AdSense */}
+            <Script id="adsbygoogle-init" strategy="afterInteractive">
+              {`
+                console.log("Inicializando adsbygoogle...");
+                (adsbygoogle = window.adsbygoogle || []).push({});
+              `}
+            </Script>
+          </div>
+        </div>
       </div>
+
 
       {/* Cards ocupan 3/4 */}
       <div>

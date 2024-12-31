@@ -10,7 +10,6 @@ import {
   Option,
   Slider,
 } from "@mui/joy";
-import Script from "next/script";
 import { Heart } from "lucide-react";
 import qr from '@/img/qrRonin.jpg';
 import Image from 'next/image';
@@ -104,21 +103,6 @@ const Filters = ({ filters, setFilters, fetchData }) => {
         <Box sx={{ display: 'flex', gap: 0.5, alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}>
           <Typography variant="body2">Lunacian Code Coming soon</Typography>
         </Box>
-      </Box>
-
-      {/* Contenedor del AdSense */}
-      <Box sx={{ marginTop: 4}}>
-        <Script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5303334400624183"
-            crossorigin="anonymous"></Script>
-        <ins class="adsbygoogle"
-            style={{ display: 'block', width: '150px', height: '500px' }}
-            data-ad-client="ca-pub-5303334400624183"
-            data-ad-slot="6614259860"
-            data-ad-format="auto"
-            data-full-width-responsive="true"></ins>
-        <Script id="adsbygoogle-init">
-            {`(adsbygoogle = window.adsbygoogle || []).push({})`};
-        </Script>
       </Box>
     </Sheet>
   );
