@@ -107,11 +107,11 @@ const Filters = ({ filters, setFilters, fetchData }) => {
       </Box>
 
       {/* Contenedor del AdSense */}
-      <Box sx={{ marginTop: 4, width: "100%", display: "flex", justifyContent: "center" }}>
+      <Box sx={{ marginTop: 4}}>
         <Script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5303334400624183"
             crossorigin="anonymous"></Script>
         <ins class="adsbygoogle"
-            style={{ display: 'block', width: '100%', height: '500px' }}
+            style={{ display: 'block', width: '150px', height: '500px' }}
             data-ad-client="ca-pub-5303334400624183"
             data-ad-slot="6614259860"
             data-ad-format="auto"
