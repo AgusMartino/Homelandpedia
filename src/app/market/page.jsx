@@ -61,38 +61,6 @@ const Lands = () => {
       {/* Filtro ocupa 1/4 */}
       <div style={{ paddingRight: '1px' }}>
         <LandFilters filters={filters} setFilters={setFilters} fetchData={fetchData} />
-        
-        <div className="mt-4 w-full flex justify-center">
-          <div
-            className="adsense-container"
-            style={{
-              textAlign: 'center',
-              width: '150px',
-              height: '500px',
-
-            }}
-          >
-            {/* Script de AdSense */}
-            <Script
-              strategy="afterInteractive"
-              src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5303334400624183"
-              crossOrigin="anonymous"
-            />
-            {/* Contenedor del anuncio */}
-            <ins
-              className="adsbygoogle"
-              style={{ display: 'block', width: '150px', height: '500px' }}
-              data-ad-client="ca-pub-5303334400624183"
-              data-ad-slot="6614259860"
-            ></ins>
-            {/* Inicialización de AdSense */}
-            <Script id="adsbygoogle-init" strategy="afterInteractive">
-              {`
-                (adsbygoogle = window.adsbygoogle || []).push({});
-              `}
-            </Script>
-          </div>
-        </div>
       </div>
 
 

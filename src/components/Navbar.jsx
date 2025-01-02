@@ -1,8 +1,8 @@
 "use client";
 import React, { useState } from "react";
 import Link from "next/link";
-import Image from 'next/image';
-import AxieHomeland from '@/img/AxieInfinityHomeland.jpg';
+import Image from "next/image";
+import AxieHomeland from "@/img/AxieInfinityHomeland.jpg";
 
 import {
   Sheet,
@@ -13,28 +13,44 @@ import {
   MenuItem,
 } from "@mui/joy";
 
-import { House, Store, FlameKindling, Heart, BookOpenText, School, Axe, ClockArrowUp, Swords, WalletMinimal, Anvil, TvMinimal, HandCoins, PiggyBank, ArchiveRestore  } from "lucide-react";
+import {
+  House,
+  Store,
+  FlameKindling,
+  Heart,
+  BookOpenText,
+  School,
+  Axe,
+  ClockArrowUp,
+  Swords,
+  WalletMinimal,
+  Anvil,
+  TvMinimal,
+  HandCoins,
+  PiggyBank,
+  ArchiveRestore,
+  Bolt,
+  TreePalm,
+  PencilRuler,
+} from "lucide-react";
 
 const Navbar = () => {
   const [menuAnchor, setMenuAnchor] = useState(null);
+  const [activeMenu, setActiveMenu] = useState(null);
 
-  const toggleMenu = (event) => {
-    if (menuAnchor) {
+  const toggleMenu = (menu, event) => {
+    if (menu === activeMenu) {
       setMenuAnchor(null);
+      setActiveMenu(null);
     } else {
       setMenuAnchor(event.currentTarget);
+      setActiveMenu(menu);
     }
   };
 
   const handleMenuClose = () => {
     setMenuAnchor(null);
-  };
-
-  const handleIconClick = () => {
-    // Cierra el menú si está abierto
-    if (menuAnchor) {
-      setMenuAnchor(null);
-    }
+    setActiveMenu(null);
   };
 
   return (
@@ -66,101 +82,125 @@ const Navbar = () => {
         />
       </Box>
 
-      {/* Botones centrados */}
       <Link href="/" passHref>
-        <IconButton title="Home" onClick={handleIconClick}>
+        <IconButton title="Home">
           <House />
         </IconButton>
       </Link>
-      <Link href="/market" passHref>
-        <IconButton title="Marketplace" onClick={handleIconClick}>
-          <Store />
-        </IconButton>
-      </Link>
-      <Link href="/mementoCalculator" passHref>
-        <IconButton title="Calculate Memento" onClick={handleIconClick}>
-          <FlameKindling />
-        </IconButton>
-      </Link>
-      <Link href="/forgeCalculator" passHref>
-        <IconButton title="Calculate Memento" onClick={handleIconClick}>
-          <Anvil />
-        </IconButton>
-      </Link>
 
-      {/* Menú de Opciones */}
-      <IconButton title="Wiki" onClick={toggleMenu}>
-        <BookOpenText />
-      </IconButton>
-      <Menu
-        anchorEl={menuAnchor}
-        open={Boolean(menuAnchor)}
-        onClose={handleMenuClose}
-        anchorOrigin={{
-          vertical: 'bottom',
-          horizontal: 'center',
-        }}
-        transformOrigin={{
-          vertical: 'top',
-          horizontal: 'center',
-        }}
+      {/* Menú Wiki */}
+      <IconButton
+        title="Wiki"
+        onClick={(e) => toggleMenu("wiki", e)}
       >
-        <MenuItem onClick={handleMenuClose}>
-          <Link href="/gameInterface" passHref>
-            <Box display="flex" alignItems="center" gap={1}>
-              <TvMinimal />
-              <Typography>Game Interface</Typography>
-            </Box>
-          </Link>
-        </MenuItem>
-{/*         <MenuItem onClick={handleMenuClose}>
-          <Link href="/tokenEarning" passHref>
-            <Box display="flex" alignItems="center" gap={1}>
-              <PiggyBank />
-              <Typography>Token Earning</Typography>
-            </Box>
-          </Link>
-        </MenuItem>
-        <MenuItem onClick={handleMenuClose}>
-          <Link href="/moonfallSystem" passHref>
-            <Box display="flex" alignItems="center" gap={1}>
-              <ArchiveRestore />
-              <Typography>Moonfall Reward System</Typography>
-            </Box>
-          </Link>
-        </MenuItem>
-        <MenuItem onClick={handleMenuClose}>
-          <Link href="/generateGold" passHref>
-            <Box display="flex" alignItems="center" gap={1}>
-              <HandCoins />
-              <Typography>How to generate Gold</Typography>
-            </Box>
-          </Link>
-        </MenuItem> */}
-        <MenuItem onClick={handleMenuClose}>
-          <Link href="/buildings" passHref>
-            <Box display="flex" alignItems="center" gap={1}>
-              <School />
-              <Typography>Building</Typography>
-            </Box>
-          </Link>
-        </MenuItem>
-      </Menu>
-      <Link href="/axpCalculator" passHref>
-        <IconButton title="Axp Calculator" onClick={handleIconClick}>
-          <ClockArrowUp />
-        </IconButton>
-      </Link>
-      <Link href="/axieAdventureCalculator" passHref>
-        <IconButton title="Axie Adventure Calculator" onClick={handleIconClick}>
-          <Swords />
-        </IconButton>
-      </Link>
-      <Link href="/evolvedCalculator" passHref>
-        <IconButton title="Axie Adventure Calculator" onClick={handleIconClick}>
-          <WalletMinimal />
-        </IconButton>
-      </Link>
+        <BookOpenText />
+        <Typography sx={{ ml: 1 }}>Wiki</Typography>
+      </IconButton>
+      {activeMenu === "wiki" && (
+        <Menu
+          anchorEl={menuAnchor}
+          open={activeMenu === "wiki"}
+          onClose={handleMenuClose}
+        >
+          <MenuItem onClick={handleMenuClose}>
+            <Link href="/landTypes" passHref>
+              <Box display="flex" alignItems="center" gap={1}>
+                <TreePalm />
+                <Typography>Land Types</Typography>
+              </Box>
+            </Link>
+          </MenuItem>
+          <MenuItem onClick={handleMenuClose}>
+            <Link href="/gameInterface" passHref>
+              <Box display="flex" alignItems="center" gap={1}>
+                <TvMinimal />
+                <Typography>Game Interface</Typography>
+              </Box>
+            </Link>
+          </MenuItem>
+          <MenuItem onClick={handleMenuClose}>
+            <Link href="/basicMechanics" passHref>
+              <Box display="flex" alignItems="center" gap={1}>
+                <Bolt />
+                <Typography>Basic Mechanics</Typography>
+              </Box>
+            </Link>
+          </MenuItem>
+          <MenuItem onClick={handleMenuClose}>
+            <Link href="/buildings" passHref>
+              <Box display="flex" alignItems="center" gap={1}>
+                <School />
+                <Typography>Building</Typography>
+              </Box>
+            </Link>
+          </MenuItem>
+        </Menu>
+      )}
+
+      {/* Menú Tools */}
+      <IconButton
+        title="Tools"
+        onClick={(e) => toggleMenu("tools", e)}
+      >
+        <PencilRuler />
+        <Typography sx={{ ml: 1 }}>Tools</Typography>
+      </IconButton>
+      {activeMenu === "tools" && (
+        <Menu
+          anchorEl={menuAnchor}
+          open={activeMenu === "tools"}
+          onClose={handleMenuClose}
+        >
+          <MenuItem onClick={handleMenuClose}>
+            <Link href="/market" passHref>
+              <Box display="flex" alignItems="center" gap={1}>
+                <Store />
+                <Typography>Market</Typography>
+              </Box>
+            </Link>
+          </MenuItem>
+          <MenuItem onClick={handleMenuClose}>
+            <Link href="/mementoCalculator" passHref>
+              <Box display="flex" alignItems="center" gap={1}>
+                <FlameKindling />
+                <Typography>Calculate Mementos</Typography>
+              </Box>
+            </Link>
+          </MenuItem>
+          <MenuItem onClick={handleMenuClose}>
+            <Link href="/forgeCalculator" passHref>
+              <Box display="flex" alignItems="center" gap={1}>
+                <Anvil />
+                <Typography>Forge Calculator</Typography>
+              </Box>
+            </Link>
+          </MenuItem>
+          <MenuItem onClick={handleMenuClose}>
+            <Link href="/axpCalculator" passHref>
+              <Box display="flex" alignItems="center" gap={1}>
+                <ClockArrowUp />
+                <Typography>Axp Calculator</Typography>
+              </Box>
+            </Link>
+          </MenuItem>
+          <MenuItem onClick={handleMenuClose}>
+            <Link href="/axieAdventureCalculator" passHref>
+              <Box display="flex" alignItems="center" gap={1}>
+                <Swords />
+                <Typography>Axie Adventure Calculator</Typography>
+              </Box>
+            </Link>
+          </MenuItem>
+          <MenuItem onClick={handleMenuClose}>
+            <Link href="/evolvedCalculator" passHref>
+              <Box display="flex" alignItems="center" gap={1}>
+                <WalletMinimal />
+                <Typography>Axie Evolved Calculator</Typography>
+              </Box>
+            </Link>
+          </MenuItem>
+        </Menu>
+      )}
 
       {/* Sección de soporte y donación */}
       <Box
@@ -170,18 +210,21 @@ const Navbar = () => {
           height: "80%",
         }}
       >
-        <Box sx={{ display: "flex", gap: 0.5, alignItems: "center", marginRight: 10 }}>
+        <Box
+          sx={{
+            display: "flex",
+            gap: 0.5,
+            alignItems: "center",
+            marginRight: 10,
+          }}
+        >
           <Box sx={{ display: "flex", gap: 0.5, alignItems: "center" }}>
-            <Typography variant="body2">
-              Support
-            </Typography>
+            <Typography variant="body2">Support</Typography>
           </Box>
           <Heart />
         </Box>
         <Box sx={{ display: "flex", gap: 0.5, alignItems: "center" }}>
-          <Typography variant="body2">
-            Donate to agusxcala.ron
-          </Typography>
+          <Typography variant="body2">Donate to agusxcala.ron</Typography>
         </Box>
       </Box>
     </Sheet>
