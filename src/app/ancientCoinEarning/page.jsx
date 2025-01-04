@@ -44,14 +44,14 @@ export default function gemaInterface() {
       <Box sx={{ textAlign: 'left' }}>
         <Typography level="body1" sx={{ marginBottom: 2 }}>
           The Token Loop expands the spectrum for Homeland potential earnings via active gameplay -- introducing steady ways to earn tokens. 
-          To better understand the earnings concept, let's divide them into two main earning mechanics: Normal Earning and Special Earning.
+          To better understand the earnings concept, let is divide them into two main earning mechanics: Normal Earning and Special Earning.
         </Typography>
         <Typography level="h4" sx={{marginBottom: 1 }}>
           Normal Earning
         </Typography>
         <Typography level="body1" sx={{ marginBottom: 1 }}>
           Normal earning is a type of token earning mechanism that rewards users for standard actions in the game. 
-          Whether it's gathering, producing, or crafting, each qualified action contributes to a steady flow of earnings.
+          Whether it is gathering, producing, or crafting, each qualified action contributes to a steady flow of earnings.
         </Typography>
         <Typography level="body1" sx={{ marginBottom: 3 }}>
           Normal Earnings are capped daily. The daily normal earning cap limit of Ancient Coins for each Land plot is determined by nature type. 
