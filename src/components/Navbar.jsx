@@ -127,6 +127,22 @@ const Navbar = () => {
             </Link>
           </MenuItem>
           <MenuItem onClick={handleMenuClose}>
+            <Link href="/ancientCoinEarning" passHref>
+              <Box display="flex" alignItems="center" gap={1}>
+                <HandCoins />
+                <Typography>Ancient Coin Earning</Typography>
+              </Box>
+            </Link>
+          </MenuItem>
+          <MenuItem onClick={handleMenuClose}>
+            <Link href="/moonfallSystem" passHref>
+              <Box display="flex" alignItems="center" gap={1}>
+                <ArchiveRestore />
+                <Typography>Moonfall Reward System</Typography>
+              </Box>
+            </Link>
+          </MenuItem>
+          <MenuItem onClick={handleMenuClose}>
             <Link href="/buildings" passHref>
               <Box display="flex" alignItems="center" gap={1}>
                 <School />
