@@ -259,8 +259,6 @@ export default function gemaInterface() {
             marginBottom: 4,
           }}
         />
-
-        
       </Box>
     </Box>
   );

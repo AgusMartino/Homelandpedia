@@ -127,6 +127,22 @@ const Navbar = () => {
             </Link>
           </MenuItem>
           <MenuItem onClick={handleMenuClose}>
+            <Link href="/adventureGuide" passHref>
+              <Box display="flex" alignItems="center" gap={1}>
+                <Axe />
+                <Typography>Adventure Guide</Typography>
+              </Box>
+            </Link>
+          </MenuItem>
+          <MenuItem onClick={handleMenuClose}>
+            <Link href="/generateGold" passHref>
+              <Box display="flex" alignItems="center" gap={1}>
+                <PiggyBank />
+                <Typography>Gold Earning</Typography>
+              </Box>
+            </Link>
+          </MenuItem>
+          <MenuItem onClick={handleMenuClose}>
             <Link href="/ancientCoinEarning" passHref>
               <Box display="flex" alignItems="center" gap={1}>
                 <HandCoins />
