@@ -211,7 +211,7 @@ export default function GemaInterface() {
           Sending your Axies on an adventure is simple, but gearing them up for success is where the real preparation begins! Equip your Axies to maximize their performance and clear as many stages as possible.
         </Typography>
         <Typography level="body1" sx={{ marginBottom: 2 }}>
-          After sending your Axies on an adventure, you'll need to wait until they finish their current battles before you can send them out again.
+          After sending your Axies on an adventure, you will need to wait until they finish their current battles before you can send them out again.
         </Typography>
         <Box
             sx={{
