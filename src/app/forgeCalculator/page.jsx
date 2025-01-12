@@ -80,7 +80,7 @@ function App() {
         gap={2}
         justifyContent="center"
         alignItems="center"
-        sx={{ width: '100vw', boxSizing: 'border-box' }}
+        sx={{ width: '80vw', boxSizing: 'border-box' }}
       >
         {consumables.map((item) => {
           // Cambia la URL de la imagen en base al nombre del item
@@ -90,7 +90,7 @@ function App() {
       </Box>
       
 
-      <Box sx={{ display: 'flex', width: '100vw', boxSizing: 'border-box' }}>
+      <Box sx={{ display: 'flex', width: '80vw', boxSizing: 'border-box' }}>
         {/* Columna izquierda: Contenido original */}
         <Box sx={{ width: '50%', padding: 2, boxSizing: 'border-box' }}>
           <Box
@@ -150,7 +150,7 @@ function App() {
         </Box>
 
         {/* Columna derecha: Cards dinámicas */}
-        <Box sx={{ width: '50%', padding: 2, boxSizing: 'border-box' }}>
+        <Box sx={{ width: '40%', padding: 2, boxSizing: 'border-box' }}>
         <Box
             display="flex"
             flexWrap="wrap"

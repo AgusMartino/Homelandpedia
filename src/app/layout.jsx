@@ -55,11 +55,55 @@ export default function RootLayout({ children }) {
             </div>
           </div>
 
-          {/* Contenedor principal para los children */}
-          <div className="flex-grow pb-20 mt-[30px]">
-            {children}
-          </div>
+          <div className="flex flex-row w-full pb-20 mt-[30px]">
+            {/* Primera columna - 150px */}
+            <div className="w-[150px]">
+              {/* Contenido de la primera columna */}
+              <div className="adsense-container">
+                <Script
+                  async
+                  src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5303334400624183"
+                  crossOrigin="anonymous"
+                />
+                <ins
+                  className="adsbygoogle"
+                  style={{ display: 'inline-block', width: '120px', height: '900px' }}
+                  data-ad-client="ca-pub-5303334400624183"
+                  data-ad-slot="6614259860"
+                ></ins>
+                <Script id="adsbygoogle-init">
+                  {`(adsbygoogle = window.adsbygoogle || []).push({});`}
+                </Script>
+              </div>
+            </div>
 
+            {/* Columna central (flex-grow) */}
+            <div className="flex-grow max-w-full overflow-x-auto">
+              <div className="min-w-[800px] mx-auto">
+                {children}
+              </div>
+            </div>
+            {/* Tercera columna - 150px */}
+            <div className="w-[150px]">
+              {/* Contenido de la tercera columna */}
+              <div className="adsense-container">
+                <Script
+                  async
+                  src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5303334400624183"
+                  crossOrigin="anonymous"
+                />
+                <ins
+                  className="adsbygoogle"
+                  style={{ display: 'inline-block', width: '120px', height: '900px' }}
+                  data-ad-client="ca-pub-5303334400624183"
+                  data-ad-slot="6614259860"
+                ></ins>
+                <Script id="adsbygoogle-init">
+                  {`(adsbygoogle = window.adsbygoogle || []).push({});`}
+                </Script>
+              </div>
+            </div>
+          </div>
           {/* Footer fijo en la parte inferior */}
           <div className="fixed bottom-0 left-0 w-full z-20 bg-white">
             <Footer />

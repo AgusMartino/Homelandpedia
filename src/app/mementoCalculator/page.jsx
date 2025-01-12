@@ -396,7 +396,7 @@ function App() {
         gap={2}
         justifyContent="center"
         alignItems="center"
-        sx={{ width: '100vw', boxSizing: 'border-box' }}
+        sx={{ width: '80vw', boxSizing: 'border-box' }}
       >
         {material.map((item) => {
           // Cambia la URL de la imagen en base al nombre del item
@@ -428,10 +428,10 @@ function App() {
       
       <Box         
         display="flex"
-        gap={2}
+        gap={1}
         justifyContent="center"
         alignItems="flex-start"
-        sx={{ width: '100vw', padding: 1, boxSizing: 'border-box' }}
+        sx={{ width: '80vw', padding: 1, boxSizing: 'border-box' }}
       >
         <Box sx={{ flexBasis: '50%', display: 'flex', flexDirection: 'column', gap: 2}}>
           {/* Card 1 */}
@@ -616,7 +616,7 @@ function App() {
             </CardContent>
           </Card>
         </Box>
-        <Box sx={{ width: '60%', display: 'flex', flexDirection: 'column', gap: 2, paddingRight:6}}> 
+        <Box sx={{ width: '50%', display: 'flex', flexDirection: 'column', gap: 2}}> 
           {/* Card de selección de clase Axie */}
           <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             <Typography level="h2" component="h2" sx={{ marginBottom: 2 }}>
@@ -640,7 +640,7 @@ function App() {
             )}
           </Box>
           <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <Card variant="outlined" sx={{ display: 'flex', width: 830 }}>
+            <Card variant="outlined" sx={{ display: 'flex', width: 700 }}>
               <CardContent>
                 {alertClass && (
                   <Typography align="center" sx={{ color: "#ff0000", mb: 2 }}>
@@ -851,8 +851,8 @@ function App() {
               </Card>
             </Box>
           )}
-          <Box sx={{ display: 'flex', margin: 2 }}>
-            <Card variant="outlined" sx={{ margin: 2, flex: 1, height: 240 }}>
+          <Box sx={{ display: 'flex', margin: 1 }}>
+            <Card variant="outlined" sx={{ margin: 1, flex: 1, height: 240 }}>
               <CardContent>
                 <Typography variant="h6" fontWeight="bold" textAlign="center">
                   Results
@@ -921,7 +921,7 @@ function App() {
           </Box>
 
           {/* Memento Cards generados después de hacer clic en Calculate */}
-          <Box sx={{ display: 'flex', margin: 2, flexWrap:'wrap'}}>
+          <Box sx={{ display: 'flex', margin: 1, flexWrap:'wrap'}}>
           {result[0]
             .filter(option => option.mementoAvg !== "0.00") // Filtra las opciones
             .map(option => (
