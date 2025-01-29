@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { Box, Typography, Card, FormControl, FormLabel, Slider, Button, Input, IconButton, Select, Checkbox } from '@mui/joy';
+import { Box, Typography, Card, FormControl, FormLabel, Slider, Button, Input, IconButton, Select, MenuItem , Checkbox } from '@mui/joy';
 import Image from 'next/image';
 import { axp } from '@/utils/axpCalculate';
 import axpIcon from '@/img/axp.jpg';
@@ -37,6 +37,7 @@ export default function AxpTable() {
       axieOriginsArcade: 0,
       axieClassic: 0,
   });
+  const [selectedOption, setSelectedOption] = useState(null);
 
   // Opciones del desplegable para Axie Origins
   const axieOriginsOptions = {
@@ -51,17 +52,27 @@ export default function AxpTable() {
       Challenger: 9000,
   };
   // Función para manejar cambios en los checkboxes
-  const handleCheckboxChange = (name, value) => {
-    setCheckboxValues((prev) => ({
-      ...prev,
-      [name]: prev[name] === 0 ? value : 0,
+  const handleCheckboxChange = (field, value) => {
+    setCheckboxValues((prevState) => ({
+      ...prevState,
+      [field]: value,
     }));
   };
   // Función para manejar la selección del desplegable Axie Origins
-  const handleAxieOriginsChange = (event, newValue) => {
+  const handleAxieOriginsChange = () => {
     setCheckboxValues((prev) => ({
       ...prev,
-      axieOrigins: axieOriginsOptions[newValue] || 0,
+      axieOrigins: prev.axieOrigins === 0 ? 1000 : 0,
+    }));
+    if (checkboxValues.axieOrigins !== 0) {
+      setSelectedOption(null);
+    }
+  };
+  const handleOptionChange = (option) => {
+    setSelectedOption(option);
+    setCheckboxValues((prev) => ({
+      ...prev,
+      axieOrigins: axieOriginsOptions[option],
     }));
   };
   const activeCheckboxes = Object.entries(checkboxValues).filter(([key, value]) => value !== 0);
@@ -336,18 +347,17 @@ export default function AxpTable() {
 
             {/* Mostrar el Select solo si Axie Origins está activo */}
             {checkboxValues.axieOrigins !== 0 && (
-                <Select
-                    placeholder="Select Axie Origins Tier"
-                    value={checkboxValues.axieOrigins} // Mantiene el valor seleccionado
-                    onChange={(e) => handleCheckboxChange("axieOrigins", axieOriginsOptions[e.target.value])}
-                    sx={{ marginTop: 1, width: "250px" }}
-                >
-                    {Object.keys(axieOriginsOptions).map((tier) => (
-                        <option key={tier} value={tier}>
-                            {tier}
-                        </option>
-                    ))}
-                </Select>
+              <Box sx={{ display: "flex", flexDirection: "column", ml: 3 }}>
+                {Object.entries(axieOriginsOptions).map(([label, value]) => (
+                  <Box key={label} sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+                    <Checkbox
+                      checked={selectedOption === label}
+                      onChange={() => handleOptionChange(label)}
+                    />
+                    <Typography>{label}</Typography>
+                  </Box>
+                ))}
+              </Box>
             )}
 
             {/* Axie Origins Arcade */}
