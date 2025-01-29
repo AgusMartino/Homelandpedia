@@ -52,10 +52,10 @@ export default function AxpTable() {
       Challenger: 9000,
   };
   // Función para manejar cambios en los checkboxes
-  const handleCheckboxChange = (field, value) => {
-    setCheckboxValues((prevState) => ({
-      ...prevState,
-      [field]: value,
+  const handleCheckboxChange = (key, value) => {
+    setCheckboxValues((prev) => ({
+      ...prev,
+      [key]: prev[key] === value ? 0 : value,
     }));
   };
   // Función para manejar la selección del desplegable Axie Origins
