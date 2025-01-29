@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { Box, Typography, Card, FormControl, FormLabel, Slider, Button, Input, IconButton } from '@mui/joy';
+import { Box, Typography, Card, FormControl, FormLabel, Slider, Button, Input, IconButton, Select, Checkbox } from '@mui/joy';
 import Image from 'next/image';
 import { axp } from '@/utils/axpCalculate';
 import axpIcon from '@/img/axp.jpg';
@@ -8,7 +8,6 @@ import time from '@/img/items/time.jpg';
 import axios from 'axios';
 import { TriangleAlert, ArrowUp, ArrowDown } from "lucide-react";
 
-const DAILY_CAP = 10000;
 const AltarOfAtiaMax = 10;
 const defaultFilters = { AltarOfAtia: 10 };
 
@@ -23,6 +22,49 @@ export default function AxpTable() {
   const [sortColumn, setSortColumn] = useState(null);
   const [sortDirection, setSortDirection] = useState(null);
 
+  const labels = {
+    homeland: "Daily Cap perAXIE",
+    axieQuest: "Daily Cap per AXIE",
+    axieOrigins: "Average of 30 energies",
+    axieOriginsArcade: "Average of 10 energies",
+    axieClassic: "Daily Cap per Axie, If you want to get, you need to win 63 Arenas"
+  };
+    // Estado para manejar los valores de los checkboxes
+  const [checkboxValues, setCheckboxValues] = useState({
+      homeland: 0,
+      axieQuest: 0,
+      axieOrigins: 0,
+      axieOriginsArcade: 0,
+      axieClassic: 0,
+  });
+
+  // Opciones del desplegable para Axie Origins
+  const axieOriginsOptions = {
+      Egg: 1800,
+      Chick: 1800,
+      Hare: 2700,
+      Boar: 3600,
+      Wolf: 4500,
+      Bear: 5400,
+      Tiger: 6300,
+      Dragon: 7200,
+      Challenger: 9000,
+  };
+  // Función para manejar cambios en los checkboxes
+  const handleCheckboxChange = (name, value) => {
+    setCheckboxValues((prev) => ({
+      ...prev,
+      [name]: prev[name] === 0 ? value : 0,
+    }));
+  };
+  // Función para manejar la selección del desplegable Axie Origins
+  const handleAxieOriginsChange = (event, newValue) => {
+    setCheckboxValues((prev) => ({
+      ...prev,
+      axieOrigins: axieOriginsOptions[newValue] || 0,
+    }));
+  };
+  const activeCheckboxes = Object.entries(checkboxValues).filter(([key, value]) => value !== 0);
   const handleChange = (key, newValue) => {
     setFilters((prevFilters) => ({
       ...prevFilters,
@@ -45,11 +87,16 @@ export default function AxpTable() {
 
   async function fetchDataAxie(body) {
     try {
+      // Sumar los valores de los checkboxes para calcular DAILY_CAP
+      const DAILY_CAP = Object.values(checkboxValues).reduce((acc, val) => acc + val, 0);
       const res = await axios.post(`${window.location.origin}/api/getAxie`, body);
       const fetchedAxie = res.data;
       if (fetchedAxie && fetchedAxie.axpinfo) {
         const xpToAscend = fetchedAxie.axpinfo.xpToAscend;
-        const daysNeeded = Math.ceil(xpToAscend / DAILY_CAP);
+
+        // Evitar división por cero si DAILY_CAP es 0
+        const daysNeeded = DAILY_CAP > 0 ? Math.ceil(xpToAscend / DAILY_CAP) : Infinity;
+
         setAxie(fetchedAxie);
         setDays(daysNeeded);
         setResult(true);
@@ -256,6 +303,72 @@ export default function AxpTable() {
         {alertAxie && (
             <Typography align="center" sx={{ color: "#ff0000", mb: 2 }}>* The axie was not found *</Typography>
         )}
+        {/* Checkboxes con nombres específicos */}
+        <Box sx={{ marginTop: 2 }}>
+            {/* Homeland */}
+            <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+                <Checkbox
+                    checked={checkboxValues.homeland !== 0}
+                    onChange={() => handleCheckboxChange("homeland", 10000)}
+                />
+                <Typography>Homeland</Typography>
+            </Box>
+
+            {/* Axie Quest */}
+            <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+                <Checkbox
+                    checked={checkboxValues.axieQuest !== 0}
+                    onChange={() => handleCheckboxChange("axieQuest", 6000)}
+                />
+                <Typography>Axie Quest</Typography>
+            </Box>
+
+            {/* Axie Origins */}
+            <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+                <Checkbox
+                    checked={checkboxValues.axieOrigins !== 0}
+                    onChange={() => {
+                        handleCheckboxChange("axieOrigins", checkboxValues.axieOrigins === 0 ? 1000 : 0);
+                    }}
+                />
+                <Typography>Axie Origins</Typography>
+            </Box>
+
+            {/* Mostrar el Select solo si Axie Origins está activo */}
+            {checkboxValues.axieOrigins !== 0 && (
+                <Select
+                    placeholder="Select Axie Origins Tier"
+                    value={checkboxValues.axieOrigins} // Mantiene el valor seleccionado
+                    onChange={(e) => handleCheckboxChange("axieOrigins", axieOriginsOptions[e.target.value])}
+                    sx={{ marginTop: 1, width: "250px" }}
+                >
+                    {Object.keys(axieOriginsOptions).map((tier) => (
+                        <option key={tier} value={tier}>
+                            {tier}
+                        </option>
+                    ))}
+                </Select>
+            )}
+
+            {/* Axie Origins Arcade */}
+            <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+                <Checkbox
+                    checked={checkboxValues.axieOriginsArcade !== 0}
+                    onChange={() => handleCheckboxChange("axieOriginsArcade", 1500)}
+                />
+                <Typography>Axie Origins Arcade</Typography>
+            </Box>
+
+            {/* Axie Classic */}
+            <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+                <Checkbox
+                    checked={checkboxValues.axieClassic !== 0}
+                    onChange={() => handleCheckboxChange("axieClassic", 12500)}
+                />
+                <Typography>Axie Classic</Typography>
+            </Box>
+        </Box>
+
         
 
         {/* Mostrar la imagen y textos solo si result tiene un valor */}
@@ -313,8 +426,20 @@ export default function AxpTable() {
                     </Box>
                     <Box sx={{ display: "flex", gap: 0.5, alignItems: "center" }}>
                         <Typography variant="body2">
-                            * This is calculated assuming the daily homeland cap, which is 10.000 axp *
+                            * This is calculated assuming the Following daily caps *
                         </Typography>
+                    </Box>
+                    <Box>
+                        {activeCheckboxes.map(([key, value]) => (
+                            <Box key={key} sx={{ marginBottom: 2 }}>
+                                <Typography level="title-md">
+                                    <strong>{key.replace(/([A-Z])/g, " $1").trim()}:</strong> {value}
+                                </Typography>
+                                <Typography level="body-sm" sx={{ color: "gray" }}>
+                                    {labels[key]}
+                                </Typography>
+                            </Box>
+                        ))}
                     </Box>
                 </Box>
             </Box>
