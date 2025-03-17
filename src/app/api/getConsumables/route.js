@@ -26,7 +26,7 @@ const fetchData = async (url, query) => {
 };
 
 export async function POST(request) {
-  const apiUrl = "https://graphql-gateway.axieinfinity.com/graphql";
+  const apiUrl = "https://api-gateway.skymavis.com/graphql/axie-marketplace";
 
   try {
     // Consulta para obtener la tasa de cambio

@@ -37,7 +37,7 @@ const fetchData = async (url, query) => {
 export async function POST(request) {
   const body = await request.json();
   const { axieId } = body;
-  const apiUrl = "https://graphql-gateway.axieinfinity.com/graphql";
+  const apiUrl = "https://api-gateway.skymavis.com/graphql/axie-marketplace";
 
   try {
 

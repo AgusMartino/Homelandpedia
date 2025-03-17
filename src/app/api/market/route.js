@@ -40,7 +40,7 @@ const fetchDataPlot = async (url, plot_ids) => {
 };
 
 export async function POST(request) {
-  const apiUrl = "https://graphql-gateway.axieinfinity.com/graphql";
+  const apiUrl = "https://api-gateway.skymavis.com/graphql/axie-marketplace";
   const apiUrlPlot = "https://land-api.skymavis.com/insights/public/plots/stats";
 
   try {
